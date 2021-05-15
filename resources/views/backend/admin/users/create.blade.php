@@ -19,7 +19,7 @@
                                     <h4 class="card-title">Ajouter un utilisateur</h4>
                                 </div>
                                 <div class="col-md-6">
-                                    <a href="{{ route('admin.users.index') }}" class="btn btn-info float-right btn-sm" role="button" >Tous les utilisateurs</a>
+                                    <a href="{{ route('user.index') }}" class="btn btn-info float-right btn-sm" role="button" >Tous les utilisateurs</a>
                                 </div>
                             </div>
                             
@@ -28,7 +28,7 @@
                     </div>
                     <div class="card-body collapse show">
                         <div class="card-block card-dashboard">
-                            <form  method="POST" action="{{ route('admin.users.store') }}" >
+                            <form  method="POST" action="{{ route('user.store') }}" >
                                 @csrf
                                 @method('POST')
     

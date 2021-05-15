@@ -21,7 +21,8 @@
                                     <h4 class="card-title">Tous les utilisateurs</h4>
                                 </div>
                                 <div class="col-md-6">
-                                    <a href="{{ route('admin.users.create') }}" class="btn btn-info float-right btn-sm" role="button" >Ajouter</a>
+                                    <a href="{{ route('user.create') }}" class="btn btn-info float-right btn-sm" role="button" >
+                                        <i class="fa fa-plus" aria-hidden="true"></i> Ajouter</a>
 
                                 </div>
                             </div>
@@ -49,8 +50,8 @@
                                     <td scope="col" style="width: 10%">{{ get_user_role($user->role) }}</td>  
 
                                     <td scope="col" style="text-align: center; width: 10%">
-                                    <a class="btn btn-warning" href="{{route('admin.users.edit',$user->id) }}" role="button"> <i class="fa fa-edit"></i></a>
-                                    <a class="btn btn-info" href="{{route('admin.users.show',$user->id) }}" role="button"> Voir</a>
+                                    <a class="btn btn-warning" href="{{route('user.edit',$user->id) }}" role="button"> <i class="fa fa-edit"></i></a>
+                                    {{-- <a class="btn btn-info" href="{{route('user.show',$user->id) }}" role="button"> Voir</a> --}}
 
                                     </td>  
                                   </tr>

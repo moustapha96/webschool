@@ -13,7 +13,8 @@
             <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
 
                 <li class="{{ is_active($activeMain, 'dashboard') }} nav-item"><a href="cards.html"><i
-                            class="icon-layers"></i><span data-i18n="" class="menu-title"> {{ Auth::user()->prenom }} -- {{ Auth::user()->role }} </span></a>
+                            class="icon-layers"></i><span data-i18n="" class="menu-title"> {{ Auth::user()->prenom }}
+                            -- {{ Auth::user()->role }} </span></a>
 
                 <li class="has-sub nav-item"><a><i class="icon-screen-desktop"></i><span data-i18n=""
                             class="menu-title">Classes
@@ -27,9 +28,28 @@
                     </ul>
                 </li>
 
+                <li class="has-sub nav-item"><a><i class="icon-magnet"></i><span data-i18n="" class="menu-title">Gestion
+                            des Niveaux</span></a>
+                    <ul class="menu-content">
+                        <li class="{{ is_active($activeMain, 'accountant') }}"><a
+                                href="{{ route('admin.filiere') }}" class="menu-item">filieres
+                            </a>
+                        </li>
+                        <li class="{{ is_active($activeMain, 'accountant') }}"><a
+                                href="{{ route('admin.niveau') }}" class="menu-item">Niveaux
+                            </a>
+                        </li>
+                        <li class="{{ is_active($activeMain, 'depense') }}"><a href="" class="menu-item">bulletins
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </li>
+
 
                 <li class="has-sub nav-item"><a><i class="icon-magnet"></i><span data-i18n="" class="menu-title">Gestion
-                            Etud</span></a>
+                            Etudiant</span></a>
                     <ul class="menu-content">
                         <li class="{{ is_active($activeMain, 'users') }}"><a
                                 href="{{ route('admin.students.liste') }}" class="menu-item">Liste
@@ -75,11 +95,13 @@
                     </ul>
                 </li>
 
+
                 <li class="has-sub nav-item"><a><i class="icon-user"></i><span data-i18n="" class="menu-title">
                             Utilisateurs</span></a>
 
                     <ul class="menu-content">
-                        <li class="{{ is_active($activeMain, 'users') }}"><a class="menu-item">Liste
+                        <li class="{{ is_active($activeMain, 'users') }}"><a href="{{ route('user.index') }}"
+                                class="menu-item">Liste
                             </a>
                         </li>
                         <li class="{{ is_active($activeMain, 'newUser') }}"><a class="menu-item">Ajouter </a>
@@ -104,16 +126,18 @@
                     </ul>
                 </li>
 
-                <li class="{{ is_active($activeMain, 'years') }} nav-item"><a><i class="icon-layers"></i><span
-                            data-i18n="" class="menu-title">Année Académique</span></a>
+                <li class="{{ is_active($activeMain, 'years') }} nav-item"><a
+                        href="{{ route('academic_year') }}"><i class="icon-layers"></i><span data-i18n=""
+                            class="menu-title">Année Académique</span></a>
                 </li>
 
                 <li class="has-sub nav-item"><a><i class="icon-grid"></i><span data-i18n=""
                             class="menu-title">Etudiants</span></a>
                     <ul class="menu-content">
-                        <li><a href="regular-table.html" class="menu-item">Listes par classe</a>
+                        <li><a href="{{ route('admin.students.liste') }}" class="menu-item">Listes par classe</a>
                         </li>
-                        <li><a href="extended-table.html" class="menu-item">Demandes d'admission</a>
+                        <li><a href="{{ route('admission_request.liste') }}" class="menu-item">Demandes
+                                d'admission</a>
                         </li>
                     </ul>
                 </li>
@@ -121,16 +145,16 @@
                 <li class="has-sub nav-item"><a><i class="icon-notebook"></i><span data-i18n=""
                             class="menu-title">Bibliothèque</span></a>
                     <ul class="menu-content">
-                        <li><a href="dt-basic-initialization.html" class="menu-item">Livres disponibles</a>
+                        <li><a href="{{ route('books.index') }}" class="menu-item">Livres disponibles</a>
                         </li>
-                        <li><a href="dt-advanced-initialization.html" class="menu-item">Liste des emprunts</a>
+                        <li><a href="{{ route('book_issu.index') }}" class="menu-item">Liste des emprunts</a>
                         </li>
 
                     </ul>
                 </li>
 
 
-                <li class="has-sub nav-item"><a><i class="icon-user"></i><span data-i18n="" class="menu-title">Dossier
+                <li class="has-sub nav-item"><a><i class="icon-flag"></i><span data-i18n="" class="menu-title">Dossier
                             Scolaires
                         </span></a>
                     <ul class="menu-content">
@@ -144,7 +168,7 @@
 
 
 
-                <li class="has-sub nav-item"><a href="#"><i class="icon-pie-chart"></i><span data-i18n=""
+                <li class="has-sub nav-item"><a><i class="icon-pie-chart"></i><span data-i18n=""
                             class="menu-title">Messagerie</span></a>
                     <ul class="menu-content">
                         <li><a href="{{ route('notificationsAdmin.show') }}" class="menu-item">Notifications
@@ -160,10 +184,8 @@
                     </ul>
                 </li>
 
-                <li class="{{ is_active($activeMain, 'academic_year') }} nav-item"><a
-                        href="{{ route('academic_year') }}"><i class="icon-years"></i><span data-i18n=""
-                            class="menu-title">année académique</span></a>
-                </li>
+
+
 
                 <li class="{{ is_active($activeMain, 'parameters') }} nav-item"><a
                         href="{{ route('admin.settings.index') }}"><i class="icon-settings"></i><span data-i18n=""

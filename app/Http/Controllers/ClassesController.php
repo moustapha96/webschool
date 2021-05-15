@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Classe;
 use App\Models\Classroom;
+use App\Models\filiere;
+use App\Models\niveau;
 use Illuminate\Http\Request;
 use DataTables;
 
@@ -20,7 +22,27 @@ class ClassesController extends Controller
         $title = 'Liste des classes';
         $activeMain = 'listeClasses';
 
-        return  view('backend.admin.classes.index',compact('classes', 'title', 'activeMain'));
+        $salles  = Classroom::all();
+        $filieres = filiere::all();
+        $niveaux = niveau::all();
+        return  view('backend.admin.classes.index',compact('classes', 'title', 'activeMain','salles','filieres', 'niveaux'));
+    }
+
+    function admin_store(Request $request){
+        request()->validate([
+            'salle_id' => ['required'],
+            'niveau_id' => ['required'],
+            'filiere_id'=> ['required']
+          ]);
+          $salle = Classroom::find($request->salle_id);
+          $filiere = filiere::find($request->filiere_id);
+          $niveau = niveau::find($request->niveau_id);
+
+          dump($salle);
+          dump($filiere);
+          dump($niveau);
+
+
     }
 
     /*function classeslist(Request $request)

@@ -15,7 +15,7 @@
                     <div class="card-header">
                         <div class="card-title-wrap bar-success">
                             <h2>Profil de {{ $user->prenom . ' '. $user->nom }}                                     
-                                <a class="btn btn-info btn-sm" title="Modifier" href="{{route('admin.users.edit',$user->id) }}" role="button"> <i class="fa fa-edit"></i></a>
+                                <a class="btn btn-info btn-sm" title="Modifier" href="{{route('user.edit',$user->id) }}" role="button"> <i class="fa fa-edit"></i></a>
 
                             @if ($user->status == 1)
                             <span class="badge badge-success float-right"> Compte activé </span>

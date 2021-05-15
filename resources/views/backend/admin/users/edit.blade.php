@@ -19,7 +19,7 @@
                                     <h4 class="card-title">Modifier un profil utilisateur</h4>
                                 </div>
                                 <div class="col-md-6">
-                                    <a href="{{ route('admin.users.index') }}" class="btn btn-info float-right btn-sm"
+                                    <a href="{{ route('admin.user.index') }}" class="btn btn-info float-right btn-sm"
                                         role="button">Liste des utilisateurs</a>
                                 </div>
                             </div>

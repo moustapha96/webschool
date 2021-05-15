@@ -15,7 +15,79 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="card-title-wrap bar-success">
-                            <h4 class="card-title">Liste des Classes</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4 class="card-title">Gestion des classes</h4>
+                                </div>
+                                <div class="col-md-6">
+
+                                    <a data-toggle="collapse" class="btn btn-primary  float-right btn-sm"
+                                        data-parent="#accordianId" href="#section1ContentId" aria-expanded="true"
+                                        aria-controls="section1ContentId">
+                                        <i class="fa fa-plus" aria-hidden="true"></i> ajouter une classe
+                                    </a>
+
+                                </div>
+                            </div>
+                            <div id="accordianId" role="tablist" aria-multiselectable="true">
+                                <div class="card">
+
+                                    <div id="section1ContentId" class="collapse in" role="tabpanel"
+                                        aria-labelledby="section1HeaderId">
+                                        <div class="card-body">
+                                            <div>
+                                                <div class="form-group">
+                                                    <form action="{{ route('admin.classe.create') }}" method="post">
+                                                        @csrf
+
+                                                        <div class="form-group col-md-12">
+                                                            <label for="categori">{{ __('Filiere') }}</label>
+                    
+                                                            <select class="form-control" name="filiere_id" id="filiere_id" required>
+                                                                <option></option>
+                                                                @foreach ($filieres as $filiere)
+                                                                    <option value="{{ $filiere->id }}"> {{ $filiere->name }} </option>
+                    
+                                                                @endforeach
+                                                            </select>
+                    
+                    
+                                                        </div>
+
+                                                        <div class="form-group col-md-12">
+                                                            <label for="categori">{{ __('Niveau') }}</label>
+                    
+                                                            <select class="form-control" name="niveau_id" id="niveau_id" required>
+                                                                <option></option>
+                                                                @foreach ($niveaux as $niveau)
+                                                                    <option value="{{ $niveau->id }}"> {{ $niveau->name }} </option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="form-group col-md-12">
+                                                            <label for="categori">{{ __('salle de classe') }}</label>
+                    
+                                                            <select class="form-control" name="salle_id" id="salle_id" required>
+                                                                <option></option>
+                                                                @foreach ($salles as $salle)
+                                                                    <option value="{{ $salle->id }}"> {{ $salle->name }} </option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="modal-footer">
+                                                            <button type="submit"
+                                                                class="btn btn-success">enregistrer</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                             <hr>
                         </div>
                     </div>
