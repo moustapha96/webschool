@@ -10,13 +10,14 @@
     <main class="app-content">
         <div class="app-title">
             <div>
-                <h1><i class="fa fa-suitcase"></i>Gestion des UE</h1>
-                <p class="mt-2">Liste des unités d'enseignements</p>
+                <h1><i class="fa fa-hourglass" aria-hidden="true"></i>Gestion des Matieres</h1>
+                <p class="mt-2">Liste des matieres</p>
             </div>
             <ul class="app-breadcrumb breadcrumb">
                 <li class="breadcrumb-item">
-                    <a class="btn btn-success" href="{{ route('unity.createU') }}" role="button">Ajouter un UE</a>
-
+                    <a class="btn btn-success" href="{{ route('matiere.createM') }}" role="button">Ajouter une
+                        matiere</a>
+                </li>
             </ul>
         </div>
         <div class="row">
@@ -38,28 +39,30 @@
                         <div class="table-responsive">
                             <table class="table table-hover table-bordered" id="sampleTable" width="100%">
                                 <thead class="thead-dark">
-                                    <tr>
-                                        <th scope="col">Code</th>
-                                        <th scope="col">Nom UE</th>
-                                        <th scope="col">Crédit</th>
+                                    <tr style="text-align:center;">
+                                        <th scope="col">Matiére</th>
+                                        <th scope="col">Coefficient</th>
+                                        <th scope="col">UE</th>
                                         <th scope="col">Semestre</th>
-                                        <th scope="col">Nom Classe</th>
+                                        <th scope="col">Classe</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <!-- Le corps du tableau ici -->
-                                    @foreach ($unities as $unity)
+                                    @foreach ($subjects as $subject)
                                         <tr>
-                                            <td scope="col">{{ $unity->code }}</td>
-                                            <td scope="col">{{ $unity->name }}</td>
-                                            <td scope="col">{{ $unity->credit }}</td>
-                                            <td scope="col">{{ $unity->semester->code }}</td>
-                                            <td scope="col">{{ $unity->semester->classe->nameClass }}</td>
+                                            <td scope="col">{{ $subject->name }}</td>
+                                            <td scope="col">{{ $subject->coefficient }}</td>
+                                            <td scope="col">{{ $subject->unitie->name }}</td>
+                                            <td scope="col">{{ $subject->unitie->semester->code }}</td>
+                                            <td scope="col">{{ $subject->unitie->semester->classe->code }}</td>
                                             <td scope="col">
-                                                <a class="btn btn-warning" href="{{ route('unity.editU', $unity->id) }}"
+                                                <a class="btn btn-warning"
+                                                    href="{{ route('matiere.editM', $subject->id) }}"
                                                     role="button">Modifier</a>
-                                                <a class="btn btn-danger" href="{{ route('unity.destroyU', $unity->id) }}"
+                                                <a class="btn btn-danger"
+                                                    href="{{ route('matiere.destroyM', $subject->id) }}"
                                                     role="button">Supprimer</a>
                                             </td>
                                         </tr>
@@ -85,8 +88,9 @@
 
     </script>
 
-@endsection
- --}}
+@endsection --}}
+
+
 
 @extends('backend.layouts.main')
 
@@ -107,15 +111,16 @@
                         <div class="card-title-wrap bar-success">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h1><i class="fa fa-suitcase"></i>Gestion des UE</h1>
-                                    <p class="mt-2">Liste des unités d'enseignements</p>
+                                    <h1><i class="fa fa-hourglass" aria-hidden="true"></i>Gestion des Matieres</h1>
+                                    <p class="mt-2">Liste des matieres</p>
                                 </div>
                                 <div class="col-md-6">
 
-                                    <a class="btn btn-success float-right btn-sm" href="{{ route('unity.createU') }}"
-                                        role="button">Ajouter un UE</a>
-                                    <a class="btn btn-info float-right btn-sm" href="{{ url()->previous() }}"><i
-                                            class="fa fa-reply"></i> Retour</a></li>
+                                    <a class="btn btn-success float-right btn-sm" href="{{ route('matiere.createM') }}"
+                                        role="button">Ajouter une matiere</a>
+
+                                    <a href="{{ url()->previous() }}" class="btn btn-info float-right btn-sm"
+                                        role="button"> <i class="fa fa-reply" aria-hidden="true"></i> Retour</a>
 
                                 </div>
                             </div>
@@ -143,27 +148,28 @@
                             <table class="table table-striped table-bordered zero-configuration">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Code</th>
-                                        <th scope="col">Nom UE</th>
-                                        <th scope="col">Crédit</th>
+                                        <th scope="col">Matiére</th>
+                                        <th scope="col">Coefficient</th>
+                                        <th scope="col">UE</th>
                                         <th scope="col">Semestre</th>
-                                        <th scope="col">Nom Classe</th>
+                                        <th scope="col">Classe</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($unities as $unitie)
+                                    @foreach ($subjects as $subject)
                                         <tr>
-                                            <td scope="col">{{ $unitie->code }}</td>
-                                            <td scope="col">{{ $unitie->name }}</td>
-                                            <td scope="col">{{ $unitie->credit }}</td>
-                                            <td scope="col">{{ $unitie->semester->code }}</td>
-                                            <td scope="col">{{ $unitie->semester->classe->nameClass }}</td>
+                                            <td scope="col">{{ $subject->name }}</td>
+                                            <td scope="col">{{ $subject->coefficient }}</td>
+                                            <td scope="col">{{ $subject->unitie->name }}</td>
+                                            <td scope="col">{{ $subject->unitie->semester->code }}</td>
+                                            <td scope="col">{{ $subject->unitie->semester->classe->code }}</td>
                                             <td scope="col">
-                                                <a class="btn btn-warning" href="{{ route('unity.editU', $unitie) }}"
+                                                <a class="btn btn-warning"
+                                                    href="{{ route('matiere.editM', $subject) }}"
                                                     role="button">Modifier</a>
                                                 <a class="btn btn-danger"
-                                                    href="{{ route('unity.destroyU', $unitie) }}"
+                                                    href="{{ route('matiere.destroyM', $subject) }}"
                                                     role="button">Supprimer</a>
                                             </td>
                                         </tr>
@@ -171,12 +177,12 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th scope="col">Code</th>
-                                        <th scope="col">Nom UE</th>
-                                        <th scope="col">Crédit</th>
-                                        <th scope="col">Semestre</th>
-                                        <th scope="col">Nom Classe</th>
-                                        <th scope="col">Action</th>
+                                      <th scope="col">Matiére</th>
+                                      <th scope="col">Coefficient</th>
+                                      <th scope="col">UE</th>
+                                      <th scope="col">Semestre</th>
+                                      <th scope="col">Classe</th>
+                                      <th scope="col">Action</th>
                                     </tr>
                                 </tfoot>
                             </table>

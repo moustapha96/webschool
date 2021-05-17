@@ -189,7 +189,7 @@ class TeachersController extends Controller
              if( $m_examen != null ){
                 return redirect()->back()->with('error','ce étudiant a déja une note examen');
              }
-
+ 
             return redirect()->back()->with('error','ce étudiant a déja 2 notes');
        }
 

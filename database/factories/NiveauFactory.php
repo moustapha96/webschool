@@ -22,7 +22,8 @@ class NiveauFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->name,
+            'code' => $this->faker->unique()->name,
         ];
     }
 }

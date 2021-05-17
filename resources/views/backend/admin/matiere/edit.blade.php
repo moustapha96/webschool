@@ -24,7 +24,7 @@
                 <div class="tile">
                     <div class="tile-body">
 
-                        <form class="form-group" action="{{ route('matiere.updateM', $subject) }}" method="POST">
+                        <form class="form-group" action="{{ route('matiere.updateM', $subjects->id) }}" method="POST">
                             @csrf
 
 
@@ -147,7 +147,7 @@
                                         <div class="tile-body">
 
                                             <form class="form-group"
-                                                action="{{ route('matiere.updateM', $subjects->id) }}" method="POST">
+                                                action="{{ route('matiere.updateM', $subject) }}" method="POST">
                                                 @csrf
 
 
@@ -159,7 +159,7 @@
                                                             <option></option>
                                                             @foreach ($unities as $unity)
                                                                 <option value="{{ $unity->id }}"
-                                                                    {{ $subjects->unity_id == $unity->id ? 'selected' : '' }}>
+                                                                    {{ $subject->unity_id == $unity->id ? 'selected' : '' }}>
                                                                     {{ $unity->name }} -- {{ $unity->semester->code }}
                                                                     --
                                                                     {{ $unity->semester->classe->code }} </option>
@@ -170,7 +170,7 @@
 
                                                     <div class="form-group col-md-12">
                                                         <label for="name">{{ __('Nom de la Matiére') }}</label>
-                                                        <input type="text" name="name" value="{{ $subjects->name }}"
+                                                        <input type="text" name="name" value="{{ $subject->name }}"
                                                             class="form-control  @error('name') is-invalid @enderror"
                                                             id="start_time" placeholder="Nom de la matiere" required>
                                                         @error('name')
@@ -184,7 +184,7 @@
                                                     <div class="form-group col-md-12">
                                                         <label for="coefficient">{{ __('Coéfficient') }}</label>
                                                         <input type="number" name="coefficient"
-                                                            value="{{ $subjects->coefficient }}"
+                                                            value="{{ $subject->coefficient }}"
                                                             class="form-control  @error('coefficient') is-invalid @enderror"
                                                             id="coefficient" placeholder="coefficient de la matiere"
                                                             required>

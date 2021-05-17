@@ -23,15 +23,15 @@
     <div class="col-md-12">
       <div class="tile">
         <div class="tile-body">
-
-          <form class="form-group" action="{{ route('semester.updateS',$semester) }}" method="POST">
-
+         
+          <form class="form-group" action="{{ route('semester.updateS',$semester->id) }}" method="POST">
+        
             @csrf
-
+            
             <div class="form-row">
               <div class="form-group col-md-12">
                 <label for="code">{{ __('Code Semestre') }}</label>
-                <input type="text" name="code" value="{{ $semester->code }}" class="form-control  @error('code') is-invalid @enderror"
+                <input type="text" name="code" value="{{ $semester->code }}" class="form-control  @error('code') is-invalid @enderror" 
                 id="code" placeholder="Code semestre" required >
                     @error('code')
                         <span class="invalid-feedback" role="alert">
@@ -42,7 +42,7 @@
 
               <div class="form-group col-md-12">
                 <label for="name">{{ __('Nom semestre') }}</label>
-                <input type="text" name="name" value="{{ $semester->name }}" class="form-control  @error('name') is-invalid @enderror"
+                <input type="text" name="name" value="{{ $semester->name }}" class="form-control  @error('name') is-invalid @enderror" 
                 id="name" placeholder="nom du semestre"  required >
                     @error('name')
                         <span class="invalid-feedback" role="alert">
@@ -59,7 +59,7 @@
                     <option value="{{ $x->id }}" {{ $x->id == $semester->class_id ? 'selected': '' }} > {{ $x->code }} -- {{ $x->nameClass }}  </option>
                   @endforeach
                 </select>
-              </div>
+              </div>  
 
            </div>
             <div class="row">

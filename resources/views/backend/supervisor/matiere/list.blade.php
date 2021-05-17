@@ -59,10 +59,10 @@
                                             <td scope="col">{{ $subject->unitie->semester->classe->code }}</td>
                                             <td scope="col">
                                                 <a class="btn btn-warning"
-                                                    href="{{ route('matiere.editM', $subject->id) }}"
+                                                    href="{{ route('matiere.editM', $subject) }}"
                                                     role="button">Modifier</a>
                                                 <a class="btn btn-danger"
-                                                    href="{{ route('matiere.destroyM', $subject->id) }}"
+                                                    href="{{ route('matiere.destroyM', $subject) }}"
                                                     role="button">Supprimer</a>
                                             </td>
                                         </tr>

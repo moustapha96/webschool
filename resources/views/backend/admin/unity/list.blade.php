@@ -152,18 +152,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($unities as $unitie)
+                                    @foreach ($unities as $unity)
                                         <tr>
-                                            <td scope="col">{{ $unitie->code }}</td>
-                                            <td scope="col">{{ $unitie->name }}</td>
-                                            <td scope="col">{{ $unitie->credit }}</td>
-                                            <td scope="col">{{ $unitie->semester->code }}</td>
-                                            <td scope="col">{{ $unitie->semester->classe->nameClass }}</td>
+                                            <td scope="col">{{ $unity->code }}</td>
+                                            <td scope="col">{{ $unity->name }}</td>
+                                            <td scope="col">{{ $unity->credit }}</td>
+                                            <td scope="col">{{ $unity->semester->code }}</td>
+                                            <td scope="col">{{ $unity->semester->classe->nameClass }}</td>
                                             <td scope="col">
-                                                <a class="btn btn-warning" href="{{ route('unity.editU', $unitie) }}"
+                                                <a class="btn btn-warning" href="{{ route('unity.editU', $unity->id) }}"
                                                     role="button">Modifier</a>
                                                 <a class="btn btn-danger"
-                                                    href="{{ route('unity.destroyU', $unitie) }}"
+                                                    href="{{ route('unity.destroyU', $unity->id) }}"
                                                     role="button">Supprimer</a>
                                             </td>
                                         </tr>

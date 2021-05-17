@@ -11,7 +11,7 @@
         <div class="app-title">
             <div>
                 <h1><i class="fa fa-hourglass" aria-hidden="true"></i>Gestion des Matieres</h1>
-                <p>Modification une matiere</p>
+                <p class="mt-2">Enregistrer une matiere</p>
             </div>
             <ul class="app-breadcrumb breadcrumb">
                 <li class="breadcrumb-item"><a class="btn btn-outline-primary" href="{{ url()->previous() }}"><i
@@ -23,10 +23,9 @@
             <div class="col-md-12">
                 <div class="tile">
                     <div class="tile-body">
+                        <form class="form-group" action="{{ route('matiere.storeM') }}" method="post">
 
-                        <form class="form-group" action="{{ route('matiere.updateM', $subject) }}" method="POST">
                             @csrf
-
 
                             <div class="form-row">
 
@@ -35,10 +34,9 @@
                                     <select id="inputState" name="unity_id" class="form-control">
                                         <option></option>
                                         @foreach ($unities as $unity)
-                                            <option value="{{ $unity->id }}"
-                                                {{ $subjects->unity_id == $unity->id ? 'selected' : '' }}>
-                                                {{ $unity->name }} -- {{ $unity->semester->code }} --
-                                                {{ $unity->semester->classe->code }} </option>
+                                            <option value="{{ $unity->id }}"> {{ $unity->name }} --
+                                                {{ $unity->semester->code }} -- {{ $unity->semester->classe->code }}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -46,9 +44,8 @@
 
                                 <div class="form-group col-md-12">
                                     <label for="name">{{ __('Nom de la Matiére') }}</label>
-                                    <input type="text" name="name" value="{{ $subjects->name }}"
-                                        class="form-control  @error('name') is-invalid @enderror" id="start_time"
-                                        placeholder="Nom de la matiere" required>
+                                    <input type="text" name="name" class="form-control  @error('name') is-invalid @enderror"
+                                        id="start_time" placeholder="Nom de la matiere" required>
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -59,7 +56,7 @@
 
                                 <div class="form-group col-md-12">
                                     <label for="coefficient">{{ __('Coéfficient') }}</label>
-                                    <input type="number" name="coefficient" value="{{ $subjects->coefficient }}"
+                                    <input type="number" name="coefficient"
                                         class="form-control  @error('coefficient') is-invalid @enderror" id="coefficient"
                                         placeholder="coefficient de la matiere" required>
                                     @error('coefficient')
@@ -72,24 +69,23 @@
 
                             <div class="row">
                                 <div class="mx-auto align-content-center">
-                                    <button type="submit" class="btn btn-primary" name="button">enregistrer
-                                        modification</button>
+                                    <button type="submit" class="btn btn-primary" name="button">enregistrer</button>
                                 </div>
                             </div>
+
                         </form>
 
                     </div>
                 </div>
             </div>
-        </div>
     </main>
 @endsection
 
 
 @section('scripts')
 
-@endsection
- --}}
+@endsection --}}
+
 
 @extends('backend.layouts.main')
 
@@ -111,7 +107,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <h1><i class="fa fa-hourglass" aria-hidden="true"></i>Gestion des Matieres</h1>
-                                    <p>Modification une matiere</p>
+                                    <p class="mt-2">Enregistrer une matiere</p>
                                 </div>
                                 <div class="col-md-6">
 
@@ -146,10 +142,10 @@
                                     <div class="tile">
                                         <div class="tile-body">
 
-                                            <form class="form-group"
-                                                action="{{ route('matiere.updateM', $subjects->id) }}" method="POST">
-                                                @csrf
+                                            <form class="form-group" action="{{ route('matiere.storeM') }}"
+                                                method="post">
 
+                                                @csrf
 
                                                 <div class="form-row">
 
@@ -158,11 +154,11 @@
                                                         <select id="inputState" name="unity_id" class="form-control">
                                                             <option></option>
                                                             @foreach ($unities as $unity)
-                                                                <option value="{{ $unity->id }}"
-                                                                    {{ $subjects->unity_id == $unity->id ? 'selected' : '' }}>
-                                                                    {{ $unity->name }} -- {{ $unity->semester->code }}
+                                                                <option value="{{ $unity->id }}"> {{ $unity->name }}
                                                                     --
-                                                                    {{ $unity->semester->classe->code }} </option>
+                                                                    {{ $unity->semester->code }} --
+                                                                    {{ $unity->semester->classe->code }}
+                                                                </option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -170,7 +166,7 @@
 
                                                     <div class="form-group col-md-12">
                                                         <label for="name">{{ __('Nom de la Matiére') }}</label>
-                                                        <input type="text" name="name" value="{{ $subjects->name }}"
+                                                        <input type="text" name="name"
                                                             class="form-control  @error('name') is-invalid @enderror"
                                                             id="start_time" placeholder="Nom de la matiere" required>
                                                         @error('name')
@@ -184,7 +180,6 @@
                                                     <div class="form-group col-md-12">
                                                         <label for="coefficient">{{ __('Coéfficient') }}</label>
                                                         <input type="number" name="coefficient"
-                                                            value="{{ $subjects->coefficient }}"
                                                             class="form-control  @error('coefficient') is-invalid @enderror"
                                                             id="coefficient" placeholder="coefficient de la matiere"
                                                             required>
@@ -199,10 +194,10 @@
                                                 <div class="row">
                                                     <div class="mx-auto align-content-center">
                                                         <button type="submit" class="btn btn-primary"
-                                                            name="button">enregistrer
-                                                            modification</button>
+                                                            name="button">enregistrer</button>
                                                     </div>
                                                 </div>
+
                                             </form>
 
                                         </div>

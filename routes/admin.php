@@ -19,17 +19,17 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 
-	// route pour aller à la page d'edition d'un user 
+	// route pour aller à la page d'edition d'un user
 	Route::get('/modifier-profil/{user_id}', 'UsersController@edit')->name('user.edit');
 
 	// route pour modifier un user
 	Route::post('/compte-update/{id} ', 'UsersController@update_user')->name('user.update');
 
-	// route pour créer un user 
+	// route pour créer un user
 	Route::post('/create-user', 'UsersController@create')->name('create.user');
 
 	Route::post('users/cretated','UsersController@store')->name('user.store');
-	//tout les user 
+	//tout les user
 	Route::get('/users', 'UsersController@index')->name('user.index');
 
 	//route pour activer/desactiver un compte
@@ -78,7 +78,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 
 	/**
-	 * gestion des filieres 
+	 * gestion des filieres
 	 **/
 	// ajoutre une catégorie
 	Route::post('filieres', 'FiliereController@store')->name('admin.filiere.add');
@@ -108,7 +108,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 	Route::post('/catégories/modification/{categorie}', 'BookController@edit_categorie')->name('admin.categorie.update');
 
 
-	// creer une classe 
+	// creer une classe
 	Route::post('/classe/creer', 'ClassesController@admin_store')->name('admin.classe.create');
 
 	// supprimer une categorie
@@ -222,7 +222,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 	Route::post('année_académique/modification/{academic_year}', 'AdminController@ay_updated')->name('academic_year.updated');
 
-	// supprimer une année academique 
+	// supprimer une année academique
 	Route::get('année_académique/suppression/{academic_year}', 'AdminController@delete_ay')->name('academic_year.delete');
 
 	// liste dossier
@@ -236,17 +236,17 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 
 
-	// liste des professeur 
+	// liste des professeur
 	Route::get('professeurs/', 'AdminController@List_teachers')->name('teacher.index');
 
 	// detail professeur
 	Route::get('/professeur/{teacher}/details', 'AdminController@showTeacher')->name('teacher.show');
 
-	// emploi du temps professeur 
+	// emploi du temps professeur
 	Route::get('/professeur/{teacher}/emploie_du_temps', 'AdminController@classe_routineTeacher')->name('teacher.classe_routine');
 
 
-	// liste des admissions 
+	// liste des admissions
 	Route::get('responsable/admissions', 'AdminController@liste_Admission')->name('supervisor.liste_admisssion');
 
 
@@ -266,4 +266,93 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 	Route::get('admin/contacts', 'AdminController@liste_Contact')->name('admin.contact.liste');
 
 	Route::get('admin/contacts/{contact}', 'AdminController@delete_Contact')->name('admin.contact.delete');
+
+
+
+		 /* Matiere = cours -----------------------------------------------------------------------------------------*/
+
+    	 Route::get('/matiere', 'SubjectController@index')->name('matiere.indexM');
+    	 Route::get('/matiere/list', 'SubjectController@index')->name('matiere.listM');
+
+    	 Route::get('/nouvelleMatiere', 'SubjectController@create')->name('matiere.createM');
+    	 Route::post('/nouvelleMatiere', 'SubjectController@store')->name('matiere.storeM');
+
+    	 Route::get('/matiere/{subject}/modifier', 'SubjectController@edit')->name('matiere.editM');
+    	 Route::post('/matiere/{subject}/modifier', 'SubjectController@update')->name('matiere.updateM');
+
+    	 Route::get('/matiere/{subject}/suprimer', 'SubjectController@destroy')->name('matiere.destroyM');
+
+    	 /* Semestre -----------------------------------------------------------------------------------------*/
+
+    	 Route::get('/semestre', 'SemesterController@index')->name('semester.indexS');
+
+    	 Route::get('/nouvelleSemestre', 'SemesterController@create')->name('semester.createS');
+    	 Route::post('/nouvelleSemester', 'SemesterController@store')->name('semester.storeS');
+
+    	 Route::get('/semestre/{semester}/modifier', 'SemesterController@edit')->name('semester.editS');
+    	 Route::post('/semestre/{semester}/modifier', 'SemesterController@update')->name('semester.updateS');
+
+		 Route::delete('/semestre/{semester}/supression', 'SemesterController@destroy')->name('semester.destroyS');
+
+       /* Unite d'enseignement UE -----------------------------------------------------------------------------------------*/
+
+    	 Route::get('/Unite', 'UnitieController@index')->name('unity.indexU');
+
+    	 Route::get('/nouvelleUnite', 'UnitieController@create')->name('unity.createU');
+    	 Route::post('/nouvelleUnite', 'UnitieController@store')->name('unity.storeU');
+
+    	 Route::get('/Unite/{unitie}/modifier', 'UnitieController@edit')->name('unity.editU');
+    	 Route::post('/Unite/{unitie}/modifier', 'UnitieController@update')->name('unity.updateU');
+
+    	 Route::get('/Unite/{unitie}/supprimer', 'UnityController@destroy')->name('unity.destroyU');
+
+
+		 //------------------------------------gestion des Notes ---------------------------------------------//
+
+
+		  //liste des notes de
+		  Route::get('/liste/notes','MarkController@index')->name('marks.index');
+
+		  //ajiuter une notes 
+		  Route::get('/ajoute/ajout','MarkController@create')->name('marks.create');
+
+		  //enregistrer une note 
+		  Route::post('/enregistrement/note/','MarkController@store')->name('marks.store');
+
+		  //liste matieres d'un étudiant
+
+		  Route::post('notes/matieres', 'MarkController@getSubjects' )->name('marks.subject');
+		  //update une note 
+		   Route::post('/modification/note/{mark}','MarkController@update')->name('marks.update');
+		   
+		   // editer ue note 
+		   Route::get('/modification/{mark}/note','MarkController@edit')->name('marks.edit');
+		   //supprimer une note 
+		   Route::get('/supprimer/{mark}/note','MarkController@destroy')->name('marks.destroy');
+	   
+
+
+		
+		 /* Emploi du temps  -----------------------------------------------------------------------------------------*/
+
+		 Route::get('/emploi du temps/liste','ClassRoutineController@index')->name('admin.schedule.index');
+
+		 Route::get('/emploi du temps/classe','ClassRoutineController@getClasse')->name('admin.schedule.getClasse');
+
+		 Route::post('/emploi du temps/classe','ClassRoutineController@classe')->name('admin.schedule.classe');
+
+		 Route::get('/emploi du temps/impression/{code}','ClassRoutineController@print')->name('admin.schedule.print');
+		 
+		 Route::get('/emploi du temps/edit/{class_routine}','ClassRoutineController@edit')->name('admin.schedule.edit');
+
+		 Route::get('/emploi du temps/show/{class_routine}','ClassRoutineController@show')->name('admin.schedule.show');
+
+		 Route::post('/emploi du temps/store','ClassRoutineController@store')->name('admin.schedule.store');
+
+		 Route::post('/emploi du temps/update/{class_routine}','ClassRoutineController@update')->name('admin.schedule.update');
+
+		 Route::get('/emploi du temps/create','ClassRoutineController@create')->name('admin.schedule.create');
+
+		 Route::get('/emploi du temps/destroy','ClassRoutineController@index')->name('admin.schedule.destroy');
+	   
 });

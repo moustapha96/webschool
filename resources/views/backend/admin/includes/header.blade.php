@@ -20,11 +20,24 @@
                             class="menu-title">Classes
                         </span></a>
                     <ul class="menu-content">
-                        <li><a href="{{ route('admin.classes.index') }}" class="menu-item">Liste des Classes</a>
+                        <li><a href="{{ route('admin.classes.index') }}" class="menu-item">Liste</a>
                         </li>
-                        <li><a href="{{ route('admin.classrooms.index') }}" class="menu-item">salle de classe</a>
+                        <li><a href="{{ route('admin.classrooms.index') }}" class="menu-item">salle </a>
                         </li>
-
+                        <li class="{{ is_active($activeMain, 'users') }}"><a href="{{ route('matiere.indexM') }}"
+                                class="menu-item">Cours
+                            </a>
+                        </li>
+                        <li class="{{ is_active($activeMain, 'users') }}"><a href="{{ route('matiere.listM') }}"
+                                class="menu-item">Matiéres
+                            </a>
+                        </li>
+                        <li class="{{ is_active($activeMain, 'newUser') }}"><a href="{{ route('unity.indexU') }}"
+                                class="menu-item">UE</a>
+                        </li>
+                        <li class="{{ is_active($activeMain, 'newUser') }}"><a
+                                href="{{ route('semester.indexS') }}" class="menu-item">Semestres</a>
+                        </li>
                     </ul>
                 </li>
 
@@ -39,10 +52,6 @@
                                 href="{{ route('admin.niveau') }}" class="menu-item">Niveaux
                             </a>
                         </li>
-                        <li class="{{ is_active($activeMain, 'depense') }}"><a href="" class="menu-item">bulletins
-                            </a>
-                        </li>
-
 
                     </ul>
                 </li>
@@ -58,7 +67,13 @@
                         <li class="{{ is_active($activeMain, 'newUser') }}"><a
                                 href="{{ route('admission_request.liste') }}" class="menu-item">admission </a>
                         </li>
-
+                        <li class="{{ is_active($activeMain, 'notes') }}"><a href="{{ route('marks.index') }}"
+                                class="menu-item">Notes
+                            </a>
+                        </li>
+                        <li class="{{ is_active($activeMain, 'depense') }}"><a href="" class="menu-item">bulletins
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="has-sub nav-item"><a><i class="icon-magnet"></i><span data-i18n=""
@@ -92,6 +107,24 @@
                             </a>
                         </li>
 
+                    </ul>
+                </li>
+
+                <li class="has-sub nav-item"><a><i class="icon-magnet"></i><span data-i18n="" class="menu-title">Emploi
+                            du temps</span></a>
+                    <ul class="menu-content">
+                        <li class="{{ is_active($activeMain, 'accountant') }}"><a
+                                href="{{ route('admin.schedule.index') }}" class="menu-item">liste
+                            </a>
+                        </li>
+                        <li class="{{ is_active($activeMain, 'accountant') }}"><a
+                                href="{{ route('admin.schedule.getClasse') }}" class="menu-item">classe
+                            </a>
+                        </li>
+                        <li class="{{ is_active($activeMain, 'newSchedule') }}"><a
+                                href="{{ route('admin.schedule.create') }}" class="menu-item">nouveau
+                            </a>
+                        </li>
                     </ul>
                 </li>
 

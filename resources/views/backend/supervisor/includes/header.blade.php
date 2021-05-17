@@ -26,6 +26,12 @@
                         <li class="{{ is_active($activeMain, 'listeClassrooms') }}"><a
                                 href="{{ route('classroom.index') }}" class="menu-item">Salles de classe</a>
                         </li>
+                        <li class="{{ is_active($activeMain, 'listeFiliere') }}"><a
+                                href="{{ route('supervisor.filiere') }}" class="menu-item">Filieres</a>
+                        </li>
+                        <li class="{{ is_active($activeMain, 'listeNiveaux') }}"><a
+                                href="{{ route('supervisor.niveau') }}" class="menu-item">niveaux</a>
+                        </li>
                     </ul>
                 </li>
 
@@ -52,7 +58,7 @@
                     </ul>
                 </li>
                 {{-- emploi du temps --}}
-                <li class="has-sub nav-item"><a href="#"><i class="icon-screen-desktop"></i><span data-i18n=""
+                <li class="has-sub nav-item"><a ><i class="icon-screen-desktop"></i><span data-i18n=""
                             class="menu-title">Emploi du Temps</span></a>
                     <ul class="menu-content">
                         <li class="{{ is_active($activeMain, 'listeClasses') }}"><a
@@ -108,6 +114,9 @@
                 <li class="has-sub nav-item"><a href="#"><i class="icon-screen-desktop"></i><span data-i18n=""
                             class="menu-title">gestion des Notes</span></a>
                     <ul class="menu-content">
+                        <li class="{{ is_active($activeMain, 'notes') }}"><a
+                                href="{{ route('marks.index') }}" class="menu-item">Notes</a>
+                        </li>
                         <li class="{{ is_active($activeMain, 'listeClasses') }}"><a
                                 href="{{ route('supervisor.classes') }}" class="menu-item">Notes Classes</a>
                         </li>

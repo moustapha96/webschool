@@ -11,6 +11,7 @@ class Unitie extends Model
         'name',
         'credit',
         'semester_id',
+        'class_id'
     ];
 
     protected $table = 'unities';
@@ -22,6 +23,9 @@ class Unitie extends Model
 
     public function subject(){
         return $this->hasMany(Subject::class,'unity_id');
+    }
+    public function classe(){
+        return $this->belongsTo(Classe::class,'class_id');
     }
 
    

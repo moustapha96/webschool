@@ -13,7 +13,8 @@ class Class_routine extends Model
         'end_time',
         'classe_id', 
         'subject_id',
-        'teacher_id'
+        'teacher_id',
+        'classroom_id',
     ];
 	public function teacher(){
         return $this->belongsTo(Teacher::class,'teacher_id');
@@ -22,7 +23,7 @@ class Class_routine extends Model
         return $this->belongsTo(Subject::class,'subject_id');
     }
 	public function classroom(){
-        return $this->belongsTo(Classroom::class);
+        return $this->belongsTo(Classroom::class,'classroom_id');
     }
     public function classe(){
         return $this->belongsTo(Classe::class,'classe_id');

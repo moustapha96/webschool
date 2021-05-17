@@ -58,7 +58,7 @@
                                             <td scope="col" style="width: 10%">{{ $semester->classe->nameClass }}</td>
                                             <td scope="col" style="width: 10% ; text-align:center">
                                                 <a class="btn btn-primary"
-                                                    href="{{ route('semester.editS', $semester->id) }}"
+                                                    href="{{ route('semester.editS', $semester) }}"
                                                     role="button">Modifier</a>
                                             </td>
                                         </tr>
@@ -157,7 +157,7 @@
                                             <td scope="col" style="width: 10%">{{ $semester->classe->nameClass }}</td>
                                             <td scope="col" style="width: 10% ; text-align:center">
                                                 <a class="btn btn-primary"
-                                                    href="{{ route('semester.editS', $semester->id) }}"
+                                                    href="{{ route('semester.editS', $semester) }}"
                                                     role="button">Modifier</a>
                                             </td>
                                         </tr>
