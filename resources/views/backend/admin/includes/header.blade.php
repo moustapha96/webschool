@@ -20,41 +20,38 @@
                             class="menu-title">Classes
                         </span></a>
                     <ul class="menu-content">
-                        <li><a href="{{ route('admin.classes.index') }}" class="menu-item">Liste</a>
-                        </li>
-                        <li><a href="{{ route('admin.classrooms.index') }}" class="menu-item">salle </a>
-                        </li>
-                        <li class="{{ is_active($activeMain, 'users') }}"><a href="{{ route('matiere.indexM') }}"
-                                class="menu-item">Cours
-                            </a>
-                        </li>
-                        <li class="{{ is_active($activeMain, 'users') }}"><a href="{{ route('matiere.listM') }}"
-                                class="menu-item">Matiéres
-                            </a>
-                        </li>
-                        <li class="{{ is_active($activeMain, 'newUser') }}"><a href="{{ route('unity.indexU') }}"
-                                class="menu-item">UE</a>
-                        </li>
-                        <li class="{{ is_active($activeMain, 'newUser') }}"><a
-                                href="{{ route('semester.indexS') }}" class="menu-item">Semestres</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="has-sub nav-item"><a><i class="icon-magnet"></i><span data-i18n="" class="menu-title">Gestion
-                            des Niveaux</span></a>
-                    <ul class="menu-content">
                         <li class="{{ is_active($activeMain, 'accountant') }}"><a
                                 href="{{ route('admin.filiere') }}" class="menu-item">filieres
                             </a>
                         </li>
-                        <li class="{{ is_active($activeMain, 'accountant') }}"><a
-                                href="{{ route('admin.niveau') }}" class="menu-item">Niveaux
+                        <li class="{{ is_active($activeMain, 'accountant') }}"><a href="{{ route('admin.niveau') }}"
+                                class="menu-item">Niveaux
+                            </a>
+                        </li>
+                        <li><a href="{{ route('admin.classes.index') }}" class="menu-item">Liste classe</a>
+                        </li>
+                        <li><a href="{{ route('admin.classrooms.index') }}" class="menu-item">salle </a>
+                        </li>
+                        <li class="{{ is_active($activeMain, 'users') }}"><a
+                                href="{{ route('admin.subject.index_gestion') }}" class="menu-item">Cours
                             </a>
                         </li>
 
+                        <li class="{{ is_active($activeMain, 'users') }}"><a
+                                href="{{ route('admin.subject.index') }}" class="menu-item">Matières
+                            </a>
+                        </li>
+
+                        <li class="{{ is_active($activeMain, 'unitie') }}"><a
+                                href="{{ route('admin.unity.index') }}" class="menu-item">UE</a>
+                        </li>
+                        <li class="{{ is_active($activeMain, 'smester') }}"><a
+                                href="{{ route('admin.semester.index') }}" class="menu-item">Semestres</a>
+                        </li>
                     </ul>
                 </li>
+
+
 
 
                 <li class="has-sub nav-item"><a><i class="icon-magnet"></i><span data-i18n="" class="menu-title">Gestion
@@ -74,8 +71,10 @@
                         <li class="{{ is_active($activeMain, 'depense') }}"><a href="" class="menu-item">bulletins
                             </a>
                         </li>
+
                     </ul>
                 </li>
+
                 <li class="has-sub nav-item"><a><i class="icon-magnet"></i><span data-i18n=""
                             class="menu-title">Bibliothéque</span></a>
                     <ul class="menu-content">
@@ -87,8 +86,8 @@
                                 class="menu-item">Livres disponibles
                             </a>
                         </li>
-                        <li class="{{ is_active($activeMain, 'newUser') }}"><a
-                                href="{{ route('book_issu.index') }}" class="menu-item">Liste des emprunts </a>
+                        <li class="{{ is_active($activeMain, 'book_issu') }}"><a
+                                href="{{ route('admin.book_issu.index') }}" class="menu-item">Liste des emprunts </a>
                         </li>
 
                     </ul>
@@ -119,6 +118,10 @@
                         </li>
                         <li class="{{ is_active($activeMain, 'accountant') }}"><a
                                 href="{{ route('admin.schedule.getClasse') }}" class="menu-item">classe
+                            </a>
+                        </li>
+                        <li class="{{ is_active($activeMain, 'accountant') }}"><a
+                                href="{{ route('admin.schedule.getProfesseur') }}" class="menu-item">professeur
                             </a>
                         </li>
                         <li class="{{ is_active($activeMain, 'newSchedule') }}"><a
@@ -175,16 +178,6 @@
                     </ul>
                 </li>
 
-                <li class="has-sub nav-item"><a><i class="icon-notebook"></i><span data-i18n=""
-                            class="menu-title">Bibliothèque</span></a>
-                    <ul class="menu-content">
-                        <li><a href="{{ route('books.index') }}" class="menu-item">Livres disponibles</a>
-                        </li>
-                        <li><a href="{{ route('book_issu.index') }}" class="menu-item">Liste des emprunts</a>
-                        </li>
-
-                    </ul>
-                </li>
 
 
                 <li class="has-sub nav-item"><a><i class="icon-flag"></i><span data-i18n="" class="menu-title">Dossier

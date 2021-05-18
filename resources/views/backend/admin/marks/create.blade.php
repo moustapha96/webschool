@@ -2,6 +2,8 @@
 
 
 @section('styles')
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('app-assets/vendors/css/tables/datatable/datatables.min.css') }}">
 
 @endsection
 
@@ -21,42 +23,59 @@
                                 <div class="col-md-6">
                                     <a href="{{ route('marks.index') }}" class="btn btn-info float-right btn-sm"
                                         role="button">Liste des notes</a>
+                                    <a href="{{ route('marks.create') }}" class="btn btn-info float-right btn-sm"
+                                        role="button"> <i class="fa fa-reply" aria-hidden="true"></i> Retour</a>
                                 </div>
                             </div>
 
                             <hr>
+                            @if (Session::has('error'))
+                                <div class="alert alert-danger">
+                                    {{ Session::get('error') }}
+                                </div>
+                            @endif
+                            @if (Session::has('success'))
+                                <div class="alert alert-success">
+                                    {{ Session::get('success') }}
+                                </div>
+                            @endif
                         </div>
                     </div>
                     <div class="card-body collapse show">
                         <div class="card-block card-dashboard">
-                            <form action="{{ route('marks.subject') }}" method="post">
-                                @csrf
+                            @if ($matieres == null)
+                                <form action="{{ route('marks.subject') }}" method="post">
+                                    @csrf
 
-                                <div class="form-group">
-                                    <label for="student_id">étudiant </label>
-                                    <select class="form-control" required name="student_id" id="student_id">
-                                        <option> </option>
-                                        @foreach ($students as $student)
-                                            <option value="{{ $student->id }}"> {{ $student->user->prenom }}
-                                                {{ $student->user->nom }} </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-success">matieres</button>
-                                </div>
-                            </form>
+                                    <div class="form-group">
+                                        <label for="student_id">étudiant </label>
+                                        <select class="form-control" required name="student_id" id="student_id">
+                                            <option> </option>
+                                            @foreach ($students as $student)
+                                                <option value="{{ $student->id }}"> {{ $student->user->prenom }}
+                                                    {{ $student->user->nom }} </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-success">matieres</button>
+                                    </div>
+                                </form>
+                            @endif
+
 
                             @if ($matieres != null)
                                 <form action="{{ route('marks.store') }}" method="post">
                                     @csrf
-                                    
+
                                     <div class="form-group">
                                         <label for="student_id">étudiant </label>
                                         <select class="form-control" required name="student_id" id="student_id">
                                             <option> </option>
                                             @foreach ($students as $stud)
-                                                <option value="{{ $stud->id }}"  {{ $stud->id == $student->id ? 'selected' : '' }} > {{ $stud->user->prenom }}
+                                                <option value="{{ $stud->id }}"
+                                                    {{ $stud->id == $student->id ? 'selected' : '' }}>
+                                                    {{ $stud->user->prenom }}
                                                     {{ $stud->user->nom }} </option>
                                             @endforeach
                                         </select>

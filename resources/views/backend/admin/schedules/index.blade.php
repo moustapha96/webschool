@@ -39,8 +39,8 @@
                                         <th scope="col">MATIERE</th>
                                         <th scope="col">PROFESSEUR</th>
                                         <th scope="col">SALLE</th>
-                                        <th scope="col">DEBUT COURS</th>
-                                        <th scope="col">FIN COURS</th>
+                                        <th scope="col" >CLASSE</th>
+                                        <th scope="col">HORAIRE</th>
                                         <th scope="col">ACTIONS</th>
                                     </tr>
                                 </thead>
@@ -52,8 +52,9 @@
                                             <td scope="col">{{ $class_routine->teacher->user->prenom }}
                                                 {{ $class_routine->teacher->user->nom }} </td>
                                             <td scope="col">{{ $class_routine->classroom->description }} </td>
-                                            <td scope="col">{{ $class_routine->start_time }}</td>
-                                            <td scope="col">{{ $class_routine->end_time }}</td>
+
+                                            <td scope="col">{{ $class_routine->classe->nameClass }}</td>
+                                            <td scope="col">{{ $class_routine->start_time }} -- {{ $class_routine->end_time }}</td>
 
                                             <td scope="col">
                                                 <a class="btn btn-primary"

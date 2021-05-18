@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Subject;
 use App\Models\Unitie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SubjectController extends Controller
 {
@@ -16,9 +17,7 @@ class SubjectController extends Controller
     public function index()
     {
         $subjects = Subject::all();
-        // return view('backend.' . Auth()->user()->role . '.matiere.index', compact('subjects'));
-
-        return view('backend.' . Auth()->user()->role . '.matiere.list', compact('subjects'));
+        return view('backend.' . Auth()->user()->role . '.subjects.index', compact('subjects'));
     }
 
     /**
@@ -29,7 +28,7 @@ class SubjectController extends Controller
     public function create()
     {
         $unities = Unitie::all();
-        return view('backend.' . Auth()->user()->role . '.matiere.create', compact('unities'));
+        return view('backend.' . Auth()->user()->role . '.subjects.create', compact('unities'));
     }
 
     /**
@@ -76,7 +75,7 @@ class SubjectController extends Controller
     public function edit(Subject $subject)
     {
         $unities = Unitie::all();
-        return view('backend.' . Auth()->user()->role . '.matiere.edit', compact('subject', 'unities'));
+        return view('backend.' . Auth()->user()->role . '.subjects.edit', compact('subject', 'unities'));
     }
 
     /**
@@ -113,5 +112,9 @@ class SubjectController extends Controller
 
         $subject->delete();
         return redirect()->action('SupervisorsController@listM')->with('success', 'matiere supprimée avec succés');
+    }
+
+    public function index_gestion(){
+       return view('backend.'. Auth::user()->role.'.subjects.index_gestion');
     }
 }

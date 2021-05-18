@@ -19,7 +19,7 @@
                                     <h4 class="card-title">Modifier une Note</h4>
                                 </div>
                                 <div class="col-md-6">
-                                    <a href="{{ route('marks.index') }}" class="btn btn-info float-right btn-sm"
+                                    <a href="{{ route('supervisor.marks.index') }}" class="btn btn-info float-right btn-sm"
                                         role="button">Liste des notes</a>
                                 </div>
                             </div>
@@ -30,7 +30,7 @@
                     <div class="card-body collapse show">
                         <div class="card-block card-dashboard">
 
-                            <form action="{{ route('marks.update', $mark) }}" method="post">
+                            <form action="{{ route('supervisor.marks.update', $mark) }}" method="post">
                                 @csrf
 
                                 <div class="form-group">

@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 //TOUTES LES ROUTES QUI NECESSITENT ETRE CONNECTÉ SONT PLACEES ICI
 Route::group(['middleware' => ['auth']], function () {
+	// Route::group(['prefix' => 'supervisor', 'middleware' => ['auth']], function () {
 
 
 	/* CLASSES --------------------------------------------------------------------------------------------*/
@@ -168,60 +169,23 @@ Route::group(['middleware' => ['auth']], function () {
 
 	Route::get('/classes1/{id}/supprimer', 'ClassesController@destroy1')->name('classes1.destroy1');
 
-	/* Emploi du temps -----------------------------------------------------------------------------------------*/
-
-	Route::get('/emploi', 'SupervisorsController@index')->name('emploi.index');
-
-	Route::get('/nouvelleEmploi', 'SupervisorsController@create')->name('emploi.create');
-	Route::post('/nouvelleEmploi', 'SupervisorsController@store')->name('emploi.store');
-
-	Route::post('/emploi/liste', 'SupervisorsController@list')->name('emploi.list');
-	Route::get('/emploi/{code}', 'SupervisorsController@pdf')->name('emploi.imprimer');
-
-	Route::get('/emploi/{id}/modifier', 'SupervisorsController@edit')->name('emploi.edit');
-	Route::post('/emploi/{id}/modifier', 'SupervisorsController@update')->name('emploi.update');
-
-	Route::get('/emploi/{id}/suprimer', 'SupervisorsController@delete')->name('emploi.destroy');
 
 
-
-	/* Matiere = cours -----------------------------------------------------------------------------------------*/
-
-	Route::get('/matiere', 'SubjectController@index')->name('matiere.indexM');
-	Route::get('/matiere/list', 'SubjectController@index')->name('matiere.listM');
-
-	Route::get('/nouvelleMatiere', 'SubjectController@create')->name('matiere.createM');
-	Route::post('/nouvelleMatiere', 'SubjectController@store')->name('matiere.storeM');
-
-	Route::get('/matiere/{subject}/modifier', 'SubjectController@edit')->name('matiere.editM');
-	Route::post('/matiere/{subject}/modifier', 'SubjectController@update')->name('matiere.updateM');
-
-	Route::get('/matiere/{subject}/suprimer', 'SubjectController@destroy')->name('matiere.destroyM');
-
-	/* Semestre -----------------------------------------------------------------------------------------*/
-
-	Route::get('/semestre', 'SemesterController@index')->name('semester.indexS');
-
-	Route::get('/nouvelleSemestre', 'SemesterController@create')->name('semester.createS');
-	Route::post('/nouvelleSemester', 'SemesterController@store')->name('semester.storeS');
-
-	Route::get('/semestre/{semester}/modifier', 'SemesterController@edit')->name('semester.editS');
-	Route::post('/semestre/{semester}/modifier', 'SemesterController@update')->name('semester.updateS');
-
-	Route::delete('/semestre/{semester}/supression', 'SemesterController@destroy')->name('semester.destroyS');
 
 	/* Unite d'enseignement UE -----------------------------------------------------------------------------------------*/
 
-	Route::get('/Unite', 'UnitieController@index')->name('unity.indexU');
+	Route::get('/Unite', 'UnitieController@index')->name('supervisor.unity.index');
 
-	Route::get('/nouvelleUnite', 'UnitieController@create')->name('unity.createU');
-	Route::post('/nouvelleUnite', 'UnitieController@store')->name('unity.storeU');
+	Route::get('/nouvelleUnite', 'UnitieController@create')->name('supervisor.unity.create');
 
-	Route::get('/Unite/{unitie}/modifier', 'UnitieController@edit')->name('unity.editU');
-	Route::post('/Unite/{unitie}/modifier', 'UnitieController@update')->name('unity.updateU');
+	Route::post('/nouvelleUnite', 'UnitieController@store')->name('supervisor.unity.store');
 
-	Route::get('/Unite/{unitie}/supprimer', 'UnityController@destroy')->name('unity.destroyU');
-	
+	Route::get('/Unite/{unitie}/modifier', 'UnitieController@edit')->name('supervisor.unity.edit');
+
+	Route::post('/Unite/{unitie}/modifier', 'UnitieController@update')->name('supervisor.unity.update');
+
+	Route::get('/Unite/{unitie}/supprimer', 'UnityController@destroy')->name('supervisor.unity.destroy');
+
 
 	/* TEACHERS -----------------------------------------------------------------------------------------*/
 	Route::get('professeurs', 'SupervisorsController@indexTeacher')->name('teachers.index');
@@ -335,4 +299,91 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('/delete/{id}', 'StudentAttendance@destroy')->name('student_attendances.delete');
 
 	Route::get('/liste classes', 'StudentsController@indexDA')->name('admission_demande.index');
+
+
+
+
+	/* Emploi du temps  -----------------------------------------------------------------------------------------*/
+
+	Route::get('/emploi du temps/liste', 'ClassRoutineController@index')->name('supervisor.schedule.index');
+
+	Route::get('/emploi du temps/classe', 'ClassRoutineController@getClasse')->name('supervisor.schedule.getClasse');
+
+	Route::get('/emploi du temps/professeur', 'ClassRoutineController@getProfesseur')->name('supervisor.schedule.getProfesseur');
+
+	Route::post('/emploi du temps/classe', 'ClassRoutineController@classe')->name('supervisor.schedule.classe');
+
+	Route::post('/emploi du temps/professeur', 'ClassRoutineController@professeur')->name('supervisor.schedule.professeur');
+
+	Route::get('/emploi du temps/impression/{code}', 'ClassRoutineController@printScheduleClasse')->name('supervisor.schedule.printScheduleClasse');
+
+	Route::get('/emploi_du_temps/impression/{teacher}', 'ClassRoutineController@printScheduleProfesseur')->name('supervisor.schedule.printScheduleProfesseur');
+
+	Route::get('/emploi du temps/edit/{class_routine}', 'ClassRoutineController@edit')->name('supervisor.schedule.edit');
+
+	Route::get('/emploi du temps/show/{class_routine}', 'ClassRoutineController@show')->name('supervisor.schedule.show');
+
+	Route::post('/emploi du temps/store', 'ClassRoutineController@store')->name('supervisor.schedule.store');
+
+	Route::post('/emploi du temps/update/{class_routine}', 'ClassRoutineController@update')->name('supervisor.schedule.update');
+
+	Route::get('/emploi du temps/create', 'ClassRoutineController@create')->name('supervisor.schedule.create');
+
+	Route::get('/emploi du temps/destroy', 'ClassRoutineController@index')->name('supervisor.schedule.destroy');
+
+
+	/* Matiere = cours -----------------------------------------------------------------------------------------*/
+
+	Route::get('/matiere', 'SubjectController@index')->name('supervisor.subject.index');
+
+	Route::get('/gestion des matieres', 'SubjectController@index_gestion')->name('supervisor.subject.index_gestion');
+
+	Route::get('/nouvelleMatiere', 'SubjectController@create')->name('supervisor.subject.create');
+
+	Route::post('/nouvelleMatiere', 'SubjectController@store')->name('supervisor.subject.store');
+
+	Route::get('/matiere/{subject}/modifier', 'SubjectController@edit')->name('supervisor.subject.edit');
+
+	Route::post('/matiere/{subject}/modifier', 'SubjectController@update')->name('supervisor.subject.update');
+
+	Route::get('/matiere/{subject}/suprimer', 'SubjectController@destroy')->name('supervisor.subject.destroy');
+
+
+	/* Semestre -----------------------------------------------------------------------------------------*/
+
+	Route::get('/semestre', 'SemesterController@index')->name('supervisor.semester.index');
+
+	Route::get('/nouvelleSemestre', 'SemesterController@create')->name('supervisor.semester.create');
+
+	Route::post('/nouvelleSemester', 'SemesterController@store')->name('supervisor.semester.store');
+
+	Route::get('/semestre/{semester}/modifier', 'SemesterController@edit')->name('supervisor.semester.edit');
+
+	Route::post('/semestre/{semester}/modifier', 'SemesterController@update')->name('supervisor.semester.update');
+
+	Route::delete('/semestre/{semester}/supression', 'SemesterController@destroy')->name('supervisor.semester.destroy');
+
+
+	//------------------------------------gestion des Notes ---------------------------------------------//
+
+
+	//liste des notes de
+	Route::get('/liste/notes', 'MarkController@index')->name('supervisor.marks.index');
+
+	//ajiuter une notes 
+	Route::get('/ajoute/ajout', 'MarkController@create')->name('supervisor.marks.create');
+
+	//enregistrer une note 
+	Route::post('/enregistrement/note/', 'MarkController@store')->name('supervisor.marks.store');
+
+	//liste matieres d'un étudiant
+
+	Route::post('notes/matieres', 'MarkController@getSubjects')->name('supervisor.marks.subject');
+	//update une note 
+	Route::post('/modification/note/{mark}', 'MarkController@update')->name('supervisor.marks.update');
+
+	// editer ue note 
+	Route::get('/modification/{mark}/note', 'MarkController@edit')->name('supervisor.marks.edit');
+	//supprimer une note 
+	Route::get('/supprimer/{mark}/note', 'MarkController@destroy')->name('supervisor.marks.destroy');
 });

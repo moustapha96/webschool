@@ -18,7 +18,7 @@ class UnitieController extends Controller
     {
         $unities = Unitie::all();
 
-        return  view('backend.' . Auth()->user()->role . '.unity.list', compact('unities'));
+        return  view('backend.' . Auth()->user()->role . '.unity.index', compact('unities'));
     }
 
     /**
@@ -30,7 +30,7 @@ class UnitieController extends Controller
     {
         $semesters = Semester::all();
         $classes = Classe::all();
-        return  view('backend.' . Auth()->user()->role . '.unity.create', compact('semesters','classes'));
+        return  view('backend.' . Auth()->user()->role . '.unity.create', compact('semesters', 'classes'));
     }
 
     /**
@@ -82,7 +82,7 @@ class UnitieController extends Controller
     {
         $semesters = Semester::all();
         $classes = Classe::all();
-        return  view('backend.' . Auth()->user()->role . '.unity.edit', compact('unitie', 'semesters','classes'));
+        return  view('backend.' . Auth()->user()->role . '.unity.edit', compact('unitie', 'semesters', 'classes'));
     }
 
     /**

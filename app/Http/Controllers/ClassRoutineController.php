@@ -170,7 +170,12 @@ class ClassRoutineController extends Controller
 
     public function getClasse(){
         $classes = Classe::all();
-        return view('backend.' . Auth()->user()->role . '.schedules.schedule',compact('classes'));
+        return view('backend.' . Auth()->user()->role . '.schedules.schedule_classe',compact('classes'));
+    }
+
+    public function getProfesseur(){
+        $teachers = Teacher::all();
+        return view('backend.' . Auth()->user()->role . '.schedules.schedule_professeur',compact('teachers'));
     }
 
     public function classe(Request $request)
@@ -182,13 +187,41 @@ class ClassRoutineController extends Controller
 
         $class_routines = Class_routine::where('classe_id', $classe->id)->get();
 
-        return view('backend.' . Auth::user()->role . '.schedules.list', [
+        return view('backend.' . Auth::user()->role . '.schedules.classe', [
             'class_routines' => $class_routines,
             'code' => $code
         ]);
     }
+    public function professeur(Request $request)
+    {
 
-    public function print($code)
+        $teacher = Teacher::find($request->teacher_id);
+       
+        $class_routines = Class_routine::where('teacher_id', $teacher->id)->get();
+
+        return view('backend.' . Auth::user()->role . '.schedules.professeur', [
+            'class_routines' => $class_routines,
+            'teacher' => $teacher
+        ]);
+    }
+
+    public function printScheduleProfesseur(Teacher $teacher){
+
+       
+        if ($teacher != null) {
+            $class_routines = Class_routine::where('teacher_id', $teacher->id)->get();
+
+            $pdf = PDF::loadView('backend.' . Auth::user()->role . '.schedules.fileTeacher', [
+                'class_routines' => $class_routines,
+                'teacher' => $teacher
+            ]);
+            return $pdf->Stream('EMPL_' . $teacher->matricule . '.pdf');
+        } else {
+            return redirect()->back()->with('error','emploi du temps non imprimé ');
+        }
+    }
+
+    public function printScheduleClasse($code)
     {
 
         $classe = Classe::where('code', $code)->get()->first();

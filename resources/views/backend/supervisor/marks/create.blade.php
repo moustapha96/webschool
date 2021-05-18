@@ -19,7 +19,7 @@
                                     <h4 class="card-title">Ajout d'une Note</h4>
                                 </div>
                                 <div class="col-md-6">
-                                    <a href="{{ route('marks.index') }}" class="btn btn-info float-right btn-sm"
+                                    <a href="{{ route('supervisor.marks.index') }}" class="btn btn-info float-right btn-sm"
                                         role="button">Liste des notes</a>
                                 </div>
                             </div>
@@ -29,7 +29,7 @@
                     </div>
                     <div class="card-body collapse show">
                         <div class="card-block card-dashboard">
-                            <form action="{{ route('marks.subject') }}" method="post">
+                            <form action="{{ route('supervisor.marks.subject') }}" method="post">
                                 @csrf
 
                                 <div class="form-group">
@@ -48,7 +48,7 @@
                             </form>
 
                             @if ($matieres != null)
-                                <form action="{{ route('marks.store') }}" method="post">
+                                <form action="{{ route('supervisor.marks.store') }}" method="post">
                                     @csrf
                                     
                                     <div class="form-group">

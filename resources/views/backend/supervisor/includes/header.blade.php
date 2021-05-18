@@ -36,40 +36,29 @@
                 </li>
 
                 {{-- gestion des matieres --}}
-                <li class="has-sub nav-item"><a><i class="icon-magnet"></i><span data-i18n=""
-                            class="menu-title">Matieres</span></a>
+                <li class="has-sub nav-item"><a><i class="icon-magnet"></i><span data-i18n="" class="menu-title">gestion
+                            des cours</span></a>
                     <ul class="menu-content">
-                        <li class="{{ is_active($activeMain, 'users') }}"><a href="{{ route('matiere.indexM') }}"
-                                class="menu-item">Gestion
+
+                        <li class="{{ is_active($activeMain, 'users') }}"><a
+                                href="{{ route('supervisor.subject.index_gestion') }}" class="menu-item">cours
                             </a>
                         </li>
-                        <li class="{{ is_active($activeMain, 'users') }}"><a href="{{ route('matiere.listM') }}"
-                                class="menu-item">Matiéres
+                        <li class="{{ is_active($activeMain, 'users') }}"><a
+                                href="{{ route('supervisor.subject.index') }}" class="menu-item">Matiéres
                             </a>
                         </li>
-                        <li class="{{ is_active($activeMain, 'newUser') }}"><a href="{{ route('unity.indexU') }}"
+                        <li class="{{ is_active($activeMain, 'newUser') }}"><a href="{{ route('supervisor.unity.index') }}"
                                 class="menu-item">UE</a>
                         </li>
                         <li class="{{ is_active($activeMain, 'newUser') }}"><a
-                                href="{{ route('semester.indexS') }}" class="menu-item">Semestres</a>
+                                href="{{ route('supervisor.semester.index') }}" class="menu-item">Semestres</a>
                         </li>
 
 
                     </ul>
                 </li>
-                {{-- emploi du temps --}}
-                <li class="has-sub nav-item"><a ><i class="icon-screen-desktop"></i><span data-i18n=""
-                            class="menu-title">Emploi du Temps</span></a>
-                    <ul class="menu-content">
-                        <li class="{{ is_active($activeMain, 'listeClasses') }}"><a
-                                href="{{ route('emploi.create') }}" class="menu-item">Ajout</a>
-                        </li>
-                        <li class="{{ is_active($activeMain, 'listeClassrooms') }}"><a
-                                href="{{ route('emploi.index') }}" class="menu-item">Liste</a>
-                        </li>
-                    </ul>
-                </li>
-                {{-- admission et demande --}}
+
                 <li class="has-sub nav-item"><a><i class="icon-magnet"></i><span data-i18n="" class="menu-title">Gestion
                             Etudiants</span></a>
                     <ul class="menu-content">
@@ -97,7 +86,7 @@
                     </ul>
                 </li>
                 {{-- gestion des professeurs --}}
-                <li class="has-sub nav-item"><a href="#"><i class="icon-screen-desktop"></i><span data-i18n=""
+                <li class="has-sub nav-item"><a><i class="icon-screen-desktop"></i><span data-i18n=""
                             class="menu-title">Professeurs</span></a>
                     <ul class="menu-content">
                         <li class="{{ is_active($activeMain, 'listeClasses') }}"><a
@@ -110,12 +99,35 @@
                     </ul>
                 </li>
 
+                {{-- gestion des emplois du temps --}}
+                <li class="has-sub nav-item"><a><i class="icon-magnet"></i><span data-i18n="" class="menu-title">Emploi
+                            du temps</span></a>
+                    <ul class="menu-content">
+                        <li class="{{ is_active($activeMain, 'accountant') }}"><a
+                                href="{{ route('supervisor.schedule.index') }}" class="menu-item">liste
+                            </a>
+                        </li>
+                        <li class="{{ is_active($activeMain, 'accountant') }}"><a
+                                href="{{ route('supervisor.schedule.getClasse') }}" class="menu-item">classe
+                            </a>
+                        </li>
+                        <li class="{{ is_active($activeMain, 'accountant') }}"><a
+                                href="{{ route('supervisor.schedule.getProfesseur') }}" class="menu-item">professeur
+                            </a>
+                        </li>
+                        <li class="{{ is_active($activeMain, 'newSchedule') }}"><a
+                                href="{{ route('supervisor.schedule.create') }}" class="menu-item">nouveau
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
                 {{-- examen et notation --}}
-                <li class="has-sub nav-item"><a href="#"><i class="icon-screen-desktop"></i><span data-i18n=""
+                <li class="has-sub nav-item"><a><i class="icon-screen-desktop"></i><span data-i18n=""
                             class="menu-title">gestion des Notes</span></a>
                     <ul class="menu-content">
-                        <li class="{{ is_active($activeMain, 'notes') }}"><a
-                                href="{{ route('marks.index') }}" class="menu-item">Notes</a>
+                        <li class="{{ is_active($activeMain, 'notes') }}"><a href="{{ route('supervisor.marks.index') }}"
+                                class="menu-item">Notes</a>
                         </li>
                         <li class="{{ is_active($activeMain, 'listeClasses') }}"><a
                                 href="{{ route('supervisor.classes') }}" class="menu-item">Notes Classes</a>
@@ -135,10 +147,10 @@
                         href="{{ route('supervisor.student.liste_dossier') }}">
                         <i class="icon-layers"></i><span data-i18n="" class="menu-title">Dossier scolaire</span></a>
                 </li>
-                
+
                 {{-- notifications --}}
 
-                <li class="has-sub nav-item"><a ><i class="icon-pie-chart"></i><span data-i18n=""
+                <li class="has-sub nav-item"><a><i class="icon-pie-chart"></i><span data-i18n=""
                             class="menu-title">Messagerie</span></a>
                     <ul class="menu-content">
                         <li><a href="{{ route('messagesSupervisor.index') }}" class="menu-item">Messages

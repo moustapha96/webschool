@@ -25,6 +25,16 @@
                             </div>
 
                             <hr>
+                            @if (Session::has('error'))
+                                <div class="alert alert-danger">
+                                    {{ Session::get('error') }}
+                                </div>
+                            @endif
+                            @if (Session::has('success'))
+                                <div class="alert alert-success">
+                                    {{ Session::get('success') }}
+                                </div>
+                            @endif
                         </div>
                     </div>
                     <div class="card-body collapse show">
@@ -36,7 +46,8 @@
                                 <div class="form-group">
                                     <label for="student_id">étudiant : </label>
                                     <select class="form-control" required name="student_id" id="student_id">
-                                        <option selected > {{ $mark->student->user->prenom .' ' . $mark->student->user->nom }} </option>
+                                        <option selected>
+                                            {{ $mark->student->user->prenom . ' ' . $mark->student->user->nom }} </option>
                                     </select>
                                 </div>
 
@@ -46,10 +57,10 @@
                                     <select class="form-control" required name="subject_id" id="subject_id">
                                         <option> </option>
                                         @foreach ($matieres as $subject)
-                                            <option value="{{ $subject->id }}" 
-                                                {{ $subject->id == $mark->subject->id ? 'selected' : '' }}
-                                                 > {{ $subject->name }}</option>
-                                            
+                                            <option value="{{ $subject->id }}"
+                                                {{ $subject->id == $mark->subject->id ? 'selected' : '' }}>
+                                                {{ $subject->name }}</option>
+
                                         @endforeach
                                     </select>
                                 </div>
@@ -58,16 +69,18 @@
                                     <label for="typeNote">Type Note</label>
                                     <select class="form-control" required name="typeNote" id="typeNote">
                                         <option></option>
-                                        <option value="examen"  {{ 'examen' == $mark->typeNote ? 'selected' : '' }} >Examen</option>
-                                        <option value="devoir"  {{ 'devoir' == $mark->typeNote ? 'selected' : '' }}>Devoir</option>
+                                        <option value="examen" {{ 'examen' == $mark->typeNote ? 'selected' : '' }}>Examen
+                                        </option>
+                                        <option value="devoir" {{ 'devoir' == $mark->typeNote ? 'selected' : '' }}>Devoir
+                                        </option>
                                     </select>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="mark_value">Note</label>
-                                    <input type="number" min="0" max="20" step=".5" required name="mark_value" value="{{ $mark->mark_value }}"
-                                        id="mark_value" class="form-control @error('mark_value') is-invalid @enderror"
-                                        placeholder="note">
+                                    <input type="number" min="0" max="20" step=".5" required name="mark_value"
+                                        value="{{ $mark->mark_value }}" id="mark_value"
+                                        class="form-control @error('mark_value') is-invalid @enderror" placeholder="note">
                                     @error('mark_value')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

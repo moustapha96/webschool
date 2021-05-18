@@ -26,6 +26,16 @@
                                         année</a>
 
                                 </div>
+                                @if (Session::has('error'))
+                                    <div class="alert alert-danger">
+                                        {{ Session::get('error') }}
+                                    </div>
+                                @endif
+                                @if (Session::has('success'))
+                                    <div class="alert alert-success">
+                                        {{ Session::get('success') }}
+                                    </div>
+                                @endif
                                 <div id="collapse1" role="tabpanel" aria-labelledby="headingCollapse1"
                                     class="collapse col-md-12">
                                     <div class="card-body">
@@ -102,138 +112,136 @@
                                             <td width="30%" class="p-2" style="text-align: right;">
 
 
-                                                    {{-- année pas encore arrivée --}}
-                                                    @if ($academic_year->year > get_setting('academic_year'))
-                                                        <a data-toggle="modal"
-                                                            data-target="#modalActivaion-{{ $academic_year->id }}"
-                                                            role="button" class="btn btn-outline-success btn-sm">Activer</a>
+                                                {{-- année pas encore arrivée --}}
+                                                @if ($academic_year->year > get_setting('academic_year'))
+                                                    <a data-toggle="modal"
+                                                        data-target="#modalActivaion-{{ $academic_year->id }}"
+                                                        role="button" class="btn btn-outline-success btn-sm">Activer</a>
 
-                                                        <a role="button" class="btn btn-outline-warning btn-sm"
-                                                            data-toggle="modal"
-                                                            data-target="#modalEdit-{{ $academic_year->id }}"><i
-                                                                class="fa fa-edit"></i></a>
-                                                        <a href="{{ route('academic_year.delete', $academic_year) }}"
-                                                            role="button" class="btn btn-outline-danger btn-sm mr-2"><i
-                                                                class="fa fa-trash"></i></a>
+                                                    <a role="button" class="btn btn-outline-warning btn-sm"
+                                                        data-toggle="modal"
+                                                        data-target="#modalEdit-{{ $academic_year->id }}"><i
+                                                            class="fa fa-edit"></i></a>
+                                                    <a href="{{ route('academic_year.delete', $academic_year) }}"
+                                                        role="button" class="btn btn-outline-danger btn-sm mr-2"><i
+                                                            class="fa fa-trash"></i></a>
 
-                                                        {{-- modal  confirmation activation anné en cours --}}
-                                                        <div class="modal" class="modal fade"
-                                                            id="modalActivaion-{{ $academic_year->id }}" tabindex="-1"
-                                                            role="dialog" aria-labelledby="modalActivationcentre"
-                                                            aria-hidden="true">
-                                                            <div class="modal-dialog">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h5 class="modal-title">Confirmation</h5>
-                                                                        <button type="button" class="close"
-                                                                            data-dismiss="modal">&times;</button>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        <p>Voulez-vous activer cette année académique comme
-                                                                            l'année en cours ?'</p>
-                                                                        <p class="text-secondary"><small>La valeur de
-                                                                                l'année académique dans paramètre sera
-                                                                                modifié '</small></p>
-                                                                    </div>
-                                                                    <div class="modal-footer">
+                                                    {{-- modal  confirmation activation anné en cours --}}
+                                                    <div class="modal" class="modal fade"
+                                                        id="modalActivaion-{{ $academic_year->id }}" tabindex="-1"
+                                                        role="dialog" aria-labelledby="modalActivationcentre"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title">Confirmation</h5>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal">&times;</button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <p>Voulez-vous activer cette année académique comme
+                                                                        l'année en cours ?'</p>
+                                                                    <p class="text-secondary"><small>La valeur de
+                                                                            l'année académique dans paramètre sera
+                                                                            modifié '</small></p>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <form
+                                                                        action="{{ route('academic_year.activate', $academic_year) }}"
+                                                                        methode="get">
+                                                                        @csrf
+                                                                        <button type="button" class="btn btn-secondary"
+                                                                            data-dismiss="modal">Annuler</button>
+                                                                        <button type="submit"
+                                                                            class="btn btn-primary">Activre cette
+                                                                            année</button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    {{-- fin modal --}}
+
+
+                                                    {{-- modal  Modification activation anné en cours --}}
+                                                    <div class="modal" class="modal fade"
+                                                        id="modalEdit-{{ $academic_year->id }}" tabindex="-1"
+                                                        role="dialog" aria-labelledby="modalActivationcentre"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalCenterTitle">
+                                                                        Modification d'une
+                                                                        Année académique</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal"
+                                                                        aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="form-group">
                                                                         <form
-                                                                            action="{{ route('academic_year.activate', $academic_year) }}"
-                                                                            methode="get">
+                                                                            action="{{ route('academic_year.updated', $academic_year) }}"
+                                                                            method="post">
                                                                             @csrf
-                                                                            <button type="button" class="btn btn-secondary"
-                                                                                data-dismiss="modal">Annuler</button>
-                                                                            <button type="submit"
-                                                                                class="btn btn-primary">Activre cette
-                                                                                année</button>
+
+                                                                            <div class="form-group">
+                                                                                <label for="session">Session</label>
+                                                                                <input type="text" class="form-control"
+                                                                                    name="session" id="session"
+                                                                                    value="{{ $academic_year->session }}"
+                                                                                    class="form-control @error('session') is-invalid @enderror"
+                                                                                    placeholder="session">
+                                                                                @error('session')
+                                                                                    <span class="invalid-feedback" role="alert">
+                                                                                        <strong>{{ $message }}</strong>
+                                                                                    </span>
+                                                                                @enderror
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="year">Année
+                                                                                    académique</label>
+                                                                                <input type="text" class="form-control"
+                                                                                    name="year" id="year"
+                                                                                    value="{{ $academic_year->year }}"
+                                                                                    class="form-control @error('year') is-invalid @enderror"
+                                                                                    placeholder="année en cours">
+                                                                                @error('year')
+                                                                                    <span class="invalid-feedback" role="alert">
+                                                                                        <strong>{{ $message }}</strong>
+                                                                                    </span>
+                                                                                @enderror
+                                                                            </div>
+
+                                                                            <div class="modal-footer">
+                                                                                <button type="submit"
+                                                                                    class="btn btn-success">Enregistrer</button>
+                                                                            </div>
                                                                         </form>
                                                                     </div>
                                                                 </div>
+
                                                             </div>
                                                         </div>
+                                                    </div>
 
-                                                        {{-- fin modal --}}
+                                                    {{-- fin modal --}}
+                                                @endif
 
+                                                {{-- année en cours --}}
+                                                @if ($academic_year->year == get_setting('academic_year'))
+                                                    <span class="badge badge-success float-right"> Année en cours....
+                                                    </span>
+                                                @endif
 
-                                                        {{-- modal  Modification activation anné en cours --}}
-                                                        <div class="modal" class="modal fade"
-                                                            id="modalEdit-{{ $academic_year->id }}" tabindex="-1"
-                                                            role="dialog" aria-labelledby="modalActivationcentre"
-                                                            aria-hidden="true">
-                                                            <div class="modal-dialog modal-dialog-centered">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h5 class="modal-title"
-                                                                            id="exampleModalCenterTitle">Modification d'une
-                                                                            Année académique</h5>
-                                                                        <button type="button" class="close"
-                                                                            data-dismiss="modal" aria-label="Close">
-                                                                            <span aria-hidden="true">&times;</span>
-                                                                        </button>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        <div class="form-group">
-                                                                            <form
-                                                                                action="{{ route('academic_year.updated', $academic_year) }}"
-                                                                                method="post">
-                                                                                @csrf
+                                                {{-- année déjà terminée --}}
 
-                                                                                <div class="form-group">
-                                                                                    <label for="session">Session</label>
-                                                                                    <input type="text" class="form-control"
-                                                                                        name="session" id="session"
-                                                                                        value="{{ $academic_year->session }}"
-                                                                                        class="form-control @error('session') is-invalid @enderror"
-                                                                                        placeholder="session">
-                                                                                    @error('session')
-                                                                                        <span class="invalid-feedback"
-                                                                                            role="alert">
-                                                                                            <strong>{{ $message }}</strong>
-                                                                                        </span>
-                                                                                    @enderror
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                    <label for="year">Année
-                                                                                        académique</label>
-                                                                                    <input type="text" class="form-control"
-                                                                                        name="year" id="year"
-                                                                                        value="{{ $academic_year->year }}"
-                                                                                        class="form-control @error('year') is-invalid @enderror"
-                                                                                        placeholder="année en cours">
-                                                                                    @error('year')
-                                                                                        <span class="invalid-feedback"
-                                                                                            role="alert">
-                                                                                            <strong>{{ $message }}</strong>
-                                                                                        </span>
-                                                                                    @enderror
-                                                                                </div>
-
-                                                                                <div class="modal-footer">
-                                                                                    <button type="submit"
-                                                                                        class="btn btn-success">Enregistrer</button>
-                                                                                </div>
-                                                                            </form>
-                                                                        </div>
-                                                                    </div>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        {{-- fin modal --}}
-                                                    @endif
-
-                                                    {{-- année en cours --}}
-                                                    @if ($academic_year->year == get_setting('academic_year'))
-                                                        <span class="badge badge-success float-right"> Année en cours....
-                                                        </span>
-                                                    @endif
-
-                                                    {{-- année déjà terminée --}}
-
-                                                    @if ($academic_year->year < get_setting('academic_year'))
-                                                        <a href="{{ route('academic_year.delete', $academic_year) }}"
-                                                            role="button" class="btn btn-outline-danger">Supprimer</a>
-                                                    @endif
+                                                @if ($academic_year->year < get_setting('academic_year'))
+                                                    <a href="{{ route('academic_year.delete', $academic_year) }}"
+                                                        role="button" class="btn btn-outline-danger">Supprimer</a>
+                                                @endif
 
                                             </td>
                                         </tr>

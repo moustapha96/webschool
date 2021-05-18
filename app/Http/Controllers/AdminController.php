@@ -308,7 +308,7 @@ class AdminController extends Controller
     // détail étudiant
     public function show_student(Student $student){
        
-        return view('backend.admin.classes.show_student',compact('student'));
+        return view('backend.'.Auth()->user()->role.'.students.show',compact('student'));
     }
 
     public function liste_students(){

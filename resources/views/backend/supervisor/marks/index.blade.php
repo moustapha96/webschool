@@ -20,7 +20,7 @@
                                     <h4 class="card-title">Gestion des Notes</h4>
                                 </div>
                                 <div class="col-md-6">
-                                    <a href="{{ route('marks.create') }}" class="btn btn-info float-right btn-sm"
+                                    <a href="{{ route('supervisor.marks.create') }}" class="btn btn-info float-right btn-sm"
                                         role="button">Ajouter une note</a>
                                 </div>
                             </div>
@@ -53,7 +53,7 @@
                                             <td>{{ $mark->typeNote }}</td>
 
                                             <td class="hover">
-                                                <a href="{{ route('marks.edit', $mark) }}" class="btn btn-link  hover"> <i
+                                                <a href="{{ route('supervisor.marks.edit', $mark) }}" class="btn btn-link  hover"> <i
                                                         class="fa fa-pencil" aria-hidden="true"></i> </a>
                                             </td>
 

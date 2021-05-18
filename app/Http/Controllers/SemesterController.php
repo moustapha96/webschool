@@ -16,7 +16,7 @@ class SemesterController extends Controller
     public function index()
     {
         $semesters = Semester::all();
-        return view('backend.'.Auth()->user()->role.'.semester.list',compact('semesters'));
+        return view('backend.'.Auth()->user()->role.'.semester.index',compact('semesters'));
     }
 
     /**

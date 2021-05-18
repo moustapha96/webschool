@@ -21,13 +21,13 @@
                                 <div class="col-md-6">
                                     <h4 class="card-title">Gestion des Emprunts</h4>
                                 </div>
-                                {{-- <div class="col-md-6">
+                                <div class="col-md-6">
 
-                                    <a class="btn btn-outline-primary  float-right btn-sm" data-toggle="modal"
+                                    <a class="btn btn-outline-primary  float-right " data-toggle="modal"
                                         data-target="#modalCategorie" role="button"><i class="fa fa-plus"
-                                            aria-hidden="true"></i> ajouter une catégorie</a>
+                                            aria-hidden="true"></i> ajouter un emprunt</a>
 
-                                </div> --}}
+                                </div>
                             </div>
 
 

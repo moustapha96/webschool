@@ -1,4 +1,3 @@
-
 @extends('backend.layouts.main')
 
 
@@ -27,6 +26,16 @@
                             </div>
 
                             <hr>
+                            @if (Session::has('error'))
+                                <div class="alert alert-danger">
+                                    {{ Session::get('error') }}
+                                </div>
+                            @endif
+                            @if (Session::has('success'))
+                                <div class="alert alert-success">
+                                    {{ Session::get('success') }}
+                                </div>
+                            @endif
                         </div>
                     </div>
                     <div class="card-body collapse show">
@@ -46,7 +55,7 @@
                                 <tbody>
                                     @foreach ($marks as $mark)
                                         <tr>
-                                            <td> {{ $mark->student->user->prenom .' '. $mark->student->user->nom }}</td>
+                                            <td> {{ $mark->student->user->prenom . ' ' . $mark->student->user->nom }}</td>
                                             <td>{{ $mark->student->user->email }}</td>
                                             <td>{{ $mark->student->classe->nameClass }}</td>
                                             <td>{{ $mark->subject->name }}</td>
@@ -54,8 +63,8 @@
                                             <td>{{ $mark->typeNote }}</td>
 
                                             <td class="hover">
-                                                <a href="{{ route('marks.edit', $mark) }}" class="btn btn-link  hover"> <i
-                                                        class="fa fa-pencil" aria-hidden="true"></i> </a>
+                                                <a href="{{ route('marks.edit', $mark) }}" class="btn btn-link  hover">
+                                                    <i class="fa fa-pencil" aria-hidden="true"></i> </a>
                                             </td>
 
 
@@ -92,4 +101,4 @@
 
     </script>
 
-    @endsection
+@endsection

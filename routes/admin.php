@@ -28,7 +28,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 	// route pour créer un user
 	Route::post('/create-user', 'UsersController@create')->name('create.user');
 
-	Route::post('users/cretated','UsersController@store')->name('user.store');
+	Route::post('users/cretated', 'UsersController@store')->name('user.store');
 	//tout les user
 	Route::get('/users', 'UsersController@index')->name('user.index');
 
@@ -44,9 +44,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 	//book and book_issue
 
-	Route::get('/livres-empruntes', 'AdminController@indexBook_issu')->name('book_issu.index');
+	// Route::get('/livres-empruntes', 'AdminController@indexBook_issu')->name('book_issu.index');
 
-	Route::get('/emprunt/{book_issu}', 'AdminController@book_issu_show')->name('book_issu.show');
+	// Route::get('/emprunt/{book_issu}', 'AdminController@book_issu_show')->name('book_issu.show');
 
 	Route::get('/livres', 'AdminController@indexBook')->name('books.index');
 
@@ -99,7 +99,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 	 * gestion des categories de livre
 	 **/
 	// ajoutre une catégorie
- 	Route::post('/catégorie', 'BookController@add_categorie')->name('admin.categorie.add');
+	Route::post('/catégorie', 'BookController@add_categorie')->name('admin.categorie.add');
 
 	// liste des categories
 	Route::get('/catégories', 'BookController@index_categories')->name('admin.categories');
@@ -269,90 +269,136 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 
 
-		 /* Matiere = cours -----------------------------------------------------------------------------------------*/
+	/* Matiere = cours -----------------------------------------------------------------------------------------*/
 
-    	 Route::get('/matiere', 'SubjectController@index')->name('matiere.indexM');
-    	 Route::get('/matiere/list', 'SubjectController@index')->name('matiere.listM');
+	Route::get('/matiere', 'SubjectController@index')->name('admin.subject.index');
 
-    	 Route::get('/nouvelleMatiere', 'SubjectController@create')->name('matiere.createM');
-    	 Route::post('/nouvelleMatiere', 'SubjectController@store')->name('matiere.storeM');
+	Route::get('/gestion des matieres', 'SubjectController@index_gestion')->name('admin.subject.index_gestion');
 
-    	 Route::get('/matiere/{subject}/modifier', 'SubjectController@edit')->name('matiere.editM');
-    	 Route::post('/matiere/{subject}/modifier', 'SubjectController@update')->name('matiere.updateM');
+	Route::get('/nouvelleMatiere', 'SubjectController@create')->name('admin.subject.create');
 
-    	 Route::get('/matiere/{subject}/suprimer', 'SubjectController@destroy')->name('matiere.destroyM');
+	Route::post('/nouvelleMatiere', 'SubjectController@store')->name('admin.subject.store');
 
-    	 /* Semestre -----------------------------------------------------------------------------------------*/
+	Route::get('/matiere/{subject}/modifier', 'SubjectController@edit')->name('admin.subject.edit');
 
-    	 Route::get('/semestre', 'SemesterController@index')->name('semester.indexS');
+	Route::post('/matiere/{subject}/modifier', 'SubjectController@update')->name('admin.subject.update');
 
-    	 Route::get('/nouvelleSemestre', 'SemesterController@create')->name('semester.createS');
-    	 Route::post('/nouvelleSemester', 'SemesterController@store')->name('semester.storeS');
-
-    	 Route::get('/semestre/{semester}/modifier', 'SemesterController@edit')->name('semester.editS');
-    	 Route::post('/semestre/{semester}/modifier', 'SemesterController@update')->name('semester.updateS');
-
-		 Route::delete('/semestre/{semester}/supression', 'SemesterController@destroy')->name('semester.destroyS');
-
-       /* Unite d'enseignement UE -----------------------------------------------------------------------------------------*/
-
-    	 Route::get('/Unite', 'UnitieController@index')->name('unity.indexU');
-
-    	 Route::get('/nouvelleUnite', 'UnitieController@create')->name('unity.createU');
-    	 Route::post('/nouvelleUnite', 'UnitieController@store')->name('unity.storeU');
-
-    	 Route::get('/Unite/{unitie}/modifier', 'UnitieController@edit')->name('unity.editU');
-    	 Route::post('/Unite/{unitie}/modifier', 'UnitieController@update')->name('unity.updateU');
-
-    	 Route::get('/Unite/{unitie}/supprimer', 'UnityController@destroy')->name('unity.destroyU');
+	Route::get('/matiere/{subject}/suprimer', 'SubjectController@destroy')->name('admin.subject.destroy');
 
 
-		 //------------------------------------gestion des Notes ---------------------------------------------//
+	/* Semestre -----------------------------------------------------------------------------------------*/
 
 
-		  //liste des notes de
-		  Route::get('/liste/notes','MarkController@index')->name('marks.index');
+	Route::get('/semestre', 'SemesterController@index')->name('admin.semester.index');
 
-		  //ajiuter une notes 
-		  Route::get('/ajoute/ajout','MarkController@create')->name('marks.create');
+	Route::get('/nouvelleSemestre', 'SemesterController@create')->name('admin.semester.create');
 
-		  //enregistrer une note 
-		  Route::post('/enregistrement/note/','MarkController@store')->name('marks.store');
+	Route::post('/nouvelleSemester', 'SemesterController@store')->name('admin.semester.store');
 
-		  //liste matieres d'un étudiant
+	Route::get('/semestre/{semester}/modifier', 'SemesterController@edit')->name('admin.semester.edit');
 
-		  Route::post('notes/matieres', 'MarkController@getSubjects' )->name('marks.subject');
-		  //update une note 
-		   Route::post('/modification/note/{mark}','MarkController@update')->name('marks.update');
-		   
-		   // editer ue note 
-		   Route::get('/modification/{mark}/note','MarkController@edit')->name('marks.edit');
-		   //supprimer une note 
-		   Route::get('/supprimer/{mark}/note','MarkController@destroy')->name('marks.destroy');
-	   
+	Route::post('/semestre/{semester}/modifier', 'SemesterController@update')->name('admin.semester.update');
+
+	Route::delete('/semestre/{semester}/supression', 'SemesterController@destroy')->name('admin.semester.destroy');
 
 
-		
-		 /* Emploi du temps  -----------------------------------------------------------------------------------------*/
+	/* Unite d'enseignement UE -----------------------------------------------------------------------------------------*/
 
-		 Route::get('/emploi du temps/liste','ClassRoutineController@index')->name('admin.schedule.index');
+	Route::get('/Unite', 'UnitieController@index')->name('admin.unity.index');
 
-		 Route::get('/emploi du temps/classe','ClassRoutineController@getClasse')->name('admin.schedule.getClasse');
+	Route::get('/nouvelleUnite', 'UnitieController@create')->name('admin.unity.create');
 
-		 Route::post('/emploi du temps/classe','ClassRoutineController@classe')->name('admin.schedule.classe');
+	Route::post('/nouvelleUnite', 'UnitieController@store')->name('admin.unity.store');
 
-		 Route::get('/emploi du temps/impression/{code}','ClassRoutineController@print')->name('admin.schedule.print');
-		 
-		 Route::get('/emploi du temps/edit/{class_routine}','ClassRoutineController@edit')->name('admin.schedule.edit');
+	Route::get('/Unite/{unitie}/modifier', 'UnitieController@edit')->name('admin.unity.edit');
 
-		 Route::get('/emploi du temps/show/{class_routine}','ClassRoutineController@show')->name('admin.schedule.show');
+	Route::post('/Unite/{unitie}/modifier', 'UnitieController@update')->name('admin.unity.update');
 
-		 Route::post('/emploi du temps/store','ClassRoutineController@store')->name('admin.schedule.store');
+	Route::get('/Unite/{unitie}/supprimer', 'UnityController@destroy')->name('admin.unity.destroy');
 
-		 Route::post('/emploi du temps/update/{class_routine}','ClassRoutineController@update')->name('admin.schedule.update');
 
-		 Route::get('/emploi du temps/create','ClassRoutineController@create')->name('admin.schedule.create');
+	//------------------------------------gestion des Notes ---------------------------------------------//
 
-		 Route::get('/emploi du temps/destroy','ClassRoutineController@index')->name('admin.schedule.destroy');
-	   
+
+	//liste des notes de
+	Route::get('/liste/notes', 'MarkController@index')->name('marks.index');
+
+	//ajiuter une notes 
+	Route::get('/ajoute/ajout', 'MarkController@create')->name('marks.create');
+
+	//enregistrer une note 
+	Route::post('/enregistrement/note/', 'MarkController@store')->name('marks.store');
+
+	//liste matieres d'un étudiant
+
+	Route::post('notes/matieres', 'MarkController@getSubjects')->name('marks.subject');
+	//update une note 
+	Route::post('/modification/note/{mark}', 'MarkController@update')->name('marks.update');
+
+	// editer ue note 
+	Route::get('/modification/{mark}/note', 'MarkController@edit')->name('marks.edit');
+	//supprimer une note 
+	Route::get('/supprimer/{mark}/note', 'MarkController@destroy')->name('marks.destroy');
+
+
+
+
+	/* Emploi du temps  -----------------------------------------------------------------------------------------*/
+
+	Route::get('/emploi du temps/liste', 'ClassRoutineController@index')->name('admin.schedule.index');
+
+	Route::get('/emploi du temps/classe', 'ClassRoutineController@getClasse')->name('admin.schedule.getClasse');
+
+	Route::get('/emploi du temps/professeur', 'ClassRoutineController@getProfesseur')->name('admin.schedule.getProfesseur');
+
+	Route::post('/emploi du temps/classe', 'ClassRoutineController@classe')->name('admin.schedule.classe');
+
+	Route::post('/emploi du temps/professeur', 'ClassRoutineController@professeur')->name('admin.schedule.professeur');
+
+	Route::get('/emploi du temps/impression/{code}', 'ClassRoutineController@printScheduleClasse')->name('admin.schedule.printScheduleClasse');
+
+	Route::get('/emploi_du_temps/impression/{teacher}', 'ClassRoutineController@printScheduleProfesseur')->name('admin.schedule.printScheduleProfesseur');
+
+	Route::get('/emploi du temps/edit/{class_routine}', 'ClassRoutineController@edit')->name('admin.schedule.edit');
+
+	Route::get('/emploi du temps/show/{class_routine}', 'ClassRoutineController@show')->name('admin.schedule.show');
+
+	Route::post('/emploi du temps/store', 'ClassRoutineController@store')->name('admin.schedule.store');
+
+	Route::post('/emploi du temps/update/{class_routine}', 'ClassRoutineController@update')->name('admin.schedule.update');
+
+	Route::get('/emploi du temps/create', 'ClassRoutineController@create')->name('admin.schedule.create');
+
+	Route::get('/emploi du temps/destroy', 'ClassRoutineController@index')->name('admin.schedule.destroy');
+
+
+
+
+	/* Gestion des emprunts -------------------------------- ------------------------------*/
+
+	// liste des emprunts
+	Route::get('/emprunt/liste', 'BookIssueController@index')->name('admin.book_issu.index');
+
+	// afficher un emprunt
+	Route::get('/livre/{book_issue}/detail', 'BookIssueController@show')->name('admin.book_issu.show');
+
+	// editer un emprunt
+	Route::get('/livre/{book_issue}/modification', 'BookIssueController@edit')->name('admin.book_issu.edit');
+
+	// supprimer un emprunt
+	Route::get('/livre/{book_issue}/suppréssion', 'BookIssueController@destriy')->name('admin.book_issu.destroy');
+
+	// ajouter un emprunt
+	Route::get('/nouveau-emprunt', 'BookIssueController@create')->name('admin.book_issu.create');
+
+	// enregistrer un emprunt
+	Route::post('/livre/emprunt/enregistrement', 'BookIssueController@store')->name('admin.book_issu.store');
+
+	// rendre un livre
+	Route::get('/livre/rendre-livre/{book_issue}', 'BookIssueController@return')->name('admin.book_issu.return');
+
+	// mettre a jour un emprunt
+	Route::post('/livre/mise-à-jour/{book_issue}', 'BookIssueController@update')->name('admin.book_issu.update');
+
+
 });

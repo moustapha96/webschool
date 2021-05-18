@@ -18,13 +18,20 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <h4 class="card-title">Emploi du temps</h4>
-                                    <p>la liste</p>
+                                    <p>emploi du temps professeur : <strong>
+                                            {{ $teacher->user->prenom . ' ' . $teacher->user->nom }} </strong></p>
                                 </div>
                                 <div class="col-md-6">
-                                    <a href="{{ redirect()->back() }}" class="btn btn-info float-right btn-sm"
-                                        role="button"> <i class="fa fa-reply " aria-hidden="true"></i> retour</a>
-                                    <a class="btn btn-outline-info" href="{{ route('admin.schedule.print', $code) }}"
-                                        role="button"> <i class="fa fa-print" aria-hidden="true"></i> Imprimer</a>
+                                    <a href="{{ redirect()->back() }}" class="btn btn-info float-right " role="button"> <i
+                                            class="fa fa-reply " aria-hidden="true"></i> retour</a>
+
+                                   
+                                        <a class="btn btn-outline-info float-right mr-2 "
+                                            href="{{ route('admin.schedule.printScheduleProfesseur', $teacher) }}"
+                                            role="button"> <i class="fa fa-print" aria-hidden="true"></i> Imprimer</a>
+
+                                   
+
                                 </div>
                             </div>
 
@@ -38,7 +45,7 @@
                                     <tr>
                                         <th scope="col">JOURS</th>
                                         <th scope="col">MATIERE</th>
-                                        <th scope="col">PROFESSEUR</th>
+                                        <th scope="col">CLASSE</th>
                                         <th scope="col">SALLE</th>
                                         <th scope="col">DEBUT COURS</th>
                                         <th scope="col">FIN COURS</th>
@@ -50,8 +57,7 @@
                                         <tr>
                                             <td scope="col">{{ $class_routine->day }}</td>
                                             <td scope="col">{{ $class_routine->subject->name }}</td>
-                                            <td scope="col">{{ $class_routine->teacher->user->prenom }}
-                                                {{ $class_routine->teacher->user->nom }} </td>
+                                            <td scope="col">{{ $class_routine->classe->nameClass }} </td>
                                             <td scope="col">{{ $class_routine->classroom->description }} </td>
                                             <td scope="col">{{ $class_routine->start_time }}</td>
                                             <td scope="col">{{ $class_routine->end_time }}</td>
@@ -65,7 +71,6 @@
                                                     role="button">Supprimer</a>
                                             </td>
                                         </tr>
-
                                     @endforeach
                                 </tbody>
                                 <tfoot>

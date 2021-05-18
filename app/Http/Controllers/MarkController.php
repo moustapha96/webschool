@@ -38,30 +38,32 @@ class MarkController extends Controller
         return view('backend.' . Auth()->user()->role . '.marks.create', compact('students', 'matieres'));
     }
     public function getSubjects(Request $request)
-    {   
+    {
 
         $matieres = [];
         $student = Student::find($request->student_id);
         $uni = new Collection();
         // dump($student->classe->semester);
         foreach ($student->classe->semester as $semester) {
-             $clause = [
+            $clause = [
                 'semester_id' => $semester->id,
             ];
             $uni = Unitie::where($clause)->get();
             $unities =  $uni;
 
-            foreach ($unities as $uni){
-           
-                foreach ($uni->subject as $subject){
-                    array_push($matieres,$subject);
+            foreach ($unities as $uni) {
+
+                foreach ($uni->subject as $subject) {
+                    array_push($matieres, $subject);
                 }
             }
         }
-      
-        dump($matieres);
+
+        if ($matieres == null){
+            return redirect()->back()->with('error','impossible d\'enregistrer une note pour cette étudiant ');    
+        }
         $students = Student::all();
-         return view('backend.'.Auth::user()->role.'.marks.create',compact('students','student','matieres'));
+        return view('backend.' . Auth::user()->role . '.marks.create', compact('students', 'student', 'matieres'));
     }
 
     /**
@@ -82,6 +84,9 @@ class MarkController extends Controller
         $annee_actuel = Academic_year::where('year', $academic_year->value)->get()->first();
         $student = Student::find($request->student_id)->first();
         $classe = $student->classe;
+        if ($annee_actuel == null) {
+            return redirect()->action('MarkController@index')->with('error', ' l\'année académique n\'est pas encore activé ');
+        }
         $clause = [
             'student_id' => $request->student_id,
             'anneeAca_id' => $annee_actuel->id,
@@ -140,22 +145,22 @@ class MarkController extends Controller
         $matieres = [];
         $student = Student::find($mark->student_id);
         $uni = new Collection();
-      
+
         foreach ($student->classe->semester as $semester) {
-             $clause = [
+            $clause = [
                 'semester_id' => $semester->id,
             ];
             $uni = Unitie::where($clause)->get();
             $unities =  $uni;
 
-            foreach ($unities as $uni){
-           
-                foreach ($uni->subject as $subject){
-                    array_push($matieres,$subject);
+            foreach ($unities as $uni) {
+
+                foreach ($uni->subject as $subject) {
+                    array_push($matieres, $subject);
                 }
             }
         }
-        return view('backend.' . Auth::user()->role . '.marks.edit', compact('mark','matieres'));
+        return view('backend.' . Auth::user()->role . '.marks.edit', compact('mark', 'matieres'));
     }
 
     /**
@@ -176,7 +181,7 @@ class MarkController extends Controller
         $mark->mark_value = $request->mark_value;
         $mark->save();
 
-        return redirect()->action('MarkController@index')->with('success', 'note étudiant modifier');
+        return redirect()->action('MarkController@index')->with('success', 'note étudiant modifiée avec succès');
     }
 
     /**
@@ -188,6 +193,6 @@ class MarkController extends Controller
     public function destroy(Mark $mark)
     {
         $mark->delete();
-        return redirect()->action('MarkController@index')->with('success', 'note étudiant supprimé');
+        return redirect()->action('MarkController@index')->with('success', 'note étudiant supprimée');
     }
 }
