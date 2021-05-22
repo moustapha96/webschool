@@ -17,14 +17,12 @@
                         <div class="card-title-wrap bar-success">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h3><i class="fa fa-suitcase"></i>Emploi du temps </h3>
-                                    <p class="mt-2">Professeur >> <u> {{ $teacher->user->prenom }}
-                                            {{ $teacher->user->nom }} </u></p>
+                                    <h1><i class="fa fa-suitcase"></i>Liste des étudiants</h1>
+                                    <p>Liste des étudiants de la classe {{ $classe->nameClass }} </p>
                                 </div>
                                 <div class="col-md-6">
                                     <a class="btn btn-outline-primary float-right" href="{{ url()->previous() }}"><i
-                                            class="fa fa-reply"></i>
-                                        Retour</a>
+                                            class="fa fa-reply"></i> Retour</a>
                                 </div>
                             </div>
 
@@ -46,35 +44,40 @@
                             <table class="table table-striped table-bordered zero-configuration">
                                 <thead>
                                     <tr>
-                                        <th scope="col">JOURS</th>
-                                        <th scope="col">MATIERE</th>
-                                        <th scope="col">CLASSE</th>
-                                        <th scope="col">SALLE</th>
-                                        <th scope="col">DEBUT COURS</th>
-                                        <th scope="col">FIN COURS</th>
+                                        <th>INE</th>
+                                        <th>Nom</th>
+                                        <th>Prenom</th>
+                                        <th>Date de naissance</th>
+                                        <th>lieu de naissance</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($teacher->class_routines as $routine)
+                                    @foreach ($classe->student as $student)
                                         <tr>
-                                            <td scope="col">{{ $routine->day }}</td>
-                                            <td scope="col">{{ $routine->subject->name }}</td>
-                                            <td scope="col">{{ $routine->classe->nameClass }}</td>
-                                            <td scope="col">{{ $routine->classroom->description }} </td>
-                                            <td scope="col">{{ $routine->start_time }}</td>
-                                            <td scope="col">{{ $routine->end_time }}</td>
+                                           
+                                            <td>{{ $student->ine }}</td>
+                                            <td>{{ $student->user->nom }}</td>
+                                            <td>{{ $student->user->prenom }}</td>
+                                            <td>{{ $student->user->dateNaissance }}</td>
+                                            <td>{{ $student->user->lieuNaissance }}</td>
+                                            <td>
+                                                <a href="{{ route('admin.classes.show_student', $student) }}"
+                                                    class="btn btn-outline-primary"> <i class="fa fa-eye" aria-hidden="true"></i>  </a>
+                                            </td>
+
                                         </tr>
 
                                     @endforeach
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th scope="col">JOURS</th>
-                                        <th scope="col">MATIERE</th>
-                                        <th scope="col">CLASSE</th>
-                                        <th scope="col">SALLE</th>
-                                        <th scope="col">DEBUT COURS</th>
-                                        <th scope="col">FIN COURS</th>
+                                        <th>INE</th>
+                                        <th>Nom</th>
+                                        <th>Prenom</th>
+                                        <th>Date de naissance</th>
+                                        <th>lieu de naissance</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </tfoot>
                             </table>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Classe;
 use App\Models\Semester;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SemesterController extends Controller
 {
@@ -114,5 +115,16 @@ class SemesterController extends Controller
     {
         $semester->delete();
         return redirect()->action('SemesterController@index')->with('success','semestre supprimer avec succes');
+    }
+
+    //liste des semestres d'une class
+    public function ClasseSemester(Classe $classe){
+        return view('backend.'.Auth::user()->role.'.semester.classe_semester',compact('classe'));
+    }
+
+    //liste des unités d'un semestre
+
+    public function SemesterUnitie(Semester $semestre){
+        return view('backend.'.Auth::user()->role.'.unity.semester_unity',compact('semestre'));
     }
 }

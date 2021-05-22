@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Classe;
+use App\Models\Student;
 use App\Models\Student_attendance;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class StudentAttendanceController extends Controller
 {
@@ -15,8 +18,12 @@ class StudentAttendanceController extends Controller
     public function index()
     {
         //
-        $student_attendance = Student_attendance::all();
-        return view('backend.supervisor.student_attendances.index', compact('student_attendance'));
+        $student_attendances = Student_attendance::all();
+        // foreach ($student_attendances as $a){
+        //     dump($a->student);
+        // }
+        // dd();
+        return view('backend.'. Auth::user()->role . '.student_attendances.index', compact('student_attendances'));
     }
 
     /**
@@ -26,7 +33,9 @@ class StudentAttendanceController extends Controller
      */
     public function create()
     {
-        //
+        $students = Student::all();
+        $classes = Classe::all();
+        return view('backend.'. Auth::user()->role . '.student_attendances.create',compact('students', 'classes'));
     }
 
     /**
@@ -37,7 +46,20 @@ class StudentAttendanceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      
+        $request->validate([
+            'student_id'=>'required',
+            'class_id'=>'required',
+            'date'=>'required',
+            'attendance'=>'required',
+            ]);
+            $student_attendance = new Student_attendance();
+            $student_attendance->student_id = $request->get('student_id');
+            $student_attendance->class_id =  $request->get('class_id');
+            $student_attendance->date =  $request->get('date');
+            $student_attendance->attendance = 1;
+            $student_attendance->save();
+            return redirect()->action('StudentAttendanceController@index')->with('completed', 'absence créé avec succés');
     }
 
     /**
@@ -57,11 +79,11 @@ class StudentAttendanceController extends Controller
      * @param  \App\Models\Student_attendance  $student_attendance
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Student_attendance $student_attendance)
     {
         //
-        $student_attendance = Student_attendance::find($id);
-        return view('backend.supervisor.student_attendances.edit', compact('student_attendance'));
+       
+        return view('backend.'. Auth::user()->role . '.student_attendances.edit', compact('student_attendance'));
     }
 
     /**
@@ -99,6 +121,6 @@ class StudentAttendanceController extends Controller
     {
         //
         Student_attendance::where('id',$id)->delete();
-        return redirect('/student_attendances')->with('success', 'Student_attendance deleted!');
+        return redirect()->action('StudentAttendanceController@index')->with('success', 'Student_attendance deleted!');
     }
 }

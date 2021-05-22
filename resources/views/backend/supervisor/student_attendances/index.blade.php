@@ -145,18 +145,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($student_attendance as $student_attendances)
+                                    @foreach ($student_attendances as $student_attendance)
                                         <tr>
-                                            <td>{{ $student_attendances->id }}</td>
-                                            <td>{{ $student_attendances->students->ine }}</td>
-                                            <td>{{ $student_attendances->classes->nameClass }}</td>
-                                            <td>{{ $student_attendances->date }}</td>
-                                            <td>{{ $student_attendances->commentaire }}</td>
-                                            <td><a href="{{ route('student_attendances.edit', $student_attendances->id) }}"
+                                            <td>{{ $student_attendance->id }}</td>
+                                            <td>{{ $student_attendance->students->ine }}</td>
+                                            <td>{{ $student_attendance->classes->nameClass }}</td>
+                                            <td>{{ $student_attendance->date }}</td>
+                                            <td>{{ $student_attendance->commentaire }}</td>
+                                            <td><a href="{{ route('student_attendance.edit', $student_attendance->id) }}"
                                                     class="btn btn-primary">Edit</a>
                                             <td>
                                                 <form
-                                                    action="{{ route('student_attendances.destroy', $student_attendances->id) }}"
+                                                    action="{{ route('student_attendances.destroy', $student_attendance->id) }}"
                                                     method="post">
                                                     @csrf
                                                     @method('DELETE')

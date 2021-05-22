@@ -21,8 +21,8 @@
                                     <h4 class="card-title">Tous les utilisateurs</h4>
                                 </div>
                                 <div class="col-md-6">
-                                    <a href="{{ route('user.create') }}" class="btn btn-info float-right btn-sm" role="button" >
-                                        <i class="fa fa-plus" aria-hidden="true"></i> Ajouter</a>
+                                    <a href="{{ route('admin.user.create') }}" class="btn btn-info float-right btn-sm" role="button" >
+                                        <i class="fa fa-plus" aria-hidden="true"></i>Nouveau utilisateur</a>
 
                                 </div>
                             </div>

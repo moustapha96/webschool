@@ -1,5 +1,3 @@
-
-
 @extends('backend.layouts.main')
 
 
@@ -19,14 +17,15 @@
                         <div class="card-title-wrap bar-success">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h1><i class="fa fa-suitcase"></i>Emploi du temps Professeur </h1>
-                                    <h2 class="mt-2">Emploi du temps <u> {{ $teacher->user->prenom }}
-                                            {{ $teacher->user->nom }} </u></h2>
+                                    <h1><i class="fa fa-user"></i>Abscences</h1>
+                                    <p>Liste des abscences </p>
                                 </div>
                                 <div class="col-md-6">
-                                    <a class="btn btn-info float-right btn-sm"
-                                        href="{{ route('teachers.print_class_routine', $teacher) }}"
-                                        role="button">Imprimer</a>
+
+                                    <a class="btn btn-outline-primary float-right btn-sm"
+                                        href="{{ route('admin.student_attendance.create') }}">
+                                        <i class="fa fa-plus"></i> ajouter un absence</a></li>
+
                                     <a class="btn btn-info float-right btn-sm" href="{{ url()->previous() }}"><i
                                             class="fa fa-reply"></i> Retour</a></li>
 
@@ -56,35 +55,48 @@
                             <table class="table table-striped table-bordered zero-configuration">
                                 <thead>
                                     <tr>
-                                        <th scope="col">JOURS</th>
-                                        <th scope="col">MATIERE</th>
-                                        <th scope="col">Classe</th>
-                                        <th scope="col">SALLE</th>
-                                        <th scope="col">DEBUT COURS</th>
-                                        <th scope="col">FIN COURS</th>
+                                       
+                                        <th>Student</th>
+                                        <th>Classe</th>
+                                        <th>Date</th>
+                                        <th>attendance</th>
+                                        <th>détail</th>
+                                        <th colspan="2">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($teacher->class_routines as $routine)
+                                    @foreach ($student_attendances as $student_attendance)
                                         <tr>
-                                            <td scope="col">{{ $routine->day }}</td>
-                                            <td scope="col">{{ $routine->subject->name }}</td>
-                                            <td scope="col">{{ $routine->classe->nameClass }}</td>
-                                            <td scope="col">{{ $routine->classroom->description }} </td>
-                                            <td scope="col">{{ $routine->start_time }}</td>
-                                            <td scope="col">{{ $routine->end_time }}</td>
+                                           
+                                            <td>{{ $student_attendance->student->ine }}</td>
+                                            <td>{{ $student_attendance->classe->nameClass }}</td>
+                                            <td>{{ $student_attendance->date }}</td>
+                                            <td>{{ $student_attendance->attendance }}</td>
+                                            <td><a href="{{ route('admin.student_attendance.edit', $student_attendance) }}"
+                                                    class="btn btn-outline-primary"> <i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+                                            <td>
+                                                <form
+                                                    action="{{ route('admin.student_attendance.destroy', $student_attendance) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn btn-outline-danger" type="submit"><i
+                                                            class="fa fa-trash-o" aria-hidden="true"></i> </button>
+                                                </form>
+                                            </td>
                                         </tr>
 
                                     @endforeach
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th scope="col">JOURS</th>
-                                        <th scope="col">MATIERE</th>
-                                        <th scope="col">Classe</th>
-                                        <th scope="col">SALLE</th>
-                                        <th scope="col">DEBUT COURS</th>
-                                        <th scope="col">FIN COURS</th>
+                                       
+                                        <th>Student</th>
+                                        <th>Classe</th>
+                                        <th>Date</th>
+                                        <th>attendance</th>
+                                        <th>détail</th>
+                                        <th colspan="2">Actions</th>
                                     </tr>
                                 </tfoot>
                             </table>

@@ -384,4 +384,9 @@ class StudentsController extends Controller
 
         dd($students);
     }
+
+    public function show(Student $student){
+        
+        view('backend.'.Auth()->user()->role.'.students.show',compact('student'));
+    }
 }

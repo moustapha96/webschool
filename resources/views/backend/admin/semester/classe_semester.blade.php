@@ -1,5 +1,3 @@
-
-
 @extends('backend.layouts.main')
 
 
@@ -19,16 +17,14 @@
                         <div class="card-title-wrap bar-success">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h1><i class="fa fa-suitcase"></i>Emploi du temps Professeur </h1>
-                                    <h2 class="mt-2">Emploi du temps <u> {{ $teacher->user->prenom }}
-                                            {{ $teacher->user->nom }} </u></h2>
+                                    <h3><i class="fa fa-users" aria-hidden="true"></i></i>Gestion des Classes</h1>
+                                    <h6 class="mt-2">Semestre de la {{ $classe->nameClass }}</h6>
                                 </div>
                                 <div class="col-md-6">
-                                    <a class="btn btn-info float-right btn-sm"
-                                        href="{{ route('teachers.print_class_routine', $teacher) }}"
-                                        role="button">Imprimer</a>
-                                    <a class="btn btn-info float-right btn-sm" href="{{ url()->previous() }}"><i
-                                            class="fa fa-reply"></i> Retour</a></li>
+
+
+                                    <a href="{{ url()->previous() }}" class="btn btn-outline-dark float-right btn-sm"
+                                        role="button"> <i class="fa fa-reply" aria-hidden="true"></i> retour</a>
 
                                 </div>
                             </div>
@@ -56,35 +52,33 @@
                             <table class="table table-striped table-bordered zero-configuration">
                                 <thead>
                                     <tr>
-                                        <th scope="col">JOURS</th>
-                                        <th scope="col">MATIERE</th>
-                                        <th scope="col">Classe</th>
-                                        <th scope="col">SALLE</th>
-                                        <th scope="col">DEBUT COURS</th>
-                                        <th scope="col">FIN COURS</th>
+                                        <th scope="col">Code</th>
+                                        <th scope="col">Nom </th>
+                                        <th scope="col">UE et matiere</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($teacher->class_routines as $routine)
+                                    @foreach ($classe->semester as $semestre)
                                         <tr>
-                                            <td scope="col">{{ $routine->day }}</td>
-                                            <td scope="col">{{ $routine->subject->name }}</td>
-                                            <td scope="col">{{ $routine->classe->nameClass }}</td>
-                                            <td scope="col">{{ $routine->classroom->description }} </td>
-                                            <td scope="col">{{ $routine->start_time }}</td>
-                                            <td scope="col">{{ $routine->end_time }}</td>
+                                            <td scope="col">{{ $semestre->code }}</td>
+                                            <td scope="col">{{ $semestre->name }}</td>
+                                            <td scope="col">
+                                                @if ($classe->semester->count() == 0)
+                                                    pas d'unité d'enseignement
+                                                @else
+                                                    <a class="btn btn-outline-info"
+                                                        href="{{ route('admin.semester.unitie', $semestre) }}"
+                                                        role="button">liste des UE</a>
+                                                @endif
+                                            </td>
                                         </tr>
-
                                     @endforeach
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th scope="col">JOURS</th>
-                                        <th scope="col">MATIERE</th>
-                                        <th scope="col">Classe</th>
-                                        <th scope="col">SALLE</th>
-                                        <th scope="col">DEBUT COURS</th>
-                                        <th scope="col">FIN COURS</th>
+                                        <th scope="col">Code</th>
+                                        <th scope="col">Nom </th>
+                                        <th scope="col">UE et matiere</th>
                                     </tr>
                                 </tfoot>
                             </table>

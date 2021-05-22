@@ -42,36 +42,42 @@
 
                                                         <div class="form-group col-md-12">
                                                             <label for="categori">{{ __('Filiere') }}</label>
-                    
-                                                            <select class="form-control" name="filiere_id" id="filiere_id" required>
+
+                                                            <select class="form-control" name="filiere_id" id="filiere_id"
+                                                                required>
                                                                 <option></option>
                                                                 @foreach ($filieres as $filiere)
-                                                                    <option value="{{ $filiere->id }}"> {{ $filiere->name }} </option>
-                    
+                                                                    <option value="{{ $filiere->id }}">
+                                                                        {{ $filiere->name }} </option>
+
                                                                 @endforeach
                                                             </select>
-                    
-                    
+
+
                                                         </div>
 
                                                         <div class="form-group col-md-12">
                                                             <label for="categori">{{ __('Niveau') }}</label>
-                    
-                                                            <select class="form-control" name="niveau_id" id="niveau_id" required>
+
+                                                            <select class="form-control" name="niveau_id" id="niveau_id"
+                                                                required>
                                                                 <option></option>
                                                                 @foreach ($niveaux as $niveau)
-                                                                    <option value="{{ $niveau->id }}"> {{ $niveau->name }} </option>
+                                                                    <option value="{{ $niveau->id }}">
+                                                                        {{ $niveau->name }} </option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
 
                                                         <div class="form-group col-md-12">
                                                             <label for="categori">{{ __('salle de classe') }}</label>
-                    
-                                                            <select class="form-control" name="salle_id" id="salle_id" required>
+
+                                                            <select class="form-control" name="salle_id" id="salle_id"
+                                                                required>
                                                                 <option></option>
                                                                 @foreach ($salles as $salle)
-                                                                    <option value="{{ $salle->id }}"> {{ $salle->name }} </option>
+                                                                    <option value="{{ $salle->id }}">
+                                                                        {{ $salle->name }} </option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -111,12 +117,12 @@
                                             <td scope="col" style="width: 20%">{{ $classe->classroom->name }}</td>
                                             <td scope="col" style="width: 10%" class="hover">
                                                 <a href="{{ route('admin.classes.liste_student', $classe) }}"
-                                                    class="btn btn-link  hover"> {{ $classe->student->count() }}</a>
+                                                    class="btn btn-outline-link  hover"> {{ $classe->student->count() }}</a>
                                             </td>
                                             <td scope="col" style="width: 20%">
                                                 @if ($classe->semester->count() != 0)
-                                                    <a href="{{ route('admin.classes.liste_semestre', $classe) }}"
-                                                        class="btn  hover  btn-info">liste</a>
+                                                    <a href="{{ route('admin.classe.semester', $classe) }}"
+                                                        class="btn hover btn-outline-info">liste</a>
                                                 @else
                                                     Vide
                                                 @endif
@@ -153,4 +159,4 @@
 
     </script>
 
-    @endsection
+@endsection

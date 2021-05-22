@@ -1,5 +1,3 @@
-
-
 @extends('backend.layouts.main')
 
 
@@ -19,16 +17,15 @@
                         <div class="card-title-wrap bar-success">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h1><i class="fa fa-suitcase"></i>Emploi du temps Professeur </h1>
-                                    <h2 class="mt-2">Emploi du temps <u> {{ $teacher->user->prenom }}
-                                            {{ $teacher->user->nom }} </u></h2>
+                                    <h3> Gestion des Classes</h3>
+                                        <h5 class="mt-2">Liste des Unités d'enseignement : {{ $semestre->code }} de la
+                                            {{ $semestre->classe->nameClass }}</h5>
                                 </div>
                                 <div class="col-md-6">
-                                    <a class="btn btn-info float-right btn-sm"
-                                        href="{{ route('teachers.print_class_routine', $teacher) }}"
-                                        role="button">Imprimer</a>
-                                    <a class="btn btn-info float-right btn-sm" href="{{ url()->previous() }}"><i
-                                            class="fa fa-reply"></i> Retour</a></li>
+
+
+                                    <a href="{{ url()->previous() }}" class="btn btn-outline-dark float-right btn-sm"
+                                        role="button"> <i class="fa fa-reply" aria-hidden="true"></i> retour</a>
 
                                 </div>
                             </div>
@@ -56,38 +53,42 @@
                             <table class="table table-striped table-bordered zero-configuration">
                                 <thead>
                                     <tr>
-                                        <th scope="col">JOURS</th>
-                                        <th scope="col">MATIERE</th>
-                                        <th scope="col">Classe</th>
-                                        <th scope="col">SALLE</th>
-                                        <th scope="col">DEBUT COURS</th>
-                                        <th scope="col">FIN COURS</th>
+                                        <th scope="col">Code</th>
+                                        <th scope="col">Nom UE </th>
+                                        <th scope="col">Semestre </th>
+                                        <th scope="col">classe </th>
+                                        <th scope="col">Matiere </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($teacher->class_routines as $routine)
+                                    @foreach ($semestre->unitie as $unite)
                                         <tr>
-                                            <td scope="col">{{ $routine->day }}</td>
-                                            <td scope="col">{{ $routine->subject->name }}</td>
-                                            <td scope="col">{{ $routine->classe->nameClass }}</td>
-                                            <td scope="col">{{ $routine->classroom->description }} </td>
-                                            <td scope="col">{{ $routine->start_time }}</td>
-                                            <td scope="col">{{ $routine->end_time }}</td>
-                                        </tr>
+                                            <td scope="col">{{ $unite->code }}</td>
+                                            <td scope="col">{{ $unite->name }}</td>
+                                            <td scope="col">{{ $unite->semester->code }}</td>
+                                            <td scope="col">{{ $unite->semester->classe->nameClass }}</td>
+                                            <td scope="col">
+                                                @foreach ($unite->subject as $subject)
+                                                    <table class="table table-striped">
+                                                        <td>{{ $subject->name }}</td>
+                                                    </table>
+                                                @endforeach
+                                            </td>
 
+                                        </tr>
                                     @endforeach
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th scope="col">JOURS</th>
-                                        <th scope="col">MATIERE</th>
-                                        <th scope="col">Classe</th>
-                                        <th scope="col">SALLE</th>
-                                        <th scope="col">DEBUT COURS</th>
-                                        <th scope="col">FIN COURS</th>
+                                        <th scope="col">Code</th>
+                                        <th scope="col">Nom UE </th>
+                                        <th scope="col">Semestre </th>
+                                        <th scope="col">classe </th>
+                                        <th scope="col">Matiere </th>
                                     </tr>
                                 </tfoot>
                             </table>
+                           
                         </div>
                     </div>
                 </div>

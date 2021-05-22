@@ -12,12 +12,12 @@
         <div class="nav-container">
             <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
 
-                <li class="{{ is_active($activeMain, 'dashboard') }} nav-item"><a href="cards.html"><i
+                <li class="{{ is_active($activeMain, 'dashboard') }} nav-item"><a href="{{ route('home') }}"><i
                             class="icon-layers"></i><span data-i18n="" class="menu-title"> {{ Auth::user()->prenom }}
                             -- {{ Auth::user()->role }} </span></a>
 
                 <li class="has-sub nav-item"><a><i class="icon-screen-desktop"></i><span data-i18n=""
-                            class="menu-title">Classes
+                            class="menu-title">gestion des Classes
                         </span></a>
                     <ul class="menu-content">
                         <li class="{{ is_active($activeMain, 'accountant') }}"><a
@@ -28,7 +28,7 @@
                                 class="menu-item">Niveaux
                             </a>
                         </li>
-                        <li><a href="{{ route('admin.classes.index') }}" class="menu-item">Liste classe</a>
+                        <li><a href="{{ route('admin.classes.index') }}" class="menu-item">classe</a>
                         </li>
                         <li><a href="{{ route('admin.classrooms.index') }}" class="menu-item">salle </a>
                         </li>
@@ -57,18 +57,32 @@
                 <li class="has-sub nav-item"><a><i class="icon-magnet"></i><span data-i18n="" class="menu-title">Gestion
                             Etudiant</span></a>
                     <ul class="menu-content">
+                        <li><a href="{{ route('admin.students.liste') }}" class="menu-item">Listes</a>
+                        </li>
+                        <li><a href="{{ route('admin.admission_requests.index') }}" class="menu-item">Demandes
+                                d'admission</a>
+                        </li>
                         <li class="{{ is_active($activeMain, 'users') }}"><a
                                 href="{{ route('admin.students.liste') }}" class="menu-item">Liste
                             </a>
-                        </li>
-                        <li class="{{ is_active($activeMain, 'newUser') }}"><a
-                                href="{{ route('admission_request.liste') }}" class="menu-item">admission </a>
                         </li>
                         <li class="{{ is_active($activeMain, 'notes') }}"><a href="{{ route('marks.index') }}"
                                 class="menu-item">Notes
                             </a>
                         </li>
-                        <li class="{{ is_active($activeMain, 'depense') }}"><a href="" class="menu-item">bulletins
+
+                        <li class="{{ is_active($activeMain, 'absence') }}"><a
+                                href="{{ route('admin.student_attendance.index') }}" class="menu-item">Absences
+                            </a>
+                        </li>
+
+                        <li class="{{ is_active($activeMain, 'réclamations') }}"><a
+                                href="" class="menu-item">Réclamations
+                            </a>
+                        </li>
+
+                        <li class="{{ is_active($activeMain, 'depense') }}"><a
+                                href="{{ route('admin.parent.index') }}" class="menu-item">Parents
                             </a>
                         </li>
 
@@ -136,11 +150,12 @@
                             Utilisateurs</span></a>
 
                     <ul class="menu-content">
-                        <li class="{{ is_active($activeMain, 'users') }}"><a href="{{ route('user.index') }}"
-                                class="menu-item">Liste
+                        <li class="{{ is_active($activeMain, 'usersliste') }}"><a
+                                href="{{ route('admin.user.index') }}" class="menu-item">Liste
                             </a>
                         </li>
-                        <li class="{{ is_active($activeMain, 'newUser') }}"><a class="menu-item">Ajouter </a>
+                        <li class="{{ is_active($activeMain, 'newUser') }}"><a
+                                href="{{ route('admin.user.create') }}" class="menu-item">Ajouter </a>
                         </li>
                         <li class="{{ is_active($activeMain, 'librian') }}"><a href="{{ route('librian.index') }}"
                                 class="menu-item">
@@ -167,32 +182,18 @@
                             class="menu-title">Année Académique</span></a>
                 </li>
 
-                <li class="has-sub nav-item"><a><i class="icon-grid"></i><span data-i18n=""
-                            class="menu-title">Etudiants</span></a>
-                    <ul class="menu-content">
-                        <li><a href="{{ route('admin.students.liste') }}" class="menu-item">Listes par classe</a>
-                        </li>
-                        <li><a href="{{ route('admission_request.liste') }}" class="menu-item">Demandes
-                                d'admission</a>
-                        </li>
-                    </ul>
-                </li>
-
-
-
                 <li class="has-sub nav-item"><a><i class="icon-flag"></i><span data-i18n="" class="menu-title">Dossier
                             Scolaires
                         </span></a>
                     <ul class="menu-content">
                         <li><a href="{{ route('student.liste_dossier') }}" class="menu-item">étudiants</a>
                         </li>
-
+                        <li class="{{ is_active($activeMain, 'depense') }}"><a href="" class="menu-item">bulletins
+                            </a>
+                        </li>
 
                     </ul>
                 </li>
-
-
-
 
                 <li class="has-sub nav-item"><a><i class="icon-pie-chart"></i><span data-i18n=""
                             class="menu-title">Messagerie</span></a>

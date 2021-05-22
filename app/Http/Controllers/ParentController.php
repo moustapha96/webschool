@@ -184,4 +184,16 @@ class ParentController extends Controller
             'title' => $title,
         ])->with('success', "demande d'admission envoyé");
     }
+
+    public function index(){
+        $parents = Parents::all();
+        return view('backend.'.Auth::user()->role.'.parents.index',compact('parents'));
+    }
+    public function show(Parents $parent){
+        return view('backend.'.Auth::user()->role.'.parents.show',compact('parent'));
+    }
+    public function students(Parents $parent){
+        return view('backend.'.Auth::user()->role.'.parents.student',compact('parent'));
+    }
+
 }

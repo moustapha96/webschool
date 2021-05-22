@@ -26,11 +26,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 	Route::post('/compte-update/{id} ', 'UsersController@update_user')->name('user.update');
 
 	// route pour créer un user
-	Route::post('/create-user', 'UsersController@create')->name('create.user');
+	Route::get('/create-user', 'UsersController@create')->name('admin.user.create');
 
-	Route::post('users/cretated', 'UsersController@store')->name('user.store');
+	Route::post('users/cretated', 'UsersController@store')->name('admin.user.store');
 	//tout les user
 	Route::get('/users', 'UsersController@index')->name('user.index');
+
+	Route::get('/users', 'UsersController@index')->name('admin.user.index');
+
 
 	//route pour activer/desactiver un compte
 	Route::get('changeStatus', 'UsersController@changeStatus');
@@ -171,11 +174,22 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 	Route::get('classes', 'ClassesController@index')->name('admin.classes.index');
 
+	// liste des semestre d'une classe
+
+	Route::get('classe/semestres/{classe}', 'SemesterController@ClasseSemester')->name('admin.classe.semester');
+
+	Route::get('semestres/ue/{semestre}', 'SemesterController@SemesterUnitie')->name('admin.semester.unitie');
+
+
+
+
 	Route::get('classe/semestre/{classe}', 'AdminController@liste_Semestre')->name('admin.classes.liste_semestre');
 
 	Route::get('classe/semestre/matiere/{semestre}', 'AdminController@liste_ue')->name('admin.classes.liste_ue_matiere');
 
-	Route::get('classe/liste des étudiants/{classe}', 'AdminController@liste_student')->name('admin.classes.liste_student');
+	// liste des étudiants d'une classe
+	Route::get('classe/liste des étudiants/{classe}', 'ClassesController@ClasseStudent')->name('admin.classes.liste_student');
+
 
 	Route::get('étudiant/{student}', 'AdminController@show_student')->name('admin.classes.show_student');
 
@@ -247,15 +261,21 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 
 	// liste des admissions
-	Route::get('responsable/admissions', 'AdminController@liste_Admission')->name('supervisor.liste_admisssion');
+	// Route::get('responsable/admissions', 'AdminController@liste_Admission')->name('supervisor.liste_admisssion');
 
 
-	Route::get('liste_demandes', 'AdmissionRequestController@admission_request_liste')->name('admission_request.liste');
+	// Route::get('liste_demandes', 'AdmissionRequestController@admission_request_liste')->name('admission_request.liste');
 
 
-	Route::get('demande_admission/detail/{id}', 'AdmissionRequestController@detailDossier')->name('admission_requests.detail');
+	// Route::get('demande_admission/detail/{id}', 'AdmissionRequestController@detailDossier')->name('admission_requests.detail');
 
-	Route::get('demande_admission/suppression/{id}', 'AdmissionRequestController@admission_request_delete')->name('admission_requests.destroy');
+
+	//liste des demande d'admission
+	Route::get('demande d\'admission/detail/{admission_request}', 'AdmissionRequestController@show')->name('admin.admission_requests.show');
+
+	Route::get('demande d\'admission/liste', 'AdmissionRequestController@index')->name('admin.admission_requests.index');
+
+	Route::get('demande_admission/suppression/{admission_request}', 'AdmissionRequestController@destroy')->name('admin.admission_requests.destroy');
 
 
 
@@ -374,6 +394,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 
 
+
 	/* Gestion des emprunts -------------------------------- ------------------------------*/
 
 	// liste des emprunts
@@ -401,4 +422,29 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 	Route::post('/livre/mise-à-jour/{book_issue}', 'BookIssueController@update')->name('admin.book_issu.update');
 
 
+
+	/* ----------------------------gestion des parents --------------------------*/
+
+	Route::get('/parents', 'ParentController@index')->name('admin.parent.index');
+
+	Route::get('/parents/{parent}/détail', 'ParentController@show')->name('admin.parent.show');
+
+	Route::get('/parents/{parent}/étudiant', 'ParentController@student')->name('admin.parent.student');
+
+
+	/* ----------------------------gestion des abscence --------------------------*/
+
+	Route::get('/absences', 'StudentAttendanceController@index')->name('admin.student_attendance.index');
+
+	Route::get('/absences/{student_attendance}/détail', 'StudentAttendanceController@show')->name('admin.student_attendance.show');
+
+	Route::get('/absence/ajout', 'StudentAttendanceController@create')->name('admin.student_attendance.create');
+
+	Route::get('/absence/{student_attendance}/supprimer', 'StudentAttendanceController@destroy')->name('admin.student_attendance.destroy');
+
+	Route::post('/absences/enregistrement', 'StudentAttendanceController@store')->name('admin.student_attendance.store');
+
+	Route::get('/absence/{student_attendance}/modifier', 'StudentAttendanceController@edit')->name('admin.student_attendance.edit');
+
+	Route::post('/absence/{student_attendance}/modifier', 'StudentAttendanceController@update')->name('admin.student_attendance.update');
 });
