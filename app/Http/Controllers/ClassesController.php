@@ -200,4 +200,6 @@ class ClassesController extends Controller
     {
         return view('backend.' . Auth::user()->role . '.students.student_classe', compact('classe'));
     }
+
+    
 }

@@ -428,7 +428,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 	Route::get('/parents', 'ParentController@index')->name('admin.parent.index');
 
 	Route::get('/parents/{parent}/détail', 'ParentController@show')->name('admin.parent.show');
-
+	
 	Route::get('/parents/{parent}/étudiant', 'ParentController@student')->name('admin.parent.student');
 
 
@@ -446,5 +446,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 	Route::get('/absence/{student_attendance}/modifier', 'StudentAttendanceController@edit')->name('admin.student_attendance.edit');
 
-	Route::post('/absence/{student_attendance}/modifier', 'StudentAttendanceController@update')->name('admin.student_attendance.update');
+	Route::post('/absence/{student_attendance}/modification_save', 'StudentAttendanceController@update')->name('admin.student_attendance.update');
+
+
+	// gestion des comptes des étudiants
+	Route::get('/compte/étudiant','StudentsController@comptes')->name('admin.student.compte');
+
+	Route::post('/compte/action/{user}','StudentsController@updateCompte')->name('admin.student.updateCompte');
 });

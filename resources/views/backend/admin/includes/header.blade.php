@@ -76,13 +76,17 @@
                             </a>
                         </li>
 
-                        <li class="{{ is_active($activeMain, 'réclamations') }}"><a
-                                href="" class="menu-item">Réclamations
+                        <li class="{{ is_active($activeMain, 'réclamations') }}"><a href=""
+                                class="menu-item">Réclamations
                             </a>
                         </li>
 
                         <li class="{{ is_active($activeMain, 'depense') }}"><a
                                 href="{{ route('admin.parent.index') }}" class="menu-item">Parents
+                            </a>
+                        </li>
+                        <li class="{{ is_active($activeMain, 'compte') }}"><a
+                                href="{{ route('admin.student.compte') }}" class="menu-item">Comptes
                             </a>
                         </li>
 

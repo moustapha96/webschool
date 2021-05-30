@@ -82,8 +82,10 @@ class StudentAttendanceController extends Controller
     public function edit(Student_attendance $student_attendance)
     {
         //
-       
-        return view('backend.'. Auth::user()->role . '.student_attendances.edit', compact('student_attendance'));
+       $classes = Classe::all();
+       $students = Student::all();
+        return view('backend.'. Auth::user()->role . '.student_attendances.edit', 
+                compact('student_attendance','classes','students'));
     }
 
     /**
@@ -93,22 +95,23 @@ class StudentAttendanceController extends Controller
      * @param  \App\Models\Student_attendance  $student_attendance
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Student_attendance $student_attendance)
     {
-        //
+        
         $request->validate([
-            'idStudent'=>'required',
-            'idClasse'=>'required',
+            'student_id'=>'required',
+            'class_id'=>'required',
             'date'=>'required',
-            'commentaire'=>'required',
+            'attendance'=>'required',
             ]);
-            $student_attendance =  Student_attendance::find($id);
-            $student_attendance->idStudent =  $request->get('idStudent');
-            $student_attendance->idClasse =  $request->get('idClasse');
+
+           
+            $student_attendance->student_id =  $request->get('student_id');
+            $student_attendance->class_id =  $request->get('class_id');
             $student_attendance->date =  $request->get('date');
-            $student_attendance->commentaire =  $request->get('commentaire');
+            $student_attendance->attendance =  $request->get('attendance');
             $student_attendance->save();
-            return redirect('/student_attendances')->with('completed', 'Student_attendancet has been updated');
+            return  redirect()->action('StudentAttendanceController@index')->with('success', 'absence mise à jour ');
     }
 
     /**

@@ -389,4 +389,17 @@ class StudentsController extends Controller
         
         view('backend.'.Auth()->user()->role.'.students.show',compact('student'));
     }
+
+    public function comptes(){
+        $students = Student::all();
+        return view('backend.' . Auth()->user()->role .'.students.comptes', compact('students'));
+    }
+
+    public function updateCompte(Request $request, User $user){
+        request()->validate([
+            'status' => ['required'],
+          ]);
+
+        dump($request->status);
+    }
 }
