@@ -16,7 +16,7 @@ class UnitieController extends Controller
      */
     public function index()
     {
-        $unities = Unitie::all();
+        $unities = Unitie::where('flag',true)->get();
 
         return  view('backend.' . Auth()->user()->role . '.unity.index', compact('unities'));
     }
@@ -120,7 +120,7 @@ class UnitieController extends Controller
      */
     public function destroy(Unitie $unitie)
     {
-        $unitie->delete();
+        $unitie->__delete();
 
         return redirect()->action('SupervisorsController@indexU')->with('success', 'unité supprimé avec succès');
     }

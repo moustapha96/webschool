@@ -16,7 +16,7 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        $subjects = Subject::all();
+        $subjects = Subject::where('flag',true)->get();
         return view('backend.' . Auth()->user()->role . '.subjects.index', compact('subjects'));
     }
 
@@ -27,7 +27,7 @@ class SubjectController extends Controller
      */
     public function create()
     {
-        $unities = Unitie::all();
+        $unities = Unitie::where('flag',true)->get();
         return view('backend.' . Auth()->user()->role . '.subjects.create', compact('unities'));
     }
 
@@ -74,7 +74,7 @@ class SubjectController extends Controller
      */
     public function edit(Subject $subject)
     {
-        $unities = Unitie::all();
+        $unities = Unitie::where('flag',true)->get();
         return view('backend.' . Auth()->user()->role . '.subjects.edit', compact('subject', 'unities'));
     }
 
@@ -110,7 +110,7 @@ class SubjectController extends Controller
     public function destroy(Subject $subject)
     {
 
-        $subject->delete();
+        $subject->__delete();
         return redirect()->action('SupervisorsController@listM')->with('success', 'matiere supprimée avec succés');
     }
 

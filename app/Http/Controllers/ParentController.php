@@ -141,7 +141,7 @@ class ParentController extends Controller
 
     // demande admission 
     public function DemandeAdmission(){
-        $classes = Classe::all();
+        $classes = Classe::where('flag',true)->get();
 
         return view('backend.'.Auth()->user()->role.'.demande_admission.demander',[
             'classes' => $classes
@@ -186,7 +186,7 @@ class ParentController extends Controller
     }
 
     public function index(){
-        $parents = Parents::all();
+        $parents = Parents::where('flag',true)->get();
         return view('backend.'.Auth::user()->role.'.parents.index',compact('parents'));
     }
     public function show(Parents $parent){

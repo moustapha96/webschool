@@ -22,7 +22,7 @@ class CreateMarksTable extends Migration
             $table->bigInteger('anneeAca_id')->unsigned();
             $table->enum('typeNote',['examen','devoir']);
             $table->timestamps();
-
+            $table->boolean('flag')->default(true);
             $table->foreign('class_id')->references('id')->on('classes');
             $table->foreign('student_id')->references('id')->on('students');
             $table->foreign('subject_id')->references('id')->on('subjects');

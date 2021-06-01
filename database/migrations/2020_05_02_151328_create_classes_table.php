@@ -19,6 +19,7 @@ class CreateClassesTable extends Migration
             $table->string('code');
             $table->bigInteger('classroom_id')->unsigned();
             $table->timestamps();
+            $table->boolean('flag')->default(true);
 
             $table->foreign('classroom_id')->references('id')->on('classrooms');
         });

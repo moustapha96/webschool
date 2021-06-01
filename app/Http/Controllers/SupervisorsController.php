@@ -130,7 +130,7 @@ class SupervisorsController extends Controller
     public function coef_barem()
     {
 
-        $classes = Classe::all();
+        $classes = Classe::where('flag',true)->get();
 
         $classe = '';
         return view('backend.' . Auth::user()->role . '.examen_notation.coef&barem', [
@@ -158,7 +158,7 @@ class SupervisorsController extends Controller
     public function students_liste()
     {
 
-        $students = Student::all();
+        $students = Student::where('flag',true)->get();
 
         return view('backend.' . Auth::user()->role . '.examen_notation.index_student', [
             'students' => $students
@@ -180,7 +180,7 @@ class SupervisorsController extends Controller
 
     public function classes_liste()
     {
-        $classes = Classe::all();
+        $classes = Classe::where('flag',true)->get();
 
         return view('backend.' . Auth::user()->role . '.examen_notation.index_classe', [
             'classes' => $classes,
@@ -307,9 +307,9 @@ class SupervisorsController extends Controller
     public function Student_dossier()
     {
 
-        $files = Academic_year::all();
+        $files = Academic_year::where('flag',true)->get();
 
-        $students = Student::all();
+        $students = Student::where('flag',true)->get();
 
         return view('backend.' . Auth()->user()->role . '.student_file.liste_etudiant', [
             'files' => $files,
@@ -322,7 +322,7 @@ class SupervisorsController extends Controller
     {
         $student_file = Student_file::findOrfail($id);
         $student_file->bulletin->delete();
-        $student_file->delete();
+        $student_file->__delete();
 
         return redirect()->back()->with('success', 'suppréssion dossier réussie');
     }
@@ -333,18 +333,18 @@ class SupervisorsController extends Controller
 
     public function index()
     {
-        $classes = Classe::all();
+        $classes = Classe::where('flag',true)->get();
         return view('backend.' . Auth::user()->role . '.Emploi.index', [
             'classes' => $classes
         ]);
     }
     public function create()
     {
-        $teachers = Teacher::all();
-        $classes = Classe::all();
+        $teachers = Teacher::where('flag',true)->get();
+        $classes = Classe::where('flag',true)->get();
 
-        $classrooms = classroom::all();
-        $subjects = Subject::all();
+        $classrooms = classroom::where('flag',true)->get();
+        $subjects = Subject::where('flag',true)->get();
 
         return view(
             'backend.' . Auth()->user()->role . '.Emploi.create',
@@ -387,11 +387,11 @@ class SupervisorsController extends Controller
 
         $classRoutine = Class_routine::where('id', $id)->first();
 
-        $classes = Classe::all();
-        $classrooms = Classroom::all();
-        $teachers = Teacher::all();
+        $classes = Classe::where('flag',true)->get();
+        $classrooms = Classroom::where('flag',true)->get();
+        $teachers = Teacher::where('flag',true)->get();
 
-        $subjects = Subject::all();
+        $subjects = Subject::where('flag',true)->get();
 
         return view('backend.' . Auth()->user()->role . '.Emploi.edit', [
             'classRoutine' => $classRoutine,
@@ -422,7 +422,7 @@ class SupervisorsController extends Controller
     public function delete($id)
     {
         $class_routines = Class_routine::where('id', $id);
-        $class_routines->delete();
+        $class_routines->__delete();
 
         return redirect()->action('SupervisorsController@index');
     }
@@ -466,7 +466,7 @@ class SupervisorsController extends Controller
 
     public function indexTeacher()
     {
-        $teachers = Teacher::all();
+        $teachers = Teacher::where('flag',true)->get();
 
         return view('backend.' . Auth()->user()->role . '.teachers.index', compact('teachers'));
     }
@@ -613,7 +613,7 @@ class SupervisorsController extends Controller
     public function redoublants()
     {
 
-        $redoublants = StudentRedouble::all();
+        $redoublants = StudentRedouble::where('flag',true)->get();
 
         return view('backend.' . Auth()->user()->role . '.students.redoublant', [
             'redoublants' => $redoublants
@@ -642,7 +642,7 @@ class SupervisorsController extends Controller
     //  liste des emplois du temps des professeurs 
     public function teacher_class_routine()
     {
-        $class_routines = Class_routine::all();
+        $class_routines = Class_routine::where('flag',true)->get();
 
         return view('backend.' . Auth()->user()->role . '.teachers.class_routine_index', [
             'class_routines' => $class_routines

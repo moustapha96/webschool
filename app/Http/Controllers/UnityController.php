@@ -7,14 +7,15 @@ use App\Models\Semester;
 use App\Models\Classe;
 use App\Models\Unitie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UnityController extends Controller
 {
  
     public function index()
     {
-        $classes = Classe::all();
-        return view('backend.supervisor.unities.index', compact('classes'));
+        $classes = Classe::where('flag',true)->get();
+        return view('backend.'.Auth::user()->role . '.unities.index', compact('classes'));
     }
 
  
@@ -53,7 +54,7 @@ class UnityController extends Controller
 
     public function destroy($id)
     {
-        Unitie::where('id',$id)->delete();
+        Unitie::where('id',$id)->__delete();
         return redirect('/unitiess')->with('success', 'Unity deleted!');
     }
 }

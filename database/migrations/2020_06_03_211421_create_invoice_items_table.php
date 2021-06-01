@@ -19,7 +19,7 @@ class CreateInvoiceItemsTable extends Migration
             $table->float('discount');
             $table->bigInteger('invoice_id')->unsigned();
             $table->timestamps();
-
+            $table->boolean('flag')->default(true);
             $table->foreign('invoice_id')->references('id')->on('invoices');
         });
     }

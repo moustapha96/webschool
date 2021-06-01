@@ -18,6 +18,7 @@ class CreateStudentFilesTable extends Migration
             $table->bigInteger('student_id')->unsigned();
             $table->bigInteger('bulletin_id')->unsigned();
             $table->text('document')->nullable()->default();
+            $table->boolean('flag')->default(true);
             $table->timestamps();
         });
     }

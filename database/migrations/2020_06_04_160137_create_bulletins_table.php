@@ -24,7 +24,7 @@ class CreateBulletinsTable extends Migration
             $table->bigInteger('student_id')->unsigned();
             $table->timestamps();
 
-            
+            $table->boolean('flag')->default(true);
             $table->foreign('student_id')->references('id')->on('students');
             $table->foreign('class_id')->references('id')->on('classes');
 

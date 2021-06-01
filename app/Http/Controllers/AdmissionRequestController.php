@@ -14,13 +14,13 @@ class AdmissionRequestController extends Controller
 {
     public function index()
     {
-        $admission_requests = Admission_request::all();
+        $admission_requests = Admission_request::where('flag',true)->get();
         return view('backend.' . Auth()->user()->role . '.admission_requests.index', compact('admission_requests'));
     }
 
     public function admission_request_liste()
     {
-        $admission_requests = Admission_request::all();
+        $admission_requests = Admission_request::where('flag',true)->get();
 
         return view('backend.' . Auth::user()->role . '.admission_requests.index', [
             'admission_requests' => $admission_requests
@@ -29,7 +29,7 @@ class AdmissionRequestController extends Controller
 
     public function create()
     {
-        $classes = Classe::all();
+        $classes = Classe::where('flag',true)->get();
         return view('backend.' . Auth::user()->role . '.admission_requests.create', [
             'classes' => $classes
         ]);
@@ -131,13 +131,13 @@ class AdmissionRequestController extends Controller
 
     public function admission_request_delete($id)
     {
-        Admission_request::findOrfail($id)->delete();
+        Admission_request::findOrfail($id)->__delete();
         return redirect()->action('AdmissionRequestController@admission_request_liste')->with('success', 'Demande d\'admission supprimer avec succés ');
     }
 
     public function destroy(Admission_request $admission_request)
     {
-        $admission_request->delete();
+        $admission_request->__delete();
         return redirect()->action('AdmissionRequestController@admission_request_liste')->with('success', 'Demande d\'admission supprimer avec succés ');
     }
 

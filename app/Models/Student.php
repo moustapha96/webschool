@@ -8,6 +8,7 @@ use App\Model\Bulletin\Semestre;
 use App\Model\Bulletin\Unite;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class Student extends Model
@@ -15,7 +16,7 @@ class Student extends Model
     
     protected $table = "students";
 
-    public $fillable =['ine'];
+    public $fillable =['ine','flag'];
 
     public function user(){
         return $this->belongsTo(User::class);
@@ -45,6 +46,21 @@ class Student extends Model
         return $this->hasMany(Reclaetudiant::class,'idStudent');
     }
 
+    public function __delete()
+    {
+        $this->flag = false;
+        $this->save();
+
+        $objet = DB::table('historicals')->where('object_id', $this->id)->first();
+        if ($objet == null) {
+            $historique = new historical();
+
+            $historique->user_id = Auth::user()->id;
+            $historique->object_name = 'students';
+            $historique->object_id = $this->id;
+            $historique->save();
+        }
+    }
     public function bulletin(){
         
             $student_collection = collect([]);

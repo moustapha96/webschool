@@ -9,6 +9,7 @@ use App\Models\Book_categorie;
 use App\Models\Book_issue;
 use App\Models\Classe;
 use App\Models\Contact;
+use App\Models\historical;
 use App\Models\Librian;
 use App\Models\Semester;
 use App\Models\Setting;
@@ -98,7 +99,7 @@ class AdminController extends Controller
     public function indexBook_issu()
     {
 
-        $book_issues = Book_issue::all();
+        $book_issues = Book_issue::where('flag',true)->get();
 
         return view('backend.'.Auth::user()->role.'.book.issue',[
             'book_issues'=> $book_issues
@@ -108,7 +109,7 @@ class AdminController extends Controller
     public function indexBook()
     {
 
-        $books = Book::all();
+        $books = Book::where('flag',true)->get();
 
         return view('backend.'.Auth::user()->role.'.book.index',[
             'books'=> $books
@@ -129,7 +130,7 @@ class AdminController extends Controller
     // liste parametre
     public function setting(){
 
-        $settings = Setting::all();
+        $settings = Setting::where('flag',true)->get();
 
         return view('backend.'.Auth()->user()->role.'.settings.setting',[
             'settings' => $settings
@@ -192,9 +193,9 @@ class AdminController extends Controller
     // liste dossier etudiants
     public function Student_dossier(){
 
-        $files = Academic_year::all();
+        $files = Academic_year::where('flag',true)->get();
 
-        $students = Student::all();
+        $students = Student::where('flag',true)->get();
 
         return view('backend.'.Auth()->user()->role.'.student_file.liste_etudiant',[
             'files' => $files,
@@ -207,7 +208,7 @@ class AdminController extends Controller
     //année académique 
     public function academic_year(){
        
-        $academic_years = Academic_year::all();
+        $academic_years = Academic_year::where('flag',true)->get();
 
         return view('backend.'.Auth()->user()->role.'.academic.academic_year',[
             'academic_years' =>$academic_years
@@ -278,9 +279,13 @@ class AdminController extends Controller
         if( $setting->value == $academic_year->year ){
             return redirect()->back()->with('error','Impossible de supprimer l\'année en cour ' );
         }
+        if( $setting->value <= $academic_year->year){
+            return redirect()->back()->with('error','Impossible de supprimer une année passée ' );     
+        }
+
         $academic_year = Academic_year::find($academic_year->id);
 
-        $academic_year->delete();
+        $academic_year->__delete();
 
         return redirect()->back()->with('success','suppression année académique '. $academic_year->year .' réussie ');
 
@@ -312,7 +317,7 @@ class AdminController extends Controller
     }
 
     public function liste_students(){
-        $students = Student::all();
+        $students = Student::where('flag',true)->get();
 
         return view('backend.admin.students.index',compact('students'));
     }
@@ -320,7 +325,7 @@ class AdminController extends Controller
     
     // liste des professeurs
     public function List_teachers(){
-        $teachers = Teacher::all();
+        $teachers = Teacher::where('flag',true)->get();
 
         return view('backend.admin.teachers.index',compact('teachers'));
     }
@@ -342,12 +347,28 @@ class AdminController extends Controller
 
     public function liste_Contact()
     {
-        $contacts = Contact::all();
+        $contacts = Contact::where('flag',true)->get();
         return view('backend.admin.contact.index',compact('contacts'));
     }
     public function delete_contact(Contact $contact)
     {
         $contact->delete();
         return redirect()->back()->with('success',"contact supprimé avec succès");
+    }
+
+
+
+    // gestion des historique 
+    public function historique(){
+        $historiques = historical::where('flag',true)->get();
+        
+        return view('backend.'. Auth::user()->role.'.historicals.index',compact('historiques'));
+
+    }
+    public function historiqueUpdate(historical $historique){
+       $object =  get_table($historique->object_name,$historique->object_id);
+    //    $object->flag = true;
+    //    $object->save();
+       return redirect()->back()->with('success','élément mise a jour avec succés');      
     }
 }

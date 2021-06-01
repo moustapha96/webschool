@@ -16,7 +16,7 @@ class classroomController extends Controller
     {
         $activeMain = "listeClassrooms";
         $title = 'Salles de classe';
-        $classrooms = Classroom::all();
+        $classrooms = Classroom::where('flag',true)->get();
         return view('backend.' . Auth::user()->role . '.classrooms.index', compact('classrooms', 'title','activeMain'));
     }
 
@@ -47,7 +47,7 @@ class classroomController extends Controller
     }
     public function list()
     {
-        $dataC = Classroom::all();
+        $dataC = Classroom::where('flag',true)->get();
         return view('backend.supervisor.classroom.list', compact('dataC'));
     }
 
@@ -76,7 +76,7 @@ class classroomController extends Controller
     public function delete($id)
     {
         $classroom = Classroom::where('id', $id);
-        $classroom->delete();
+        $classroom->__delete();
         return redirect()->action('classroomController@index');
     }
 }

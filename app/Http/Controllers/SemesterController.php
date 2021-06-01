@@ -16,7 +16,7 @@ class SemesterController extends Controller
      */
     public function index()
     {
-        $semesters = Semester::all();
+        $semesters = Semester::where('flag',true)->get();
         return view('backend.'.Auth()->user()->role.'.semester.index',compact('semesters'));
     }
 
@@ -27,7 +27,7 @@ class SemesterController extends Controller
      */
     public function create()
     {
-        $classes = Classe::all();
+        $classes = Classe::where('flag',true)->get();
         return view('backend.'.Auth()->user()->role.'.semester.create',[
             'classes'=>$classes
         ]);
@@ -77,7 +77,7 @@ class SemesterController extends Controller
      */
     public function edit(Semester $semester)
     {
-        $classes = Classe::all();
+        $classes = Classe::where('flag',true)->get();
         return view('backend.'.Auth()->user()->role.'.semester.edit',compact('semester','classes'));
     }
 
@@ -113,7 +113,7 @@ class SemesterController extends Controller
      */
     public function destroy(Semester $semester)
     {
-        $semester->delete();
+        $semester->__delete();
         return redirect()->action('SemesterController@index')->with('success','semestre supprimer avec succes');
     }
 

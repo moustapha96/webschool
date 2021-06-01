@@ -19,7 +19,7 @@ class CreateSemestersTable extends Migration
             $table->text('name');
             $table->bigInteger('class_id')->unsigned();
             $table->timestamps();
-
+            $table->boolean('flag')->default(true);
             $table->foreign('class_id')->references('id')->on('classes')->onDelete('cascade');
 
         });

@@ -14,7 +14,7 @@ class ReclaetudiantController extends Controller
      */
     public function index()
     {
-        $reclaetudiants = Reclaetudiant::all();
+        $reclaetudiants = Reclaetudiant::where('flag',true)->get();
 
         return view('backend.supervisor.reclaetudiants.index', compact('reclaetudiants'));
 
@@ -46,7 +46,7 @@ class ReclaetudiantController extends Controller
     public function destroy($id)
     {
      
-        Reclaetudiant::where('id',$id)->delete();
+        Reclaetudiant::where('id',$id)->__delete();
         return redirect('/reclaetudiants')->with('success', 'Reclaetudiant deleted!');
     }
 }

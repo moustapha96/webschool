@@ -453,4 +453,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 	Route::get('/compte/étudiant','StudentsController@comptes')->name('admin.student.compte');
 
 	Route::post('/compte/action/{user}','StudentsController@updateCompte')->name('admin.student.updateCompte');
+
+
+	//----- gestion des historique 
+
+	Route::get('/historique','AdminController@historique')->name('admin.historique.index');
+	
+	Route::get('/historique/{historique}','AdminController@historiqueUpdate')->name('admin.historique.update');
+	
+
 });

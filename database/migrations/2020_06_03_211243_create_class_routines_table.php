@@ -23,7 +23,7 @@ class CreateClassRoutinesTable extends Migration
             $table->bigInteger('classroom_id')->unsigned();
             $table->bigInteger('teacher_id')->unsigned();
             $table->timestamps();
-            
+            $table->boolean('flag')->default(true);
             $table->foreign('subject_id')->references('id')->on('subjects');
             $table->foreign('classe_id')->references('id')->on('classes');
             $table->foreign('classroom_id')->references('id')->on('classrooms');

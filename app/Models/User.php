@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable   implements MustVerifyEmail
 {
@@ -12,7 +14,7 @@ class User extends Authenticatable   implements MustVerifyEmail
 
     protected $fillable = [
         'nom', 'email', 'password','prenom','dateNaissance',
-        'lieuNaissance','adresse','role','genre','avatar','status'
+        'lieuNaissance','adresse','role','genre','avatar','status','flag'
     ];
 
   
@@ -44,5 +46,20 @@ class User extends Authenticatable   implements MustVerifyEmail
         return $this->hasOne(Parents::class);
     }
     
+    public function __delete()
+    {
+        $this->flag = false;
+        $this->save();
+
+        $objet = DB::table('historicals')->where('object_id', $this->id)->first();
+        if ($objet == null) {
+            $historique = new historical();
+
+            $historique->user_id = Auth::user()->id;
+            $historique->object_name = 'users';
+            $historique->object_id = $this->id;
+            $historique->save();
+        }
+    }
     
 }

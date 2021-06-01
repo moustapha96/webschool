@@ -14,7 +14,7 @@ class NiveauController extends Controller
      */
     public function index()
     {
-        $niveaux = Niveau::all();
+        $niveaux = Niveau::where('flag',true)->get();
         return view('backend.'.Auth()->user()->role.'.niveau.index',[
             'niveaux' => $niveaux
         ]);
@@ -103,7 +103,7 @@ class NiveauController extends Controller
      */
     public function destroy(niveau $niveau)
     {
-        $niveau->delete();
+        $niveau->__delete();
         return redirect()->action('NiveauController@index')->with('success','niveau bien supprimée');
     }
 }

@@ -22,9 +22,9 @@ class ClassesController extends Controller
         $title = 'Liste des classes';
         $activeMain = 'listeClasses';
 
-        $salles  = Classroom::all();
-        $filieres = filiere::all();
-        $niveaux = niveau::all();
+        $salles  = Classroom::where('flag',true)->get();
+        $filieres = filiere::where('flag',true)->get();
+        $niveaux = niveau::where('flag',true)->get();
         return  view('backend.admin.classes.index', compact('classes', 'title', 'activeMain', 'salles', 'filieres', 'niveaux'));
     }
 
@@ -110,7 +110,7 @@ class ClassesController extends Controller
     public function destroy($id)
     {
         $classe = Classe::where('id', $id);
-        $classe->delete();
+        $classe->__delete();
 
         return redirect()->action('ClassesController@index');
     }
@@ -152,7 +152,7 @@ class ClassesController extends Controller
     }
     public function list1()
     {
-        $classes = Classe::all();
+        $classes = Classe::where('flag',true)->get();
 
         return view('backend.supervisor.classes.list_classe', compact('classes'));
     }
@@ -160,7 +160,7 @@ class ClassesController extends Controller
     {
 
         $classe = Classe::where('id', $id)->first();
-        $classrooms = Classroom::all();
+        $classrooms = Classroom::where('flag',true)->get();
 
         return  view('backend.supervisor.classes.edit_classe', [
             'classe' => $classe,
@@ -185,7 +185,7 @@ class ClassesController extends Controller
     public function destroy1($id)
     {
         $classe = Classe::where('id', $id);
-        $classe->delete();
+        $classe->__delete();
 
         return redirect()->action('ClassesController@index1');
     }
@@ -200,6 +200,4 @@ class ClassesController extends Controller
     {
         return view('backend.' . Auth::user()->role . '.students.student_classe', compact('classe'));
     }
-
-    
 }

@@ -19,7 +19,7 @@ class BookController extends Controller
     public function index()
     {
 
-        $books = Book::all();
+        $books = Book::where('flag',true)->get();
 
         return view('backend.'.Auth::user()->role.'.book.index',[
             'books'=> $books
@@ -30,7 +30,7 @@ class BookController extends Controller
 
     public function create()
     {
-        $categories = Book_categorie::all();
+        $categories = Book_categorie::where('flag',true)->get();
         
         return view('backend.'.Auth::user()->role.'.book.create',[
             'categories' => $categories
@@ -77,7 +77,7 @@ class BookController extends Controller
     {
         $book = Book::find($id)->first();
 
-        $categories = Book_categorie::all();
+        $categories = Book_categorie::where('flag',true)->get();
 
         return view('backend.'.Auth::user()->role.'.book.edit',[
             'book' => $book,
@@ -138,7 +138,7 @@ class BookController extends Controller
          }else{
 
              $book = Book::find($id);
-             $book->delete();
+             $book->__delete();
     
              return redirect()->action('BookController@index')->with('success','suppréssion réussie');
          }
@@ -171,13 +171,13 @@ class BookController extends Controller
 
     // supprimer un emprunt
     public function    book_issu_destroy(Book_issue $book_issu){
-       $book_issu->delete();
+       $book_issu->__delete();
        return redirect()->back()->with('success','emprunt supprimer avec succés');
     }
     // liste des emprunts
     public function indexBook_issu()
     {
-        $book_issues = Book_issue::all();
+        $book_issues = Book_issue::where('flag',true)->get();
 
         return view('backend.'.Auth()->user()->role.'.book.issue',[
             'book_issues'=> $book_issues
@@ -186,9 +186,9 @@ class BookController extends Controller
     // ajouter un nouveau emprunt
     public function book_issu_new(){
         
-        $students = Student::all();
+        $students = Student::where('flag',true)->get();
 
-        $livres = Book::all();
+        $livres = Book::where('flag',true)->get();
 
         return view('backend.'.Auth()->user()->role.'.book.new_book_issue',[
             'students'=>$students,
@@ -277,7 +277,7 @@ class BookController extends Controller
 
     // liste des categories
     public function index_categories(){
-        $categories = Book_categorie::all();
+        $categories = Book_categorie::where('flag',true)->get();
         return view('backend.'.Auth()->user()->role.'.book.index_categorie',[
             'categories' => $categories
         ]);
@@ -303,7 +303,7 @@ class BookController extends Controller
         if($book->count() != 0 ){
             return redirect()->back()->with('error','impossible de supprimer cette catégorie, lié à des livres');
         }else{
-            $categorie->delete();
+            $categorie->__delete();
             return redirect()->action('BookController@index_categories')->with('success','catégorie bien supprimée');
         }
     }

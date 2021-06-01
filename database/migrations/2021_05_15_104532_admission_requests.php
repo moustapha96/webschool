@@ -29,7 +29,7 @@ class AdmissionRequests extends Migration
             $table->string('email')->unique();
             $table->bigInteger('class_id')->unsigned();
             $table->string('bulletin');
-
+            $table->boolean('flag')->default(true);
             $table->timestamps();
             $table->foreign('class_id')->references('id')->on('classes');
         });

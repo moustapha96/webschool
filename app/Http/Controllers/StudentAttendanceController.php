@@ -18,7 +18,7 @@ class StudentAttendanceController extends Controller
     public function index()
     {
         //
-        $student_attendances = Student_attendance::all();
+        $student_attendances = Student_attendance::where('flag',true)->get();
         // foreach ($student_attendances as $a){
         //     dump($a->student);
         // }
@@ -33,8 +33,8 @@ class StudentAttendanceController extends Controller
      */
     public function create()
     {
-        $students = Student::all();
-        $classes = Classe::all();
+        $students = Student::where('flag',true)->get();
+        $classes = Classe::where('flag',true)->get();
         return view('backend.'. Auth::user()->role . '.student_attendances.create',compact('students', 'classes'));
     }
 
@@ -82,8 +82,8 @@ class StudentAttendanceController extends Controller
     public function edit(Student_attendance $student_attendance)
     {
         //
-       $classes = Classe::all();
-       $students = Student::all();
+       $classes = Classe::where('flag',true)->get();
+       $students = Student::where('flag',true)->get();
         return view('backend.'. Auth::user()->role . '.student_attendances.edit', 
                 compact('student_attendance','classes','students'));
     }
@@ -123,7 +123,7 @@ class StudentAttendanceController extends Controller
     public function destroy($id)
     {
         //
-        Student_attendance::where('id',$id)->delete();
+        Student_attendance::where('id',$id)->__delete();
         return redirect()->action('StudentAttendanceController@index')->with('success', 'Student_attendance deleted!');
     }
 }

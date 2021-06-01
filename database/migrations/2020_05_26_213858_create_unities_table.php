@@ -22,7 +22,7 @@ class CreateUnitiesTable extends Migration
             $table->bigInteger('semester_id')->unsigned();
             $table->timestamps();
 
-
+            $table->boolean('flag')->default(true);
             $table->foreign('class_id')->references('id')->on('classes');
             $table->foreign('semester_id')->references('id')->on('semesters');
 

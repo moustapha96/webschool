@@ -17,6 +17,7 @@ class CreateFilieresTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('code');
+            $table->boolean('flag')->default(true);
             $table->timestamps();
         });
     }

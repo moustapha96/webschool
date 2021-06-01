@@ -75,8 +75,13 @@ class HomeController extends Controller
          $parents = Parents::where('user_id',Auth()->user()->id)->get();
 
 
-         foreach ($classes as $classe) {
-             $label = [$classe->nameClass];
+         if( $classes != null){
+
+             foreach ($classes as $classe) {
+                 $label = [$classe->nameClass];
+             }
+         }else{
+             $label = 'null';
          }
 
     	$title = "Tableau de bord";
@@ -95,7 +100,7 @@ class HomeController extends Controller
              'livres_emprunte' => $livres_emprunte,
             'student_files' => $student_files,
             'date'=>$date,
-            'label' => $label,
+            //'label' => $label,
             'parents' => $parents,
             'supervisors' =>$supervisors,
             'librians' => $librians

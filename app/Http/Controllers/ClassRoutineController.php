@@ -21,8 +21,8 @@ class ClassRoutineController extends Controller
      */
     public function index()
     {
-        $class_routines = Class_routine::all();
-        $assign_subjects = Assign_subject::all();
+        $class_routines = Class_routine::where('flag',true)->get();
+        $assign_subjects = Assign_subject::where('flag',true)->get();
         return view('backend.'.Auth::user()->role .'.schedules.index', compact('class_routines','assign_subjects'));
     }
 
@@ -33,11 +33,11 @@ class ClassRoutineController extends Controller
      */
     public function create()
     {
-        $teachers = Teacher::all();
-        $classes = Classe::all();
+        $teachers = Teacher::where('flag',true)->get();
+        $classes = Classe::where('flag',true)->get();
 
-        $classrooms = Classroom::all();
-        $subjects = Subject::all();
+        $classrooms = Classroom::where('flag',true)->get();
+        $subjects = Subject::where('flag',true)->get();
 
         return view('backend.' . Auth()->user()->role . '.schedules.create',compact('teachers', 'classrooms', 'subjects', 'classes'));
     }
@@ -100,11 +100,11 @@ class ClassRoutineController extends Controller
     {
       
 
-        $classes = Classe::all();
-        $classrooms = Classroom::all();
-        $teachers = Teacher::all();
+        $classes = Classe::where('flag',true)->get();
+        $classrooms = Classroom::where('flag',true)->get();
+        $teachers = Teacher::where('flag',true)->get();
 
-        $subjects = Subject::all();
+        $subjects = Subject::where('flag',true)->get();
 
         return view('backend.' . Auth()->user()->role . '.schedules.edit', [
             'class_routine' => $class_routine,
@@ -163,18 +163,18 @@ class ClassRoutineController extends Controller
     public function destroy(Class_routine $class_routine)
     {
         // $class_routines = Class_routine::where('id', $id);
-        $class_routine->delete();
+        $class_routine->__delete();
 
         return redirect()->action('ClassRoutineController@index')->with('success','emploi du temps supprimé ');
     }
 
     public function getClasse(){
-        $classes = Classe::all();
+        $classes = Classe::where('flag',true)->get();
         return view('backend.' . Auth()->user()->role . '.schedules.schedule_classe',compact('classes'));
     }
 
     public function getProfesseur(){
-        $teachers = Teacher::all();
+        $teachers = Teacher::where('flag',true)->get();
         return view('backend.' . Auth()->user()->role . '.schedules.schedule_professeur',compact('teachers'));
     }
 

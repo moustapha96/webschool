@@ -66,7 +66,7 @@ class StudentsController extends Controller
         $reclaEtudi = ReclaEtudiant::findOrfail($id);
         $reclaEtudi->reclamation->delete();
 
-        $reclaEtudi->delete();
+        $reclaEtudi->__delete();
         return redirect()->back()->with('success','reclamation supprimer avec succès');
 
     }
@@ -100,7 +100,7 @@ class StudentsController extends Controller
 
         $notifications = auth()->user()->notifications;
 
-        $users = User::all();
+        $users = User::where('flag',true)->get();
         return view('backend.'.Auth::user()->role.'.notifications.index',[
             'notifications'=> $notifications,
             'users' => $users,
@@ -193,20 +193,20 @@ class StudentsController extends Controller
 
     public function indexStudent()
     {
-        $students = Student::all();
+        $students = Student::where('flag',true)->get();
         return view('backend.supervisor.students.index', compact('students'));
     }
     public function create()
     {
         $user = User::where('role', 'student')->get();
-        $classe = Classe::all();
+        $classe = Classe::where('flag',true)->get();
         return view('backend.supervisor.students.create', compact('user','classe',$user, $classe));
     }
 
     // form accepter demande etudiant
     public function accepte_student($id){
         $student = Student::findOrfail($id);
-        $classes = Classe::all();
+        $classes = Classe::where('flag',true)->get();
 
         return view('backend\supervisor\students\accepte',[
                 'student' =>$student,
@@ -284,7 +284,7 @@ class StudentsController extends Controller
     {
 
         $student = Student::findOrfail($id);
-        $classes = Classe::all();
+        $classes = Classe::where('flag',true)->get();
         return view('backend.supervisor.students.edit', compact('student','classes'));
 
     }
@@ -357,13 +357,13 @@ class StudentsController extends Controller
     {
         $student =  Student::findOrfail($id);
         User::findOrfail($student->user_id)->delete();
-        $student->delete();
+        $student->__delete();
 
         return redirect()->action('StudentsController@indexSudent')->with('success', 'étudiant supprimé');
     }
 
     public function createStudent(){
-        $classes = Classe::all();
+        $classes = Classe::where('flag',true)->get();
 
         return view('backend.supervisor.students.create',[
               'classes'=>$classes
@@ -375,12 +375,12 @@ class StudentsController extends Controller
     // demande reinscription
     public function indexDA()
     {
-        $classes = Classe::all();
-        return view('backend.supervisor.classes.index', compact('classes'));
+        $classes = Classe::where('flag',true)->get();
+        return view('backend.'.Auth::user()->role.'.classes.index', compact('classes'));
     }
 
     public function index(){
-        $students = Student::all();
+        $students = Student::where('flag',true)->get();
 
         dd($students);
     }
@@ -391,7 +391,7 @@ class StudentsController extends Controller
     }
 
     public function comptes(){
-        $students = Student::all();
+        $students = Student::where('flag',true)->get();
         return view('backend.' . Auth()->user()->role .'.students.comptes', compact('students'));
     }
 
@@ -399,7 +399,5 @@ class StudentsController extends Controller
         request()->validate([
             'status' => ['required'],
           ]);
-
-        dump($request->status);
     }
 }

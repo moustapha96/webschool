@@ -17,7 +17,7 @@ class BookIssueController extends Controller
      */
     public function index()
     {
-        $book_issues = Book_issue::all();
+        $book_issues = Book_issue::where('flag',true)->get();
 
         return view('backend.'.Auth()->user()->role.'.book_issue.index',[
             'book_issues'=> $book_issues
@@ -32,9 +32,9 @@ class BookIssueController extends Controller
     public function create()
     {
       
-        $students = Student::all();
+        $students = Student::where('flag',true)->get();
 
-        $livres = Book::all();
+        $livres = Book::where('flag',true)->get();
 
         return view('backend.'.Auth()->user()->role.'.book_issue.create',[
             'students'=>$students,
@@ -147,7 +147,7 @@ class BookIssueController extends Controller
      */
     public function destroy(Book_issue $book_issue)
     {
-        $book_issue->delete();
+        $book_issue->__delete();
         return redirect()->back()->with('success','emprunt supprimer avec succés');
     }
     public function returnBook(Book_issue $book_issue){

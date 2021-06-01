@@ -20,6 +20,7 @@ class CreateContactsTable extends Migration
             $table->string('nom');
             $table->text('adresse');
             $table->text('message');
+            $table->boolean('flag')->default(true);
             $table->timestamps();
         });
     }

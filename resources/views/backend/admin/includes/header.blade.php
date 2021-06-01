@@ -223,6 +223,11 @@
                             class="menu-title">Paramètres</span></a>
                 </li>
 
+                <li class="{{ is_active($activeMain, 'hitorique') }} nav-item"><a
+                        href="{{ route('admin.historique.index') }}"><i class="icon-settings"></i><span data-i18n=""
+                            class="menu-title">historique</span></a>
+                </li>
+
             </ul>
         </div>
     </div>

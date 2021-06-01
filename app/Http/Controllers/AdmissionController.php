@@ -11,7 +11,7 @@ class AdmissionController extends Controller
 {
     public function index()
     {
-        $admission = Admission::all();
+        $admission = Admission::where('flag',true)->get();
         return view('backend.supervisor.admissions.index', compact('admission'));
     }
 
@@ -19,7 +19,7 @@ class AdmissionController extends Controller
     {
         //
         //liste des admissions resquests
-        $admission_request  = Admission_request::all();
+        $admission_request  = Admission_request::where('flag',true)->get();
         return view('backend.supervisor.admissions.create', compact('admission_request',$admission_request));
     }
 
@@ -76,7 +76,7 @@ class AdmissionController extends Controller
     public function destroy($id)
     {
         //
-        Admission::where('id',$id)->delete();
+        Admission::where('id',$id)->__delete();
         return redirect('/admissions')->with('success', 'Admission deleted!');
     }
 

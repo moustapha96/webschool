@@ -21,7 +21,7 @@ class CreateBooksTable extends Migration
             $table->string('ISBN');
             $table->integer('quantity');
             $table->bigInteger('category_id')->unsigned();
-
+            $table->boolean('flag')->default(true);
             $table->foreign('category_id')->references('id')->on('book_categories');
            
             $table->timestamps();

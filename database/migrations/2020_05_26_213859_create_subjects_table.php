@@ -20,7 +20,7 @@ class CreateSubjectsTable extends Migration
             $table->bigInteger('unity_id')->unsigned();
             $table->timestamps();
 
-            
+            $table->boolean('flag')->default(true);
             $table->foreign('unity_id')->references('id')->on('unities');
 
         });

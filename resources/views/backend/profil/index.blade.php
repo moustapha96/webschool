@@ -19,7 +19,7 @@
                                     <h4 class="card-title">Modifier mon profil</h4>
                                 </div>
                                 <div class="col-md-6">
-                                    <a href="{{ route('password') }}" class="btn btn-info float-right btn-sm"
+                                    <a href="{{ route('mdp') }}" class="btn btn-info float-right btn-sm"
                                         role="button">Modifier le mot de passe</a>
                                 </div>
                             </div>
@@ -40,8 +40,9 @@
 
                                     <div class="col-md-4">
                                         <label for="avatar" class="btn text-center">
-                                            <img id="user_avatar" src="@if (file_exists($user->avatar)) {{ asset($user->avatar) }} @else {{ asset(get_setting('default_avatar')) }} @endif"
-                                                style="  height: 200px;width: 200px ; border-radius: 90%">
+                                            <img id="user_avatar" src="@if (file_exists($user->avatar)) {{ asset($user->avatar) }}
+                                        @else {{ asset(get_setting('default_avatar')) }} @endif"
+                                            style=" height: 200px;width: 200px ; border-radius: 90%">
                                         </label>
                                         <input type="file" id="avatar" name="avatar"
                                             style="visibility: hidden;border-radius: 50% "
@@ -66,7 +67,7 @@
                             </form>
                             <hr>
 
-                            <form action="{{ route('admin.users.update', $user->id) }}" method="post">
+                            <form action="{{ route('user.update_profil', $user->id) }}" method="post">
                                 @csrf
                                 @method('POST')
 
@@ -180,7 +181,7 @@
                                         @else
                                             <select id="genre" name="genre" class="form-control" required>
                                                 <option value="M.">M.</option>
-                                                <option value="Mlle" >Mlle</option>
+                                                <option value="Mlle">Mlle</option>
                                                 <option value="Mme" selected>Mme</option>
                                             </select>
 

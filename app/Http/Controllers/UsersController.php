@@ -21,7 +21,7 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $users = User::latest()->get();
+        $users = User::where('flag',true)->latest()->get();
         $title = 'Liste des utilisateurs';
         $activeMain = 'users';
 
@@ -37,7 +37,7 @@ class UsersController extends Controller
     }
 
 
-    public function myProfil()
+    public function profil()
     {
 
         $user = Auth::user();

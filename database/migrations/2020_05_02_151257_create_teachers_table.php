@@ -18,6 +18,7 @@ class CreateTeachersTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');;
             $table->string('matricule','12')->unique();
+            $table->boolean('flag')->default(true);
             $table->timestamps();
 
         });

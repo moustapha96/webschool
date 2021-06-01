@@ -18,7 +18,7 @@ class CreateAssignSubjectsTable extends Migration
             $table->bigInteger('subject_id')->unsigned();
             $table->bigInteger('teacher_id')->unsigned();
             $table->timestamps();
-
+            $table->boolean('flag')->default(true);
             $table->foreign('subject_id')->references('id')->on('subjects');
             $table->foreign('teacher_id')->references('id')->on('teachers');
         });

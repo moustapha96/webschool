@@ -143,7 +143,7 @@ class TeachersController extends Controller
 
         $students = Student::where('class_id',$assign_subject->subject->unitie->semester->classe->id )->get();
        
-        return view('backend.teacher.classes.liste_student',[
+        return view('backend.'.Auth::user()->role.'.classes.liste_student',[
             'subject' => $assign_subject->subject,
             'students' => $students,
             'marks' => $marks
@@ -156,7 +156,7 @@ class TeachersController extends Controller
     // information etudiant
     public function InfoStudent(Student $student){
 
-            return view('backend.teacher.classes.view_student',[
+            return view('backend.'.Auth::user()->role.'.classes.view_student',[
                 'student'=> $student
             ]);
     }
@@ -221,7 +221,7 @@ class TeachersController extends Controller
     // delete note
     public function delete_note( Mark $mark){
        
-       $mark->delete();
+       $mark->__delete();
 
        return redirect()->back()->with('success','note étudiant supprimée ');
     }

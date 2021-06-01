@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class Classe extends Model
 {
     protected $fillable = [
-        'nameClass','niveau','classroom_id'
+        'nameClass','niveau','classroom_id','flag'
     ];
 
    public function student(){
@@ -31,5 +33,21 @@ class Classe extends Model
     
     public function classroom(){
         return $this->belongsTo(Classroom::class,'classroom_id');
+    }
+
+    public function __delete()
+    {
+        $this->flag = false;
+        $this->save();
+
+        $objet = DB::table('historicals')->where('object_id', $this->id)->first();
+        if ($objet == null) {
+            $historique = new historical();
+
+            $historique->user_id = Auth::user()->id;
+            $historique->object_name = 'classes';
+            $historique->object_id = $this->id;
+            $historique->save();
+        }
     }
 }

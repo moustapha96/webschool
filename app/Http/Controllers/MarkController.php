@@ -22,7 +22,7 @@ class MarkController extends Controller
      */
     public function index()
     {
-        $marks = Mark::all();
+        $marks = Mark::where('flag',true)->get();
         return view('backend.' . Auth::user()->role . '.marks.index', compact('marks'));
     }
 
@@ -33,7 +33,7 @@ class MarkController extends Controller
      */
     public function create()
     {
-        $students = Student::all();
+        $students = Student::where('flag',true)->get();
         $matieres = null;
         return view('backend.' . Auth()->user()->role . '.marks.create', compact('students', 'matieres'));
     }
@@ -192,7 +192,7 @@ class MarkController extends Controller
      */
     public function destroy(Mark $mark)
     {
-        $mark->delete();
+        $mark->__delete();
         return redirect()->action('MarkController@index')->with('success', 'note étudiant supprimée');
     }
 }

@@ -24,6 +24,7 @@ class CreateBookIssuesTable extends Migration
             $table->integer('status');
             $table->timestamps();
 
+            $table->boolean('flag')->default(true);
             $table->foreign('student_id')->references('id')->on('students');
             $table->foreign('book_id')->references('id')->on('books');
         });

@@ -17,6 +17,7 @@ class CreateExamsTable extends Migration
             $table->id();
             $table->text('name');
             $table->integer('note');
+            $table->boolean('flag')->default(true);
             $table->timestamps();
         });
     }

@@ -22,7 +22,7 @@ class CreateExamAttendancesTable extends Migration
             $table->bigInteger('class_id')->unsigned();
             $table->bigInteger('student_id')->unsigned();
             $table->timestamps();
-
+            $table->boolean('flag')->default(true);
             $table->foreign('subject_id')->references('id')->on('subjects');
             $table->foreign('class_id')->references('id')->on('classes');
             $table->foreign('exam_id')->references('id')->on('exams');

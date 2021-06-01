@@ -18,7 +18,7 @@ class CreateSupervisorsTable extends Migration
             $table->string('matricule','12')->unique();
             $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
-            
+            $table->boolean('flag')->default(true);
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }

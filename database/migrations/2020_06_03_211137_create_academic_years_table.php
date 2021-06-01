@@ -17,6 +17,7 @@ class CreateAcademicYearsTable extends Migration
             $table->id();
             $table->text('year');
             $table->text('session');
+            $table->boolean('flag')->default(true);
             $table->timestamps();
         });
     }

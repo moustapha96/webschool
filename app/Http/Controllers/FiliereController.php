@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\filiere;
+use App\Models\historical;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FiliereController extends Controller
 {
@@ -14,7 +16,8 @@ class FiliereController extends Controller
      */
     public function index()
     {
-        $filieres = Filiere::all();
+        $filieres = Filiere::where('flag',true)->get();
+        // $filieres = Filiere::all();
         return view('backend.'.Auth()->user()->role.'.filiere.index',[
             'filieres' => $filieres
         ]);
@@ -103,15 +106,15 @@ class FiliereController extends Controller
      */
     public function destroy(filiere $filiere)
     {
-        // $filiere = Filiere::where('category_id',$categorie->id)->get();
-        
-        // if($book->count() != 0 ){
-        //     return redirect()->back()->with('error','impossible de supprimer cette catégorie, lié à des livres');
-        // }else{
-        //     $categorie->delete();
-        //     return redirect()->action('BookController@index_categories')->with('success','catégorie bien supprimée');
-        // }
-        $filiere->delete();
+       
+        $filiere->__delete();
+        // $filiere->flag = false;
+        // $filiere->save();
+        // $historique = new historical();
+        // $historique->user_id = Auth::user()->id;
+        // $historique->object_name = 'filiere';
+        // $historique->object_id = $filiere->id;
+        // $historique->save();
         return redirect()->action('FiliereController@index')->with('success','filiere bien supprimée');
     }
 }

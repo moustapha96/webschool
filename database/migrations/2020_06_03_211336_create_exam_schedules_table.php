@@ -23,7 +23,7 @@ class CreateExamSchedulesTable extends Migration
             $table->bigInteger('subject_id')->unsigned();
             $table->bigInteger('class_id')->unsigned();
             $table->timestamps();
-
+            $table->boolean('flag')->default(true);
             $table->foreign('subject_id')->references('id')->on('subjects');
             $table->foreign('class_id')->references('id')->on('classes');
             $table->foreign('exam_id')->references('id')->on('exams');

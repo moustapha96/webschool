@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class Bulletin extends Model
 {
@@ -16,7 +18,7 @@ class Bulletin extends Model
             'data',
             'class_id',   
             'student_id',
-            'academic_year_id'
+            'academic_year_id','flag'
     ];
 
     public function student(){
@@ -30,4 +32,19 @@ class Bulletin extends Model
         return $this->belongsTo(Academic_year::class,'academic_year_id');
     }
     
+    public function __delete()
+    {
+        $this->flag = false;
+        $this->save();
+
+        $objet = DB::table('historicals')->where('object_id', $this->id)->first();
+        if ($objet == null) {
+            $historique = new historical();
+
+            $historique->user_id = Auth::user()->id;
+            $historique->object_name = 'bulletins';
+            $historique->object_id = $this->id;
+            $historique->save();
+        }
+    }
 }

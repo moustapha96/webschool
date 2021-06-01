@@ -18,6 +18,7 @@ class CreateSettingsTable extends Migration
             $table->text('code');
             $table->text('value');
             $table->text('description');
+            $table->boolean('flag')->default(true);
             $table->timestamps();
         });
     }
