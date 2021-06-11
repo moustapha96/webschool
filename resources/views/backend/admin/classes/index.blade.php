@@ -37,11 +37,11 @@
                                         <div class="card-body">
                                             <div>
                                                 <div class="form-group">
-                                                    <form action="{{ route('admin.classe.create') }}" method="post">
+                                                    <form action="{{ route('admin.classe.store') }}" method="post">
                                                         @csrf
 
                                                         <div class="form-group col-md-12">
-                                                            <label for="categori">{{ __('Filiere') }}</label>
+                                                            <label for="filiere">{{ __('Filiere') }}</label>
 
                                                             <select class="form-control" name="filiere_id" id="filiere_id"
                                                                 required>
@@ -57,7 +57,7 @@
                                                         </div>
 
                                                         <div class="form-group col-md-12">
-                                                            <label for="categori">{{ __('Niveau') }}</label>
+                                                            <label for="niveau">{{ __('Niveau') }}</label>
 
                                                             <select class="form-control" name="niveau_id" id="niveau_id"
                                                                 required>
@@ -70,10 +70,10 @@
                                                         </div>
 
                                                         <div class="form-group col-md-12">
-                                                            <label for="categori">{{ __('salle de classe') }}</label>
+                                                            <label for="classroom">{{ __('salle de classe') }}</label>
 
-                                                            <select class="form-control" name="salle_id" id="salle_id"
-                                                                required>
+                                                            <select class="form-control" name="classroom_id"
+                                                                id="classroom_id" required>
                                                                 <option></option>
                                                                 @foreach ($salles as $salle)
                                                                     <option value="{{ $salle->id }}">
@@ -102,22 +102,25 @@
                             <table class="table table-striped table-bordered zero-configuration">
                                 <thead>
                                     <tr>
-                                        <th>Nom</th>
-                                        <th>Code</th>
+                                        <th>Filiere</th>
+                                        <th>Niveau</th>
                                         <th>Salle</th>
                                         <th>Eff.</th>
                                         <th>Semestre</th>
+                                        <th>option</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($classes as $classe)
                                         <tr>
-                                            <td scope="col" style="width: 40%">{{ $classe->nameClass }}</td>
-                                            <td scope="col" style="width: 10%">{{ $classe->code }}</td>
+                                            <td scope="col" style="width: 40%">
+                                                {{ $classe->filiere->name }}</td>
+                                            <td scope="col" style="width: 10%">{{ $classe->niveau->name }} </td>
                                             <td scope="col" style="width: 20%">{{ $classe->classroom->name }}</td>
                                             <td scope="col" style="width: 10%" class="hover">
                                                 <a href="{{ route('admin.classes.liste_student', $classe) }}"
-                                                    class="btn btn-outline-link  hover"> {{ $classe->student->count() }}</a>
+                                                    class="btn btn-outline-link  hover">
+                                                    {{ $classe->student->count() }}</a>
                                             </td>
                                             <td scope="col" style="width: 20%">
                                                 @if ($classe->semester->count() != 0)
@@ -127,7 +130,76 @@
                                                     Vide
                                                 @endif
                                             </td>
+                                            <td scope="col" style="width: 10%" class="hover">
+                                                <a class="btn btn-primary" type="button" data-toggle="collapse"
+                                                    data-target="#contentId--{{ $classe->id }}" aria-expanded="false"
+                                                    aria-controls="contentId--{{ $classe->id }}">
+                                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                                </a>
 
+                                            </td>
+                                            <div class="collapse" id="contentId--{{ $classe->id }}">
+                                                <div class="card-title">
+
+                                                    <h2 class="modal-title" id="exampleModalCenterTitle">Modifié la classe
+                                                    </h2>
+                                                    <hr>
+                                                </div>
+                                                <div class="form-group">
+                                                    <form action="{{ route('admin.classe.update', $classe) }}"
+                                                        method="post">
+                                                        @csrf
+
+                                                        <div class="form-group col-md-12">
+                                                            <label for="filiere">{{ __('Filiere') }}</label>
+
+                                                            <select class="form-control" name="filiere_id" id="filiere_id"
+                                                                required>
+                                                                <option></option>
+                                                                @foreach ($filieres as $filiere)
+                                                                    <option value="{{ $filiere->id }}"  {{ $filiere->id == $classe->filiere_id ? 'selected' : '' }} >
+                                                                        {{ $filiere->name }} </option>
+
+                                                                @endforeach
+                                                            </select>
+
+
+                                                        </div>
+
+                                                        <div class="form-group col-md-12">
+                                                            <label for="niveau">{{ __('Niveau') }}</label>
+
+                                                            <select class="form-control" name="niveau_id" id="niveau_id"
+                                                                required>
+                                                                <option></option>
+                                                                @foreach ($niveaux as $niveau)
+                                                                    <option value="{{ $niveau->id }}" {{ $niveau->id == $classe->niveau_id ? 'selected' : '' }}>
+                                                                        {{ $niveau->name }} </option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="form-group col-md-12">
+                                                            <label for="classroom">{{ __('salle de classe') }}</label>
+
+                                                            <select class="form-control" name="classroom_id"
+                                                                id="classroom_id" required>
+                                                                <option></option>
+                                                                @foreach ($salles as $salle)
+                                                                    <option value="{{ $salle->id }}" {{ $salle->id == $classe->classroom_id ? 'selected' : '' }}>
+                                                                        {{ $salle->name }} </option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+
+
+                                                        <div class="modal-footer">
+                                                            <button type="submit"
+                                                                class="btn btn-success">enregistrer</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </tr>
                                     @endforeach
                                 </tbody>

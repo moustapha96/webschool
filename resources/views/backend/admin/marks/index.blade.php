@@ -57,7 +57,7 @@
                                         <tr>
                                             <td> {{ $mark->student->user->prenom . ' ' . $mark->student->user->nom }}</td>
                                             <td>{{ $mark->student->user->email }}</td>
-                                            <td>{{ $mark->student->classe->nameClass }}</td>
+                                            <td>{{ $mark->student->classe->filiere->name }} -- {{ $mark->student->classe->niveau->name }} </td>
                                             <td>{{ $mark->subject->name }}</td>
                                             <td>{{ $mark->mark_value }}</td>
                                             <td>{{ $mark->typeNote }}</td>

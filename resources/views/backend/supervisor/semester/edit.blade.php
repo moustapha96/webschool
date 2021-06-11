@@ -18,7 +18,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <h1><i class="fa fa-hourglass" aria-hidden="true"></i>Gestion des Semestres</h1>
-                                    <p class="mt-2">Modification d'un semestre</p>
+                                    <p class="mt-2">Modifier un semestre</p>
                                 </div>
                                 <div class="col-md-6">
 
@@ -79,8 +79,8 @@
                                             @foreach ($classes as $x)
                                                 <option value="{{ $x->id }}"
                                                     {{ $x->id == $semester->class_id ? 'selected' : '' }}>
-                                                    {{ $x->code }}
-                                                    -- {{ $x->nameClass }} </option>
+                                                    {{ $x->niveau->code }}
+                                                    -- {{ $x->filiere->code }} </option>
                                             @endforeach
                                         </select>
                                     </div>

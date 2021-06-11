@@ -112,8 +112,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 
 	// creer une classe
-	Route::post('/classe/creer', 'ClassesController@admin_store')->name('admin.classe.create');
+	Route::post('/classe/création', 'ClassesController@store')->name('admin.classe.store');
 
+    Route::post('classe/{classe}/update','ClassesController@update')->name('admin.classe.update');
 	// supprimer une categorie
 	Route::get('catégories/{categorie}', 'BookController@delete_categorie')->name('admin.categorie.delete');
 
@@ -343,21 +344,21 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 	//liste des notes de
 	Route::get('/liste/notes', 'MarkController@index')->name('marks.index');
 
-	//ajiuter une notes 
+	//ajiuter une notes
 	Route::get('/ajoute/ajout', 'MarkController@create')->name('marks.create');
 
-	//enregistrer une note 
+	//enregistrer une note
 	Route::post('/enregistrement/note/', 'MarkController@store')->name('marks.store');
 
 	//liste matieres d'un étudiant
 
 	Route::post('notes/matieres', 'MarkController@getSubjects')->name('marks.subject');
-	//update une note 
+	//update une note
 	Route::post('/modification/note/{mark}', 'MarkController@update')->name('marks.update');
 
-	// editer ue note 
+	// editer ue note
 	Route::get('/modification/{mark}/note', 'MarkController@edit')->name('marks.edit');
-	//supprimer une note 
+	//supprimer une note
 	Route::get('/supprimer/{mark}/note', 'MarkController@destroy')->name('marks.destroy');
 
 
@@ -428,7 +429,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 	Route::get('/parents', 'ParentController@index')->name('admin.parent.index');
 
 	Route::get('/parents/{parent}/détail', 'ParentController@show')->name('admin.parent.show');
-	
+
 	Route::get('/parents/{parent}/étudiant', 'ParentController@student')->name('admin.parent.student');
 
 
@@ -455,11 +456,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 	Route::post('/compte/action/{user}','StudentsController@updateCompte')->name('admin.student.updateCompte');
 
 
-	//----- gestion des historique 
+	//----- gestion des historique
 
 	Route::get('/historique','AdminController@historique')->name('admin.historique.index');
-	
+
 	Route::get('/historique/{historique}','AdminController@historiqueUpdate')->name('admin.historique.update');
-	
+
 
 });

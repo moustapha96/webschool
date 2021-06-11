@@ -85,9 +85,9 @@
                                                         <select id="inputState" name="class_id" class="form-control">
                                                             <option></option>
                                                             @foreach ($classes as $x)
-                                                                <option value="{{ $x->id }}"> {{ $x->code }}
+                                                                <option value="{{ $x->id }}"> {{ $x->niveau->code }}
                                                                     --
-                                                                    {{ $x->nameClass }} </option>
+                                                                    {{ $x->filiere->code  }} </option>
                                                             @endforeach
                                                         </select>
                                                     </div>

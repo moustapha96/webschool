@@ -79,8 +79,8 @@
                                             @foreach ($classes as $x)
                                                 <option value="{{ $x->id }}"
                                                     {{ $x->id == $semester->class_id ? 'selected' : '' }}>
-                                                    {{ $x->code }}
-                                                    -- {{ $x->nameClass }} </option>
+                                                    {{ $x->niveau->code }}
+                                                    -- {{ $x->filiere->code }} </option>
                                             @endforeach
                                         </select>
                                     </div>

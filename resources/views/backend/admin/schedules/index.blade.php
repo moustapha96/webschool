@@ -53,7 +53,7 @@
                                                 {{ $class_routine->teacher->user->nom }} </td>
                                             <td scope="col">{{ $class_routine->classroom->description }} </td>
 
-                                            <td scope="col">{{ $class_routine->classe->nameClass }}</td>
+                                            <td scope="col">{{ $class_routine->classe->niveau->name }}- {{ $class_routine->classe->filiere->name }</td>
                                             <td scope="col">{{ $class_routine->start_time }} -- {{ $class_routine->end_time }}</td>
 
                                             <td scope="col">

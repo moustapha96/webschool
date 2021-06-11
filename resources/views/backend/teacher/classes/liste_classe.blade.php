@@ -15,7 +15,7 @@
       <h1><i class="fa fa-suitcase"></i>Liste des Matières</h1>
         <h5 class="mt-2" > Liste de vos matières </h5>
     </div>
-   
+
 </div>
   <div class="row">
     <div class="col-md-12">
@@ -47,14 +47,14 @@
                 <!-- Le corps du tableau ici -->
                 @foreach($teacher->assign_subject as $assign_subject)
                     <tr>
-                        <td>{{ $assign_subject->subject->unitie->semester->classe->nameClass }}</td>
+                        <td>{{ $assign_subject->subject->unitie->semester->classe->niveau->code .' '. $assign_subject->subject->unitie->semester->classe->filiere->code}}</td>
                         <td>{{ $assign_subject->subject->unitie->semester->name }}</td>
                         <td>{{ $assign_subject->subject->unitie->name }} </td>
-                        <td>{{ $assign_subject->subject->name }} </td>  
+                        <td>{{ $assign_subject->subject->name }} </td>
 
                         <td>
                             <a href=" {{ route('teacher.students.liste_student', $assign_subject) }}" class="btn btn-info">notes étudiants</a>
-                            
+
                         </td>
                     </tr>
 

@@ -58,7 +58,7 @@
                                             <td>{{ $student->user->prenom }}</td>
                                             <td>{{ $student->user->nom }}</td>
                                             <td>{{ $student->user->email }}</td>
-                                            <td>{{ $student->classe->nameClass }}</td>
+                                            <td>{{ $student->classe->niveau->code .' ' . $student->classe->filiere->code }}</td>
                                             <td>{{ $student->ine }}</td>
                                             <td>
                                                 <a href="{{ route('student.student_dossier', $student) }}"

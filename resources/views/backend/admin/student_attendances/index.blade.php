@@ -55,7 +55,7 @@
                             <table class="table table-striped table-bordered zero-configuration">
                                 <thead>
                                     <tr>
-                                       
+
                                         <th>Student</th>
                                         <th>Classe</th>
                                         <th>Date</th>
@@ -67,9 +67,9 @@
                                 <tbody>
                                     @foreach ($student_attendances as $student_attendance)
                                         <tr>
-                                           
+
                                             <td>{{ $student_attendance->student->ine }}</td>
-                                            <td>{{ $student_attendance->classe->nameClass }}</td>
+                                            <td>{{ $student_attendance->classe->niveau->code .' '.$student_attendance->classe->filiere->code }}</td>
                                             <td>{{ $student_attendance->date }}</td>
                                             <td>{{ $student_attendance->attendance }}</td>
                                             <td><a href="{{ route('admin.student_attendance.edit', $student_attendance) }}"
@@ -90,7 +90,7 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                       
+
                                         <th>Student</th>
                                         <th>Classe</th>
                                         <th>Date</th>

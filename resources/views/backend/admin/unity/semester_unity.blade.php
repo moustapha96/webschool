@@ -19,7 +19,7 @@
                                 <div class="col-md-6">
                                     <h3> Gestion des Classes</h3>
                                         <h5 class="mt-2">Liste des Unités d'enseignement : {{ $semestre->code }} de la
-                                            {{ $semestre->classe->nameClass }}</h5>
+                                            {{ $semestre->classe->niveau->code . ' '.$semester->classe->filiere->code }}</h5>
                                 </div>
                                 <div class="col-md-6">
 
@@ -66,7 +66,7 @@
                                             <td scope="col">{{ $unite->code }}</td>
                                             <td scope="col">{{ $unite->name }}</td>
                                             <td scope="col">{{ $unite->semester->code }}</td>
-                                            <td scope="col">{{ $unite->semester->classe->nameClass }}</td>
+                                            <td scope="col">{{ $unite->semester->classe->niveau->code . ' '.$unite->semester->classe->filiere->code }}</td>
                                             <td scope="col">
                                                 @foreach ($unite->subject as $subject)
                                                     <table class="table table-striped">
@@ -88,7 +88,7 @@
                                     </tr>
                                 </tfoot>
                             </table>
-                           
+
                         </div>
                     </div>
                 </div>

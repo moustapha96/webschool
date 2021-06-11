@@ -15,12 +15,16 @@ class CreateClassesTable extends Migration
     {
         Schema::create('classes', function (Blueprint $table) {
             $table->id();
-            $table->string('nameClass');
-            $table->string('code');
+            // $table->string('nameClass');
+            // $table->string('code');
             $table->bigInteger('classroom_id')->unsigned();
+            $table->bigInteger('filiere_id')->unsigned();
+            $table->bigInteger('niveau_id')->unsigned();
             $table->timestamps();
             $table->boolean('flag')->default(true);
 
+            $table->foreign('filiere_id')->references('id')->on('filieres');
+            $table->foreign('niveau_id')->references('id')->on('niveaux');
             $table->foreign('classroom_id')->references('id')->on('classrooms');
         });
     }
@@ -34,7 +38,7 @@ class CreateClassesTable extends Migration
     {
         Schema::dropIfExists('classes');
     }
-  
 
-   
+
+
 }

@@ -69,7 +69,7 @@
                                             <td scope="col">{{ $subject->coefficient }}</td>
                                             <td scope="col">{{ $subject->unitie->name }}</td>
                                             <td scope="col">{{ $subject->unitie->semester->code }}</td>
-                                            <td scope="col">{{ $subject->unitie->semester->classe->code }}</td>
+                                            <td scope="col">{{ $subject->unitie->semester->classe->niveau->code .' '.$subject->unitie->semester->classe->filiere->code}}</td>
                                             <td scope="col">
                                                 <a class="btn btn-warning" href="{{ route('admin.subject.edit', $subject) }}"
                                                     role="button">Modifier</a>

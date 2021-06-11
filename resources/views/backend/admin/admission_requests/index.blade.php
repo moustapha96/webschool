@@ -49,7 +49,7 @@
                                         <th scope="col">INE</th>
                                         <th scope="col">Prenom</th>
                                         <th scope="col">Nom</th>
-                                        
+
                                         <th scope="col">E-mail</th>
                                         <th scope="col">Classe</th>
                                         <th scope="col">Dossier</th>
@@ -63,7 +63,7 @@
                                             <td>{{ $admission_request->prenom }}</td>
                                             <td>{{ $admission_request->nom }}</td>
                                             <td>{{ $admission_request->email }}</td>
-                                            <td>{{ $admission_request->classe->nameClass }}</td>
+                                            <td>{{ $admission_request->classe->niveau->name }} -- {{ $admission_request->classe->filiere->name }}</td>
                                             <td>
                                                 <a href="{{ route('admin.admission_requests.show', $admission_request) }}"
                                                     class="btn btn-outline-primary"> <i class="fa fa-eye" aria-hidden="true"></i> </a>
@@ -82,7 +82,7 @@
                                         <th scope="col">INE</th>
                                         <th scope="col">Prenom</th>
                                         <th scope="col">Nom</th>
-                                        
+
                                         <th scope="col">E-mail</th>
                                         <th scope="col">Classe</th>
                                         <th scope="col">Dossier</th>

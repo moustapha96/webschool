@@ -24,6 +24,9 @@ class filiere extends Model
         else $this->flag = true;
         $this->save();
     }
+    public function classe(){
+        return $this->hasMany(Classe::class,'class_id');
+    }
     public function __delete()
     {
         $this->flag = false;

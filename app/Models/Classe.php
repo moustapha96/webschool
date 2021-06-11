@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class Classe extends Model
 {
     protected $fillable = [
-        'nameClass','niveau','classroom_id','flag'
+        'classroom_id','flag','filiere_id','niveau_id'
     ];
 
    public function student(){
@@ -30,9 +30,16 @@ class Classe extends Model
     public function class_routines(){
         return $this->hasMany(Class_routine::class, 'classe_id');
     }
-    
+
     public function classroom(){
         return $this->belongsTo(Classroom::class,'classroom_id');
+    }
+
+    public function filiere(){
+        return $this->belongsTo(Filiere::class,'filiere_id');
+    }
+    public function niveau(){
+        return $this->belongsTo(niveau::class,'niveau_id');
     }
 
     public function __delete()

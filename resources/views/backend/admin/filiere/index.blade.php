@@ -114,8 +114,7 @@
                                                     </a>
 
                                                     <a class="btn btn-primary" type="button" data-toggle="collapse"
-                                                        data-target="#contentId--{{ $filiere->id }}"
-                                                        aria-expanded="false"
+                                                        data-target="#contentId--{{ $filiere->id }}" aria-expanded="false"
                                                         aria-controls="contentId--{{ $filiere->id }}">
                                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                                     </a>
@@ -127,7 +126,7 @@
                                                 <div class="card-title">
 
                                                     <h2 class="modal-title" id="exampleModalCenterTitle">Modifié le filiere
-                                                         </h2>
+                                                    </h2>
                                                     <hr>
                                                 </div>
                                                 <div class="form-group">

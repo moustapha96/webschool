@@ -18,14 +18,14 @@
 
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h4 class="card-title">liste des documents supprimés</h4>
+                                    <h4 class="card-title">historiques des documents supprimés</h4>
                                 </div>
                                 <div class="col-md-6">
 
 
                                 </div>
                             </div>
-                           
+
                             <hr>
                         </div>
 
@@ -57,16 +57,16 @@
                                                     <a href="{{ route('admin.historique.update', $histo) }}"
                                                         class="btn btn-outline-warning " data-toggle="tooltip"
                                                         data-placement="bottom" title="récupere">
-                                                      
+
                                                         <i class="fa fa-undo" aria-hidden="true"></i>
                                                     </a>
 
-                                                    
+
                                                 </div>
 
 
                                             </td>
-                                            
+
                                         </tr>
 
 

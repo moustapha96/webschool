@@ -98,7 +98,7 @@ class ClassRoutineController extends Controller
      */
     public function edit(Class_routine $class_routine)
     {
-      
+
 
         $classes = Classe::where('flag',true)->get();
         $classrooms = Classroom::where('flag',true)->get();
@@ -183,20 +183,20 @@ class ClassRoutineController extends Controller
 
         $code = $request->code;
 
-        $classe = Classe::where('code', $code)->get()->first();
+        $classe = Classe::find($code);
 
         $class_routines = Class_routine::where('classe_id', $classe->id)->get();
 
         return view('backend.' . Auth::user()->role . '.schedules.classe', [
             'class_routines' => $class_routines,
-            'code' => $code
+            'code' => $classe->niveau->name +'-'+$classe->filiere->name
         ]);
     }
     public function professeur(Request $request)
     {
 
         $teacher = Teacher::find($request->teacher_id);
-       
+
         $class_routines = Class_routine::where('teacher_id', $teacher->id)->get();
 
         return view('backend.' . Auth::user()->role . '.schedules.professeur', [
@@ -207,7 +207,7 @@ class ClassRoutineController extends Controller
 
     public function printScheduleProfesseur(Teacher $teacher){
 
-       
+
         if ($teacher != null) {
             $class_routines = Class_routine::where('teacher_id', $teacher->id)->get();
 

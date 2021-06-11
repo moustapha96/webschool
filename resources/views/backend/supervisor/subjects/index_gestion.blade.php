@@ -67,9 +67,9 @@
                                     <tr>
                                         <td>Unités d'enseignement</td>
                                         <td>
-                                            <a class="btn btn-success" href="{{ route('unity.createU') }}"
+                                            <a class="btn btn-success" href="{{ route('supervisor.unity.create') }}"
                                                 role="button">ajouter</a>
-                                            <a class="btn btn-dark" href="{{ route('unity.indexU') }}"
+                                            <a class="btn btn-dark" href="{{ route('supervisor.unity.index') }}"
                                                 role="button">lister</a>
                                         </td>
                                     </tr>

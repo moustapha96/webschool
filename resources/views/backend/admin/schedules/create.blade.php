@@ -44,7 +44,7 @@
                                             <option></option>
                                             @foreach ($classes as $classe)
                                                 <option value="{{ $classe->id }}">
-                                                    {{ $classe->nameClass }}
+                                                    {{ $classe->niveau->name }}--{{ $classe->filiere->name }}
                                                 </option>
                                             @endforeach
                                         </select>

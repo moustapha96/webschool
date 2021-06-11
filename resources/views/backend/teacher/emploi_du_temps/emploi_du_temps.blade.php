@@ -14,7 +14,7 @@
         <h2 class="mt-2">Emploie du temps <u> {{ $teacher->user->prenom }} {{ $teacher->user->nom }} </u></h2>
     </div>
     <ul class="app-breadcrumb breadcrumb">
-        <li class="breadcrumb-item"> 
+        <li class="breadcrumb-item">
           <a class="btn btn-outline-dark" href="{{ url()->previous() }}" role="button">retour</a>
       </li>
     </ul>
@@ -33,7 +33,7 @@
           @endif
       </div>
     <div class="col-md-12">
-     
+
       <div class="tile">
         <div class="tile-body">
           <div class="table-responsive">
@@ -54,17 +54,17 @@
                       <tr>
                         <td  scope="col" >{{ $routine->day }}</td>
                         <td  scope="col" >{{ $routine->subject->name }}</td>
-                        <td  scope="col" >{{ $routine->classe->nameClass }}</td>
+                        <td  scope="col" >{{ $routine->classe->niveau->code .' '.$routine->classe->filiere->code }}</td>
                         <td  scope="col" >{{ $routine->classroom->description }}  </td>
-                        <td  scope="col" >{{ $routine->start_time }}</td> 
-                        <td  scope="col" >{{ $routine->end_time }}</td> 
+                        <td  scope="col" >{{ $routine->start_time }}</td>
+                        <td  scope="col" >{{ $routine->end_time }}</td>
                       </tr>
-                      
+
                       @endforeach
                   </tbody>
                 </table>
           </div>
-         
+
         </div>
       </div>
     </div>

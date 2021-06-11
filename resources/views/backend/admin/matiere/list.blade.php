@@ -163,7 +163,8 @@
                                             <td scope="col">{{ $subject->coefficient }}</td>
                                             <td scope="col">{{ $subject->unitie->name }}</td>
                                             <td scope="col">{{ $subject->unitie->semester->code }}</td>
-                                            <td scope="col">{{ $subject->unitie->semester->classe->code }}</td>
+                                            <td scope="col">{{ $subject->unitie->semester->classe->filiere->name }} --
+                                                {{ $subject->unitie->semester->classe->niveau->name }} </td>
                                             <td scope="col">
                                                 <a class="btn btn-warning"
                                                     href="{{ route('matiere.editM', $subject) }}"

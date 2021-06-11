@@ -17,15 +17,15 @@
                         <div class="card-title-wrap bar-success">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h1><i class="fa fa-suitcase"></i>Gestion des UE</h1>
-                                    <p class="mt-2">Liste des unités d'enseignements</p>
+                                    <h3> Gestion des Classes</h3>
+                                        <h5 class="mt-2">Liste des Unités d'enseignement : {{ $semestre->code }} de la
+                                            {{ $semestre->classe->niveau->code . ' '.$semestre->classe->filiere->code }}</h5>
                                 </div>
                                 <div class="col-md-6">
 
-                                    <a class="btn btn-success float-right btn-sm" href="{{ route('admin.unity.create') }}"
-                                        role="button">Ajouter un UE</a>
-                                    <a class="btn btn-info float-right btn-sm" href="{{ url()->previous() }}"><i
-                                            class="fa fa-reply"></i> Retour</a></li>
+
+                                    <a href="{{ url()->previous() }}" class="btn btn-outline-dark float-right btn-sm"
+                                        role="button"> <i class="fa fa-reply" aria-hidden="true"></i> retour</a>
 
                                 </div>
                             </div>
@@ -54,43 +54,41 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">Code</th>
-                                        <th scope="col">Nom UE</th>
-                                        <th scope="col">Crédit</th>
-                                        <th scope="col">Semestre</th>
-                                        <th scope="col">Nom Classe</th>
-                                        <th scope="col">Action</th>
+                                        <th scope="col">Nom UE </th>
+                                        <th scope="col">Semestre </th>
+                                        <th scope="col">classe </th>
+                                        <th scope="col">Matiere </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($unities as $unity)
+                                    @foreach ($semestre->unitie as $unite)
                                         <tr>
-                                            <td scope="col">{{ $unity->code }}</td>
-                                            <td scope="col">{{ $unity->name }}</td>
-                                            <td scope="col">{{ $unity->credit }}</td>
-                                            <td scope="col">{{ $unity->semester->code }}</td>
-                                            <td scope="col">{{ $unity->semester->classe->niveau->code . ' '.$unity->semester->classe->filiere->code }}</td>
+                                            <td scope="col">{{ $unite->code }}</td>
+                                            <td scope="col">{{ $unite->name }}</td>
+                                            <td scope="col">{{ $unite->semester->code }}</td>
+                                            <td scope="col">{{ $unite->semester->classe->niveau->code . ' '.$unite->semester->classe->filiere->code }}</td>
                                             <td scope="col">
-                                                <a class="btn btn-warning"
-                                                    href="{{ route('admin.unity.edit', $unity->id) }}"
-                                                    role="button">Modifier</a>
-                                                <a class="btn btn-danger"
-                                                    href="{{ route('admin.unity.destroy', $unity->id) }}"
-                                                    role="button">Supprimer</a>
+                                                @foreach ($unite->subject as $subject)
+                                                    <table class="table table-striped">
+                                                        <td>{{ $subject->name }}</td>
+                                                    </table>
+                                                @endforeach
                                             </td>
+
                                         </tr>
                                     @endforeach
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <th scope="col">Code</th>
-                                        <th scope="col">Nom UE</th>
-                                        <th scope="col">Crédit</th>
-                                        <th scope="col">Semestre</th>
-                                        <th scope="col">Nom Classe</th>
-                                        <th scope="col">Action</th>
+                                        <th scope="col">Nom UE </th>
+                                        <th scope="col">Semestre </th>
+                                        <th scope="col">classe </th>
+                                        <th scope="col">Matiere </th>
                                     </tr>
                                 </tfoot>
                             </table>
+
                         </div>
                     </div>
                 </div>

@@ -19,7 +19,7 @@
                                 <div class="col-md-6">
                                     <h3><i class="fa fa-file-o" aria-hidden="true"></i>Demande d'admission</h3>
                                     <p> Détail du demande d'admission pour la classe
-                                    <h4>{{ $admission_request->classe->nameClass }}</h4>
+                                    <h4> {{ $admission_request->classe->niveau->name }} -- {{ $admission_request->classe->filiere->name }} </h4>
                                     </p>
                                 </div>
                                 <div class="col-md-6">

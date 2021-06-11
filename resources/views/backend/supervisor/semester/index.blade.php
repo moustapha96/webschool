@@ -64,7 +64,7 @@
                                         <tr>
                                             <td scope="col" style="width: 10%">{{ $semester->code }}</td>
                                             <td scope="col" style="width: 10%">{{ $semester->name }}</td>
-                                            <td scope="col" style="width: 10%">{{ $semester->classe->nameClass }}</td>
+                                            <td scope="col" style="width: 10%">{{ $semester->classe->niveau->code . ' '.$semester->classe->filiere->code }}</td>
                                             <td scope="col" style="width: 10% ; text-align:center">
                                                 <a class="btn btn-primary" href="{{ route('supervisor.semester.edit', $semester) }}"
                                                     role="button">Modifier</a>

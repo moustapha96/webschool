@@ -44,7 +44,7 @@
                                             @foreach ($classes as $classe)
                                                 <option value="{{ $classe->id }}"
                                                     {{ $class_routine->classe_id == $classe->id ? 'selected' : '' }}>
-                                                    {{ $classe->nameClass }}</option>
+                                                    {{ $classe->niveau->name }} {{ $classe->filiere->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>

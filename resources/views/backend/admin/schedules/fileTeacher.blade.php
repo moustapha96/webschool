@@ -35,7 +35,7 @@
                         <tr>
                             <td scope="col" style="border:1px solid #000">{{ $class_routine->day }}</td>
                             <td scope="col" style="border:1px solid #000">{{ $class_routine->subject->name }}</td>
-                            <td scope="col" style="border:1px solid #000">{{ $class_routine->classe->nameClass }}
+                            <td scope="col" style="border:1px solid #000">{{ $class_routine->classe->niveau->name }}- {{ $class_routine->classe->filiere->name }}
                             </td>
                             <td scope="col" style="border:1px solid #000">
                                 {{ $class_routine->classroom->description }} </td>

@@ -119,12 +119,14 @@ class SemesterController extends Controller
 
     //liste des semestres d'une class
     public function ClasseSemester(Classe $classe){
+
         return view('backend.'.Auth::user()->role.'.semester.classe_semester',compact('classe'));
     }
 
     //liste des unités d'un semestre
 
     public function SemesterUnitie(Semester $semestre){
+
         return view('backend.'.Auth::user()->role.'.unity.semester_unity',compact('semestre'));
     }
 }

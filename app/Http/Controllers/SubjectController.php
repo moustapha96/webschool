@@ -115,6 +115,7 @@ class SubjectController extends Controller
     }
 
     public function index_gestion(){
+
        return view('backend.'. Auth::user()->role.'.subjects.index_gestion');
     }
 }

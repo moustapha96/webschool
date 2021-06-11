@@ -21,7 +21,7 @@
                             class="menu-title">Classes</span></a>
                     <ul class="menu-content">
                         <li class="{{ is_active($activeMain, 'listeClasses') }}"><a
-                                href="{{ route('classes1.list1') }}" class="menu-item">Liste des classe</a>
+                                href="{{ route('supervisor.classe.index') }}" class="menu-item">Liste des classe</a>
                         </li>
                         <li class="{{ is_active($activeMain, 'listeClassrooms') }}"><a
                                 href="{{ route('classroom.index') }}" class="menu-item">Salles de classe</a>

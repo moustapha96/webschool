@@ -17,15 +17,14 @@
                         <div class="card-title-wrap bar-success">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h1><i class="fa fa-suitcase"></i>Gestion des UE</h1>
-                                    <p class="mt-2">Liste des unités d'enseignements</p>
+                                    <h3><i class="fa fa-users" aria-hidden="true"></i></i>Gestion des Classes</h1>
+                                    <h6 class="mt-2">Semestre de la {{ $classe->nameClass }}</h6>
                                 </div>
                                 <div class="col-md-6">
 
-                                    <a class="btn btn-success float-right btn-sm" href="{{ route('admin.unity.create') }}"
-                                        role="button">Ajouter un UE</a>
-                                    <a class="btn btn-info float-right btn-sm" href="{{ url()->previous() }}"><i
-                                            class="fa fa-reply"></i> Retour</a></li>
+
+                                    <a href="{{ url()->previous() }}" class="btn btn-outline-dark float-right btn-sm"
+                                        role="button"> <i class="fa fa-reply" aria-hidden="true"></i> retour</a>
 
                                 </div>
                             </div>
@@ -54,28 +53,23 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">Code</th>
-                                        <th scope="col">Nom UE</th>
-                                        <th scope="col">Crédit</th>
-                                        <th scope="col">Semestre</th>
-                                        <th scope="col">Nom Classe</th>
-                                        <th scope="col">Action</th>
+                                        <th scope="col">Nom </th>
+                                        <th scope="col">UE et matiere</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($unities as $unity)
+                                    @foreach ($classe->semester as $semestre)
                                         <tr>
-                                            <td scope="col">{{ $unity->code }}</td>
-                                            <td scope="col">{{ $unity->name }}</td>
-                                            <td scope="col">{{ $unity->credit }}</td>
-                                            <td scope="col">{{ $unity->semester->code }}</td>
-                                            <td scope="col">{{ $unity->semester->classe->niveau->code . ' '.$unity->semester->classe->filiere->code }}</td>
+                                            <td scope="col">{{ $semestre->code }}</td>
+                                            <td scope="col">{{ $semestre->name }}</td>
                                             <td scope="col">
-                                                <a class="btn btn-warning"
-                                                    href="{{ route('admin.unity.edit', $unity->id) }}"
-                                                    role="button">Modifier</a>
-                                                <a class="btn btn-danger"
-                                                    href="{{ route('admin.unity.destroy', $unity->id) }}"
-                                                    role="button">Supprimer</a>
+                                                @if ($classe->semester->count() == 0)
+                                                    pas d'unité d'enseignement
+                                                @else
+                                                    <a class="btn btn-outline-info"
+                                                        href="{{ route('supervisor.semester.unitie', $semestre) }}"
+                                                        role="button">liste des UE</a>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach
@@ -83,11 +77,8 @@
                                 <tfoot>
                                     <tr>
                                         <th scope="col">Code</th>
-                                        <th scope="col">Nom UE</th>
-                                        <th scope="col">Crédit</th>
-                                        <th scope="col">Semestre</th>
-                                        <th scope="col">Nom Classe</th>
-                                        <th scope="col">Action</th>
+                                        <th scope="col">Nom </th>
+                                        <th scope="col">UE et matiere</th>
                                     </tr>
                                 </tfoot>
                             </table>

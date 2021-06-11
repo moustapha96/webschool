@@ -58,18 +58,18 @@
                                     <tr>
                                         <td>Semestres </td>
                                         <td>
-                                            <a class="btn btn-success" href="{{ route('semester.createS') }}"
+                                            <a class="btn btn-success" href="{{ route('admin.semester.create') }}"
                                                 role="button">ajouter</a>
-                                            <a class="btn btn-dark" href="{{ route('semester.indexS') }}"
+                                            <a class="btn btn-dark" href="{{ route('admin.semester.index') }}"
                                                 role="button">lister</a>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Unités d'enseignement</td>
                                         <td>
-                                            <a class="btn btn-success" href="{{ route('unity.createU') }}"
+                                            <a class="btn btn-success" href="{{ route('admin.unity.create') }}"
                                                 role="button">ajouter</a>
-                                            <a class="btn btn-dark" href="{{ route('unity.indexU') }}"
+                                            <a class="btn btn-dark" href="{{ route('admin.unity.index') }}"
                                                 role="button">lister</a>
                                         </td>
                                     </tr>

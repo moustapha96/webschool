@@ -17,7 +17,7 @@
                         <div class="card-title-wrap bar-success">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h1><i class="fa fa-hourglass" aria-hidden="true"></i>Gestion des Semestres</h1>
+                                    <h3><i class="fa fa-hourglass" aria-hidden="true"></i>Gestion des Semestres</h3>
                                     <p class="mt-2">Ajoiut d'un semestre</p>
                                 </div>
                                 <div class="col-md-6">
@@ -85,9 +85,8 @@
                                                         <select id="inputState" name="class_id" class="form-control">
                                                             <option></option>
                                                             @foreach ($classes as $x)
-                                                                <option value="{{ $x->id }}"> {{ $x->code }}
-                                                                    --
-                                                                    {{ $x->nameClass }} </option>
+                                                                <option value="{{ $x->id }}"> {{ $x->niveau->code }}
+                                                                    {{ $x->filiere->code }} </option>
                                                             @endforeach
                                                         </select>
                                                     </div>

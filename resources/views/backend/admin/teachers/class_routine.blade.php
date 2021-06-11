@@ -59,7 +59,7 @@
                                         <tr>
                                             <td scope="col">{{ $routine->day }}</td>
                                             <td scope="col">{{ $routine->subject->name }}</td>
-                                            <td scope="col">{{ $routine->classe->nameClass }}</td>
+                                            <td scope="col">{{ $routine->classe->niveau->code.' '.$routine->classe->filiere->code }}</td>
                                             <td scope="col">{{ $routine->classroom->description }} </td>
                                             <td scope="col">{{ $routine->start_time }}</td>
                                             <td scope="col">{{ $routine->end_time }}</td>

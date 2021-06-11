@@ -25,12 +25,12 @@
                                     <a href="{{ redirect()->back() }}" class="btn btn-info float-right " role="button"> <i
                                             class="fa fa-reply " aria-hidden="true"></i> retour</a>
 
-                                   
+
                                         <a class="btn btn-outline-info float-right mr-2 "
                                             href="{{ route('admin.schedule.printScheduleProfesseur', $teacher) }}"
                                             role="button"> <i class="fa fa-print" aria-hidden="true"></i> Imprimer</a>
 
-                                   
+
 
                                 </div>
                             </div>
@@ -57,7 +57,7 @@
                                         <tr>
                                             <td scope="col">{{ $class_routine->day }}</td>
                                             <td scope="col">{{ $class_routine->subject->name }}</td>
-                                            <td scope="col">{{ $class_routine->classe->nameClass }} </td>
+                                            <td scope="col">{{ $class_routine->classe->niveau->name }} - {{ $class_routine->classe->filiereu->name }} </td>
                                             <td scope="col">{{ $class_routine->classroom->description }} </td>
                                             <td scope="col">{{ $class_routine->start_time }}</td>
                                             <td scope="col">{{ $class_routine->end_time }}</td>

@@ -18,30 +18,40 @@ class ClassesController extends Controller
 
     public function index()
     {
-        $classes = Classe::latest()->get();
+        $classes = Classe::where('flag',true)->get();
+
         $title = 'Liste des classes';
         $activeMain = 'listeClasses';
+
 
         $salles  = Classroom::where('flag',true)->get();
         $filieres = filiere::where('flag',true)->get();
         $niveaux = niveau::where('flag',true)->get();
-        return  view('backend.admin.classes.index', compact('classes', 'title', 'activeMain', 'salles', 'filieres', 'niveaux'));
+        return  view('backend.'.Auth::user()->role.'.classes.index', compact('classes', 'title', 'activeMain', 'salles', 'filieres', 'niveaux'));
     }
 
     function admin_store(Request $request)
     {
         request()->validate([
-            'salle_id' => ['required'],
+            'classroom_id' => ['required'],
             'niveau_id' => ['required'],
             'filiere_id' => ['required']
         ]);
-        $salle = Classroom::find($request->salle_id);
-        $filiere = filiere::find($request->filiere_id);
-        $niveau = niveau::find($request->niveau_id);
 
-        dump($salle);
+        $filiere = Filiere::find($request->filiere_id)->get();
+        $classroom = Filiere::find($request->classroom_id)->get();
+        $niveau = Filiere::find($request->niveau_id)->get();
         dump($filiere);
         dump($niveau);
+        dump($classroom);
+
+        $classe = new Classe();
+        $classe->filiere_id = $request->filiere_id;
+        $classe->niveau_id = $request->niveau_id;
+        $classe->classroom_id = $request->classroom_id;
+        $classe->save();
+
+        return redirect()->action('ClassesController@index')->with('success','opération réussie avec succès');
     }
 
     /*function classeslist(Request $request)
@@ -62,22 +72,26 @@ class ClassesController extends Controller
 
     }*/
 
-    public function create()
-    {
-        return  view('backend.admin.classes.create');
-    }
+    // public function create()
+    // {
+    //     return  view('backend.admin.classes.create');
+    // }
 
     public function store(Request $request)
     {
         request()->validate([
-            'nameClasse' => ['required'],
-            'niveau' => ['required'],
+            'classroom_id' => ['required'],
+            'niveau_id' => ['required'],
+            'filiere_id' => ['required']
         ]);
 
-        Classe::create($request->all());
+        $classe = new Classe();
+        $classe->filiere_id = $request->filiere_id;
+        $classe->niveau_id = $request->niveau_id;
+        $classe->classroom_id = $request->classroom_id;
+        $classe->save();
 
-
-        return redirect()->action('ClassesController@index');
+        return redirect()->action('ClassesController@index')->with('success','opération réussie avec succès');
     }
 
     public function show($id)
@@ -86,25 +100,30 @@ class ClassesController extends Controller
 
         return response()->json($classe);
     }
+
     public function edit($id)
     {
         $classe = Classe::where('id', $id)->first();
 
         return  view('backend.admin.classes.edit', compact('classe'));
     }
-    public function update(Request $request, $id)
+
+    public function update(Request $request, Classe $classe)
     {
         request()->validate([
-            'nomClasse' => ['required'],
-            'niveau' => ['required'],
+            'classroom_id' => ['required'],
+            'niveau_id' => ['required'],
+            'filiere_id' => ['required']
         ]);
 
+        // $classe->filiere_id = $request->filiere_id;
+        // $classe->niveau_id = $request->niveau_id;
+        // $classe->classroom_id = $request->classroom_id;
 
-        $classe = Classe::findOrFail($id);
         $classe->update($request->all());
 
 
-        return redirect()->action('ClassesController@index');
+        return redirect()->action('ClassesController@index')->with('success','opération réussie avec succès');
     }
 
     public function destroy($id)
@@ -112,15 +131,15 @@ class ClassesController extends Controller
         $classe = Classe::where('id', $id);
         $classe->__delete();
 
-        return redirect()->action('ClassesController@index');
+        return redirect()->action('ClassesController@index')->with('success','opération réussie avec succès');
     }
 
 
 
 
-    // partie péna 
+    // partie péna
 
-    // ***************************************fonction Supervisor nom Function+1  ex: index1******************************************************************* 
+    // ***************************************fonction Supervisor nom Function+1  ex: index1*******************************************************************
 
     public function index1()
     {
