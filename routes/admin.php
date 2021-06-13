@@ -376,7 +376,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 	Route::post('/emploi du temps/professeur', 'ClassRoutineController@professeur')->name('admin.schedule.professeur');
 
-	Route::get('/emploi du temps/impression/{code}', 'ClassRoutineController@printScheduleClasse')->name('admin.schedule.printScheduleClasse');
+	Route::get('/emploi du temps/impression/{classe}', 'ClassRoutineController@printScheduleClasse')->name('admin.schedule.printScheduleClasse');
 
 	Route::get('/emploi_du_temps/impression/{teacher}', 'ClassRoutineController@printScheduleProfesseur')->name('admin.schedule.printScheduleProfesseur');
 

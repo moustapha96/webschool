@@ -23,7 +23,7 @@
             <th  scope="col" style="border:1px solid #000">SALLE</th>
             <th  scope="col" style="border:1px solid #000">DEBUT COURS</th>
             <th  scope="col" style="border:1px solid #000">FIN COURS</th>
-  
+
           </tr>
         </thead>
         <tbody>
@@ -32,12 +32,12 @@
           <tr>
             <td  scope="col" style="border:1px solid #000" >{{ $routine->day }}</td>
             <td  scope="col"style="border:1px solid #000" >{{ $routine->subject->name }}</td>
-            <td  scope="col"style="border:1px solid #000" >{{ $routine->classe->nameClass }}  </td>
+            <td  scope="col"style="border:1px solid #000" >{{ $routine->classe->niveau->code.' '.$routine->classe->filiere->code }}  </td>
             <td  scope="col"style="border:1px solid #000" >{{ $routine->classroom->description }}  </td>
-            <td  scope="col"style="border:1px solid #000" >{{ $routine->start_time }}</td> 
-            <td  scope="col" style="border:1px solid #000">{{ $routine->end_time }}</td> 
+            <td  scope="col"style="border:1px solid #000" >{{ $routine->start_time }}</td>
+            <td  scope="col" style="border:1px solid #000">{{ $routine->end_time }}</td>
           </tr>
-          
+
           @endforeach
           </tbody>
       </table>
@@ -45,6 +45,6 @@
     </div>
 
   </div>
-       
+
 </body>
 </html>

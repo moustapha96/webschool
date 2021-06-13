@@ -60,6 +60,7 @@ class ClassRoutineController extends Controller
             'end_time' => ['required'],
         ]);
 
+        // dd($request->all());
         $classRoutine = new Class_routine();
 
         $classRoutine->classe_id = $request->classe_id;
@@ -189,7 +190,7 @@ class ClassRoutineController extends Controller
 
         return view('backend.' . Auth::user()->role . '.schedules.classe', [
             'class_routines' => $class_routines,
-            'code' => $classe->niveau->name +'-'+$classe->filiere->name
+            'classe' => $classe
         ]);
     }
     public function professeur(Request $request)
@@ -221,12 +222,14 @@ class ClassRoutineController extends Controller
         }
     }
 
-    public function printScheduleClasse($code)
+    public function printScheduleClasse(Classe $classe)
     {
 
-        $classe = Classe::where('code', $code)->get()->first();
+        //$classe = Classe::where('code', $code)->get()->first();
         if ($classe != null) {
             $class_routines = Class_routine::where('classe_id', $classe->id)->get();
+
+            $code = $classe->niveau->code.' '.$classe->filiere->code;
 
             $pdf = PDF::loadView('backend.' . Auth::user()->role . '.schedules.file', [
                 'class_routines' => $class_routines,

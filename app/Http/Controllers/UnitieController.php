@@ -28,8 +28,10 @@ class UnitieController extends Controller
      */
     public function create()
     {
-        $semesters = Semester::all();
-        $classes = Classe::all();
+        $semesters = Semester::where('flag',true)->get();
+
+        $classes = Classe::where('flag',true)->get();
+
         return  view('backend.' . Auth()->user()->role . '.unity.create', compact('semesters', 'classes'));
     }
 
@@ -72,7 +74,7 @@ class UnitieController extends Controller
         //
     }
 
-    /** 
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Unitie  $unitie
@@ -80,8 +82,8 @@ class UnitieController extends Controller
      */
     public function edit(Unitie $unitie)
     {
-        $semesters = Semester::all();
-        $classes = Classe::all();
+        $semesters = Semester::where('flag',true)->get();
+        $classes = Classe::where('flag',true)->get();
         return  view('backend.' . Auth()->user()->role . '.unity.edit', compact('unitie', 'semesters', 'classes'));
     }
 
@@ -99,13 +101,11 @@ class UnitieController extends Controller
             'name' => ['required'],
             'semestre_id' => ['required'],
             'credit' => ['required'],
-            'classe_id' => ['required'],
         ]);
 
         $unitie->code = $request->code;
         $unitie->name = $request->name;
         $unitie->semester_id = $request->semestre_id;
-        $unitie->class_id = $request->class_id;
         $unitie->credit = $request->credit;
         $unitie->save();
 

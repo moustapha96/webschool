@@ -68,7 +68,7 @@
                                                                 <option value="{{ $unity->id }}"> {{ $unity->name }}
                                                                     --
                                                                     {{ $unity->semester->code }} --
-                                                                    {{ $unity->semester->classe->code }}
+                                                                    {{ $unity->semester->classe->niveau->code .' ' . $unity->semester->classe->filiere->code}}
                                                                 </option>
                                                             @endforeach
                                                         </select>

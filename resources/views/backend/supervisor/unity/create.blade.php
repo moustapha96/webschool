@@ -89,7 +89,18 @@
                                             <option></option>
                                             @foreach ($semesters as $semester)
                                                 <option value="{{ $semester->id }}"> {{ $semester->code }} --
-                                                    {{ $semester->classe->nameClass }} </option>
+                                                    {{ $semester->name }} </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <label for="inputState">Classe : </label>
+                                        <select id="inputState" name="class_id" class="form-control">
+                                            <option></option>
+                                            @foreach ($classes as $classe)
+                                                <option value="{{ $classe->id }}">
+                                                    {{ $classe->niveau->code.' '.$classe->filiere->code }} </option>
                                             @endforeach
                                         </select>
                                     </div>

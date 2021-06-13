@@ -57,7 +57,7 @@
                                             <option></option>
                                             @foreach ($subjects as $subject)
                                                 <option value="{{ $subject->id }}">
-                                                    {{ $subject->name }}--{{ $subject->unitie->name }}--{{ $subject->unitie->semester->name }}--{{ $subject->unitie->semester->classe->nameClass }}
+                                                    {{ $subject->name }}--{{ $subject->unitie->name }}--{{ $subject->unitie->semester->name }}--{{ $subject->unitie->semester->classe->niveau->code.' '.$subject->unitie->semester->classe->filiere->code }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -106,7 +106,7 @@
 
                                     <div class="form-group col-md-12">
                                         <label for="start_hour">{{ __('Début cours') }}</label>
-                                        <input type="time" name="start_time"
+                                        <input type="datetime-local" name="start_time"
                                             class="form-control  @error('start_time') is-invalid @enderror" id="start_time"
                                             placeholder="début du cours de la salle" required>
                                         @error('start_time')
@@ -119,7 +119,7 @@
 
                                     <div class="form-group col-md-12">
                                         <label for="end_time">{{ __('Fin cours') }}</label>
-                                        <input type="time" name="end_time"
+                                        <input type="datetime-local" name="end_time"
                                             class="form-control  @error('end_hour') is-invalid @enderror" id="end_time"
                                             placeholder="début du cours de la salle" required>
                                         @error('end_time')

@@ -10,8 +10,10 @@ use App\Models\Bulletin;
 use App\Models\Class_routine;
 use App\Models\Classe;
 use App\Models\Classroom;
+use App\Models\filiere;
 use App\Models\Mark;
 use App\Models\Message;
+use App\Models\niveau;
 use App\Models\Semester;
 use App\Models\Setting;
 use App\Models\Student;
@@ -130,7 +132,7 @@ class SupervisorsController extends Controller
     public function coef_barem()
     {
 
-        $classes = Classe::where('flag',true)->get();
+            $classes = Classe::where('flag',true)->get();
 
         $classe = '';
         return view('backend.' . Auth::user()->role . '.examen_notation.coef&barem', [
@@ -639,7 +641,7 @@ class SupervisorsController extends Controller
     }
 
 
-    //  liste des emplois du temps des professeurs 
+    //  liste des emplois du temps des professeurs
     public function teacher_class_routine()
     {
         $class_routines = Class_routine::where('flag',true)->get();

@@ -75,7 +75,7 @@
                                                     <option></option>
                                                     @foreach ($semesters as $semester)
                                                         <option value="{{ $semester->id }}"> {{ $semester->code }} --
-                                                            {{ $semester->classe->nameClass }} </option>
+                                                            {{ $semester->classe->niveau->code.' '.$semester->classe->filiere->code }} </option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -85,7 +85,7 @@
                                                     <option></option>
                                                     @foreach ($classes as $classe)
                                                         <option value="{{ $classe->id }}">
-                                                            {{ $classe->nameClass }} </option>
+                                                            {{ $classe->niveau->code.' '.$classe->filiere->code }} </option>
                                                     @endforeach
                                                 </select>
                                             </div>

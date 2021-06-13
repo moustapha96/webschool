@@ -19,7 +19,7 @@
                                 <div class="col-md-6">
                                     <h3> Gestion des Classes</h3>
                                         <h5 class="mt-2">Liste des Unités d'enseignement : {{ $semestre->code }} de la
-                                            {{ $semestre->classe->niveau->code . ' '.$semester->classe->filiere->code }}</h5>
+                                            {{ $semestre->classe->niveau->code . ' '.$semestre->classe->filiere->code }}</h5>
                                 </div>
                                 <div class="col-md-6">
 

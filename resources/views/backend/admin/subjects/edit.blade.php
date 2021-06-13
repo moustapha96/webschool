@@ -69,7 +69,7 @@
                                                                     {{ $subject->unity_id == $unity->id ? 'selected' : '' }}>
                                                                     {{ $unity->name }} -- {{ $unity->semester->code }}
                                                                     --
-                                                                    {{ $unity->semester->classe->code }} </option>
+                                                                    {{ $unity->semester->classe->niveau->code.' '.$unity->semester->classe->filiere->code }} </option>
                                                             @endforeach
                                                         </select>
                                                     </div>

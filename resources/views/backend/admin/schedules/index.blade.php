@@ -53,16 +53,16 @@
                                                 {{ $class_routine->teacher->user->nom }} </td>
                                             <td scope="col">{{ $class_routine->classroom->description }} </td>
 
-                                            <td scope="col">{{ $class_routine->classe->niveau->name }}- {{ $class_routine->classe->filiere->name }</td>
-                                            <td scope="col">{{ $class_routine->start_time }} -- {{ $class_routine->end_time }}</td>
+                                            <td scope="col">{{ $class_routine->classe->niveau->name }}- {{ $class_routine->classe->filiere->name }}</td>
+                                            <td scope="col">{{ $class_routine->start_time }} -- {{ $class_routine->end_time }} </td>
 
                                             <td scope="col">
                                                 <a class="btn btn-primary"
                                                     href="{{ route('admin.schedule.edit', $class_routine) }}"
-                                                    role="button">Modifier</a>
+                                                    role="button"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                                                 <a class="btn btn-danger"
                                                     href="{{ route('admin.schedule.destroy', $class_routine) }}"
-                                                    role="button">Supprimer</a>
+                                                    role="button"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                             </td>
                                         </tr>
 

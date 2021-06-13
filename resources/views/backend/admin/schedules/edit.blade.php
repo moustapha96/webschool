@@ -68,7 +68,7 @@
                                             @foreach ($subjects as $subject)
                                                 <option value="{{ $subject->id }}"
                                                     {{ $class_routine->subject_id == $subject->id ? 'selected' : '' }}>
-                                                    {{ $subject->name }}--{{ $subject->unitie->name }}--{{ $subject->unitie->semester->name }}--{{ $subject->unitie->semester->classe->nameClass }}
+                                                    {{ $subject->name }}--{{ $subject->unitie->name }}--{{ $subject->unitie->semester->name }}--{{ $subject->unitie->semester->classe->niveau->code.' '.$subject->unitie->semester->classe->filiere->code }}
                                                 </option>
                                             @endforeach
                                         </select>

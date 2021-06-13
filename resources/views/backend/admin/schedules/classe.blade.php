@@ -18,7 +18,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <h4 class="card-title">Emploi du temps</h4>
-                                    <p>emploi du temps classe : <strong> {{ $code }} </strong></p>
+                                    <p>emploi du temps classe : <strong> {{ $classe->niveau->code.' '.$classe->filiere->code }} </strong></p>
                                 </div>
                                 <div class="col-md-6">
                                     <a href="{{ redirect()->back() }}" class="btn btn-info float-right " role="button"> <i
@@ -26,7 +26,7 @@
 
                                     @if ($class_routines != null)
                                         <a class="btn btn-outline-info float-right mr-2 "
-                                            href="{{ route('admin.schedule.printScheduleClasse', $code) }}" role="button"> <i
+                                            href="{{ route('admin.schedule.printScheduleClasse', $classe) }}" role="button"> <i
                                                 class="fa fa-print" aria-hidden="true"></i> Imprimer</a>
 
                                     @endif
