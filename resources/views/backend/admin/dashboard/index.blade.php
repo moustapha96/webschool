@@ -1,402 +1,285 @@
-
-   
 @extends('backend.layouts.main')
 
 
-@section ('styles')
+@section('styles')
 
 @endsection
 
 
 @section('main')
-     
-            <!--Statistics cards Starts-->
+<div class="content-wrapper">
+
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Dashboard v3</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Dashboard v3</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+      </div>
+
+    <!-- Main content -->
+    <div class="content">
+        <div class="container-fluid">
             <div class="row">
-              <div class="col-xl-4 col-lg-6 col-md-6 col-12">
-                <div class="card bg-white">
-                  <div class="card-body">
-                    <div class="card-block pt-2 pb-0">
-                      <div class="media">
-                        <div class="media-body white text-left">
-                          <h4 class="font-medium-5 card-title mb-0">$5789</h4>
-                          <span class="grey darken-1">Total Visits</span>
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header border-0">
+                            <div class="d-flex justify-content-between">
+                                <h3 class="card-title">Online Store Visitors</h3>
+                                <a href="javascript:void(0);">View Report</a>
+                            </div>
                         </div>
-                        <div class="media-right text-right">
-                          <i class="icon-cup font-large-1 primary"></i>
-                        </div>
-                      </div>
-                    </div>
-                    <div id="Widget-line-chart" class="height-150 lineChartWidget WidgetlineChart mb-2">
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-4 col-lg-6 col-md-6 col-12">
-                <div class="card bg-white">
-                  <div class="card-body">
-                    <div class="card-block pt-2 pb-0">
-                      <div class="media">
-                        <div class="media-body white text-left">
-                          <h4 class="font-medium-5 card-title mb-0">$4567</h4>
-                          <span class="grey darken-1">Total Sales</span>
-                        </div>
-                        <div class="media-right text-right">
-                          <i class="icon-wallet font-large-1 warning"></i>
-                        </div>
-                      </div>
-                    </div>
-                    <div id="Widget-line-chart1" class="height-150 lineChartWidget WidgetlineChart1 mb-2">
-                    </div>
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <p class="d-flex flex-column">
+                                    <span class="text-bold text-lg">820</span>
+                                    <span>Visitors Over Time</span>
+                                </p>
+                                <p class="ml-auto d-flex flex-column text-right">
+                                    <span class="text-success">
+                                        <i class="fas fa-arrow-up"></i> 12.5%
+                                    </span>
+                                    <span class="text-muted">Since last week</span>
+                                </p>
+                            </div>
+                            <!-- /.d-flex -->
 
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-4 col-lg-6 col-md-6 col-12">
-                <div class="card bg-white">
-                  <div class="card-body">
-                    <div class="card-block pt-2 pb-0">
-                      <div class="media">
-                        <div class="media-body white text-left">
-                          <h4 class="font-medium-5 card-title mb-0">$9822</h4>
-                          <span class="grey darken-1">Total Value</span>
+                            <div class="position-relative mb-4">
+                                <canvas id="visitors-chart" height="200"></canvas>
+                            </div>
+
+                            <div class="d-flex flex-row justify-content-end">
+                                <span class="mr-2">
+                                    <i class="fas fa-square text-primary"></i> This Week
+                                </span>
+
+                                <span>
+                                    <i class="fas fa-square text-gray"></i> Last Week
+                                </span>
+                            </div>
                         </div>
-                        <div class="media-right text-right">
-                          <i class="icon-basket-loaded font-large-1 success"></i>
+                    </div>
+                    <!-- /.card -->
+
+                    <div class="card">
+                        <div class="card-header border-0">
+                            <h3 class="card-title">Products</h3>
+                            <div class="card-tools">
+                                <a href="#" class="btn btn-tool btn-sm">
+                                    <i class="fas fa-download"></i>
+                                </a>
+                                <a href="#" class="btn btn-tool btn-sm">
+                                    <i class="fas fa-bars"></i>
+                                </a>
+                            </div>
                         </div>
-                      </div>
+                        <div class="card-body table-responsive p-0">
+                            <table class="table table-striped table-valign-middle">
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Price</th>
+                                        <th>Sales</th>
+                                        <th>More</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <img src="dist/img/default-150x150.png" alt="Product 1"
+                                                class="img-circle img-size-32 mr-2">
+                                            Some Product
+                                        </td>
+                                        <td>$13 USD</td>
+                                        <td>
+                                            <small class="text-success mr-1">
+                                                <i class="fas fa-arrow-up"></i>
+                                                12%
+                                            </small>
+                                            12,000 Sold
+                                        </td>
+                                        <td>
+                                            <a href="#" class="text-muted">
+                                                <i class="fas fa-search"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img src="dist/img/default-150x150.png" alt="Product 1"
+                                                class="img-circle img-size-32 mr-2">
+                                            Another Product
+                                        </td>
+                                        <td>$29 USD</td>
+                                        <td>
+                                            <small class="text-warning mr-1">
+                                                <i class="fas fa-arrow-down"></i>
+                                                0.5%
+                                            </small>
+                                            123,234 Sold
+                                        </td>
+                                        <td>
+                                            <a href="#" class="text-muted">
+                                                <i class="fas fa-search"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img src="dist/img/default-150x150.png" alt="Product 1"
+                                                class="img-circle img-size-32 mr-2">
+                                            Amazing Product
+                                        </td>
+                                        <td>$1,230 USD</td>
+                                        <td>
+                                            <small class="text-danger mr-1">
+                                                <i class="fas fa-arrow-down"></i>
+                                                3%
+                                            </small>
+                                            198 Sold
+                                        </td>
+                                        <td>
+                                            <a href="#" class="text-muted">
+                                                <i class="fas fa-search"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img src="dist/img/default-150x150.png" alt="Product 1"
+                                                class="img-circle img-size-32 mr-2">
+                                            Perfect Item
+                                            <span class="badge bg-danger">NEW</span>
+                                        </td>
+                                        <td>$199 USD</td>
+                                        <td>
+                                            <small class="text-success mr-1">
+                                                <i class="fas fa-arrow-up"></i>
+                                                63%
+                                            </small>
+                                            87 Sold
+                                        </td>
+                                        <td>
+                                            <a href="#" class="text-muted">
+                                                <i class="fas fa-search"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    <div id="Widget-line-chart2" class="height-150 lineChartWidget WidgetlineChart2 mb-2">
-                    </div>
-                  </div>
+                    <!-- /.card -->
                 </div>
-              </div>
+                <!-- /.col-md-6 -->
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header border-0">
+                            <div class="d-flex justify-content-between">
+                                <h3 class="card-title">Sales</h3>
+                                <a href="javascript:void(0);">View Report</a>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <p class="d-flex flex-column">
+                                    <span class="text-bold text-lg">$18,230.00</span>
+                                    <span>Sales Over Time</span>
+                                </p>
+                                <p class="ml-auto d-flex flex-column text-right">
+                                    <span class="text-success">
+                                        <i class="fas fa-arrow-up"></i> 33.1%
+                                    </span>
+                                    <span class="text-muted">Since last month</span>
+                                </p>
+                            </div>
+                            <!-- /.d-flex -->
+
+                            <div class="position-relative mb-4">
+                                <canvas id="sales-chart" height="200"></canvas>
+                            </div>
+
+                            <div class="d-flex flex-row justify-content-end">
+                                <span class="mr-2">
+                                    <i class="fas fa-square text-primary"></i> This year
+                                </span>
+
+                                <span>
+                                    <i class="fas fa-square text-gray"></i> Last year
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card -->
+
+                    <div class="card">
+                        <div class="card-header border-0">
+                            <h3 class="card-title">Online Store Overview</h3>
+                            <div class="card-tools">
+                                <a href="#" class="btn btn-sm btn-tool">
+                                    <i class="fas fa-download"></i>
+                                </a>
+                                <a href="#" class="btn btn-sm btn-tool">
+                                    <i class="fas fa-bars"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
+                                <p class="text-success text-xl">
+                                    <i class="ion ion-ios-refresh-empty"></i>
+                                </p>
+                                <p class="d-flex flex-column text-right">
+                                    <span class="font-weight-bold">
+                                        <i class="ion ion-android-arrow-up text-success"></i> 12%
+                                    </span>
+                                    <span class="text-muted">CONVERSION RATE</span>
+                                </p>
+                            </div>
+                            <!-- /.d-flex -->
+                            <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
+                                <p class="text-warning text-xl">
+                                    <i class="ion ion-ios-cart-outline"></i>
+                                </p>
+                                <p class="d-flex flex-column text-right">
+                                    <span class="font-weight-bold">
+                                        <i class="ion ion-android-arrow-up text-warning"></i> 0.8%
+                                    </span>
+                                    <span class="text-muted">SALES RATE</span>
+                                </p>
+                            </div>
+                            <!-- /.d-flex -->
+                            <div class="d-flex justify-content-between align-items-center mb-0">
+                                <p class="text-danger text-xl">
+                                    <i class="ion ion-ios-people-outline"></i>
+                                </p>
+                                <p class="d-flex flex-column text-right">
+                                    <span class="font-weight-bold">
+                                        <i class="ion ion-android-arrow-down text-danger"></i> 1%
+                                    </span>
+                                    <span class="text-muted">REGISTRATION RATE</span>
+                                </p>
+                            </div>
+                            <!-- /.d-flex -->
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col-md-6 -->
             </div>
-            <!--Statistics cards Ends-->
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+</div>
 
-            <!--Line with Area Chart 1 Starts-->
-            <div class="row match-height">
-              <div class="col-xl-8 col-lg-12 col-12">
-                <div class="card">
-                  <div class="card-header">
-                    <div class="card-title-wrap bar-success">
-                      <h4 class="card-title">Product Valuation</h4>
-                    </div>
-                  </div>
-                  <div class="card-body">
-                    <div class="card-block">
-                      <div id="line-chart" class="height-300 lineChart lineChartShadow">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-4 col-lg-12 col-12">
-                <div class="card">
-                  <div class="card-header">
-                    <div class="card-title-wrap bar-danger">
-                      <h4 class="card-title">Today's Activity</h4>
-                    </div>
-                  </div>
-                  <div class="card-body">
-                    <div class="col-12 timeline-left" id="activity">
-                      <div class="timeline">
-                        <ul class="list-unstyled base-timeline activity-timeline">
-                          <li class="">
-                            <div class="timeline-icon bg-danger">
-                              <i class="fa fa-tasks"></i>
-                            </div>
-                            <div class="act-time">Today</div>
-                            <div class="base-timeline-info">
-                              <a href="#" class="text-uppercase text-danger">Task Added</a>
-                            </div>
-                            <small class="text-muted">
-                              25 mins ago
-                            </small>
-                          </li>
-                          <li class="">
-                            <div class="timeline-icon bg-primary">
-                              <i class="fa fa-handshake-o"></i>
-                            </div>
-                            <div class="act-time">Yesterday</div>
-                            <div class="base-timeline-info">
-                              <a href="#" class="text-uppercase text-primary">Deal Added</a>
-                            </div>
-                            <small class="text-muted">
-                              23 hours ago
-                            </small>
-                          </li>
-                          <li class="">
-                            <div class="timeline-icon bg-dark">
-                              <i class="fa fa-tasks"></i>
-                            </div>
-                            <div class="act-time">09 March</div>
-                            <div class="base-timeline-info">
-                              <a href="#" class="text-uppercase text-dark">Task Updated</a>
-                            </div>
-                            <small class="text-muted">
-                              15 days ago
-                            </small>
-                          </li>
-                          <li class="">
-                            <div class="timeline-icon bg-warning">
-                              <i class="fa fa-handshake-o"></i>
-                            </div>
-                            <div class="act-time">04 March</div>
-                            <div class="base-timeline-info">
-                              <a href="#" class="text-uppercase text-warning">Started Task</a>
-                            </div>
-                            <small class="text-muted">
-                              20 days ago
-                            </small>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!--Line with Area Chart 1 Ends-->
 
-            <div class="row match-height">
-              <div class="col-xl-4 col-lg-12 col-12">
-                <div class="card">
-                  <div class="card-header">
-                    <div class="card-title-wrap bar-warning">
-                      <h4 class="card-title">Sales</h4>
-                    </div>
-                  </div>
-                  <div class="card-body">
-                    <p class="font-medium-2 text-muted text-center pb-2">Last 12 Months Sales</p>
-                    <div id="Stack-bar-chart" class="height-300 Stackbarchart mb-2">
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12 col-md-8" id="recent-sales">
-                <div class="card">
-                  <div class="card-header">
-                    <div class="card-title-wrap bar-primary">
-                      <h4 class="card-title">Recent Buyers</h4>
-                    </div>
-                    <a class="heading-elements-toggle">
-                      <i class="la la-ellipsis-v font-medium-3"></i>
-                    </a>
-                  </div>
-                  <div class="card-content mt-1">
-                    <div class="table-responsive">
-                      <table class="table table-hover table-xl mb-0" id="recent-orders">
-                        <thead>
-                          <tr>
-                            <th class="border-top-0">Product</th>
-                            <th class="border-top-0">Customers</th>
-                            <th class="border-top-0">Categories</th>
-                            <th class="border-top-0">Popularity</th>
-                            <th class="border-top-0">Amount</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td class="text-truncate">iPone X</td>
-                            <td class="text-truncate">Jim</td>
-                            <td>
-                              <button class="btn btn-sm btn-outline-danger round mb-0" type="button">Mobile</button>
-                            </td>
-                            <td>
-                              <div class="box-shadow-2 mt-1">
-                                <div class="progress" style="height: 8px;">
-                                  <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" aria-valuenow="85" aria-valuemin="20" aria-valuemax="100" style="width:85%"></div>
-                                </div>
-                              </div>
-                            </td>
-                            <td class="text-truncate">$ 1200.00</td>
-                          </tr>
-                          <tr>
-                            <td class="text-truncate">iPad</td>
-                            <td class="text-truncate">Jack</td>
-                            <td>
-                              <button class="btn btn-sm btn-outline-success round mb-0" type="button">Tablet</button>
-                            </td>
-                            <td>
-                              <div class="box-shadow-2 mt-1">
-                                <div class="progress" style="height: 8px;">
-                                  <div class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="20" aria-valuemax="100" style="width:75%"></div>
-                                </div>
-                              </div>
-                            </td>
-                            <td class="text-truncate">$ 1190.00</td>
-                          </tr>
-                          <tr>
-                            <td class="text-truncate">OnePlus</td>
-                            <td class="text-truncate">Dolly</td>
-                            <td>
-                              <button class="btn btn-sm btn-outline-danger round mb-0" type="button">Mobile</button>
-                            </td>
-                            <td>
-                              <div class="box-shadow-2 mt-1">
-                                <div class="progress" style="height: 8px;">
-                                  <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" aria-valuenow="70" aria-valuemin="20" aria-valuemax="100" style="width:70%"></div>
-                                </div>
-                              </div>
-                            </td>
-                            <td class="text-truncate">$ 999.00</td>
-                          </tr>
-                          <tr>
-                            <td class="text-truncate">ZenPad</td>
-                            <td class="text-truncate">Sam</td>
-                            <td>
-                              <button class="btn btn-sm btn-outline-success round mb-0" type="button">Tablet</button>
-                            </td>
-                            <td>
-                              <div class="box-shadow-2 mt-1">
-                                <div class="progress" style="height: 8px;">
-                                  <div class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-valuenow="60" aria-valuemin="20" aria-valuemax="100" style="width:60%"></div>
-                                </div>
-                              </div>
-                            </td>
-                            <td class="text-truncate">$ 1150.00</td>
-                          </tr>
-                          <tr>
-                            <td class="text-truncate">Pixel 2</td>
-                            <td class="text-truncate">John</td>
-                            <td>
-                              <button class="btn btn-sm btn-outline-danger round mb-0" type="button">Mobile</button>
-                            </td>
-                            <td>
-                              <div class="box-shadow-2 mt-1">
-                                <div class="progress" style="height: 8px;">
-                                  <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" aria-valuenow="45" aria-valuemin="20" aria-valuemax="100" style="width:45%"></div>
-                                </div>
-                              </div>
-                            </td>
-                            <td class="text-truncate">$ 1180.00</td>
-                          </tr>
-                          <tr>
-                            <td class="text-truncate">Pixel 2</td>
-                            <td class="text-truncate">John</td>
-                            <td>
-                              <button class="btn btn-sm btn-outline-danger round mb-0" type="button">Mobile</button>
-                            </td>
-                            <td>
-                              <div class="box-shadow-2 mt-1">
-                                <div class="progress" style="height: 8px;">
-                                  <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" aria-valuenow="45" aria-valuemin="20" aria-valuemax="100" style="width:45%"></div>
-                                </div>
-                              </div>
-                            </td>
-                            <td class="text-truncate">$ 1180.00</td>
-                          </tr>
-                          <tr>
-                            <td class="text-truncate">Pixel 1</td>
-                            <td class="text-truncate">Tony</td>
-                            <td>
-                              <button class="btn btn-sm btn-outline-danger round mb-0" type="button">Mobile</button>
-                            </td>
-                            <td>
-                              <div class="box-shadow-2 mt-1">
-                                <div class="progress" style="height: 8px;">
-                                  <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" aria-valuenow="45" aria-valuemin="20" aria-valuemax="100" style="width:45%"></div>
-                                </div>
-                              </div>
-                            </td>
-                            <td class="text-truncate">$ 1080.00</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row match-height">
-              <div class="col-xl-6 col-lg-12">
-                <div class="card">
-                  <div class="card-header">
-                    <div class="card-title-wrap bar-primary">
-                      <h4 class="card-title">Product Statistics</h4>
-                    </div>
-                  </div>
-                  <div class="card-body">
-
-                    <p class="font-medium-2 text-muted text-center">Hobbies</p>
-                    <div id="bar-chart" class="height-250 BarChartShadow BarChart">
-                    </div>
-
-                    <div class="card-block">
-                      <div class="row">
-                        <div class="col text-center">
-                          <span class="gradient-pomegranate d-block rounded-circle mx-auto mb-2" style="width:10px; height:10px;"></span>
-                          <span class="font-large-1 d-block mb-2">48</span>
-                          <span>Sport</span>
-                        </div>
-                        <div class="col text-center">
-                          <span class="gradient-green-tea d-block rounded-circle mx-auto mb-2" style="width:10px; height:10px;"></span>
-                          <span class="font-large-1 d-block mb-2">9</span>
-                          <span>Music</span>
-                        </div>
-                        <div class="col text-center">
-                          <span class="gradient-blackberry d-block rounded-circle mx-auto mb-2" style="width:10px; height:10px;"></span>
-                          <span class="font-large-1 d-block mb-2">26</span>
-                          <span>Travel</span>
-                        </div>
-                        <div class="col text-center">
-                          <span class="gradient-ibiza-sunset d-block rounded-circle mx-auto mb-2" style="width:10px; height:10px;"></span>
-                          <span class="font-large-1 d-block mb-2">17</span>
-                          <span>News</span>
-                        </div>
-                        <div class="col text-center">
-                          <span class="gradient-back-to-earth d-block rounded-circle mx-auto mb-2" style="width:10px; height:10px;"></span>
-                          <span class="font-large-1 d-block mb-2">52</span>
-                          <span>Blog</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-6 col-lg-12">
-                <div class="card">
-                  <div class="card-header">
-                    <div class="card-title-wrap bar-warning">
-                      <h4 class="card-title">Project Stats</h4>
-                    </div>
-                  </div>
-                  <div class="card-body">
-
-                    <p class="font-medium-2 text-muted text-center">Project Tasks</p>
-                    <div id="donut-dashboard-chart" class="height-250 donut donutShadow">
-                    </div>
-
-                    <div class="card-block">
-                      <div class="row my-3">
-                        <div class="col">
-                          <span class="mb-1 text-muted d-block">23% - Started</span>
-                          <div class="progress" style="height: 8px;">
-                            <div class="progress-bar gradient-blackberry" role="progressbar" style="width: 70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-                        <div class="col">
-                          <span class="mb-1 text-muted d-block">35% - In Progress</span>
-                          <div class="progress" style="height: 8px;">
-                            <div class="progress-bar gradient-pomegranate" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-                        <div class="col">
-                          <span class="mb-1 text-muted d-block">14% - Done</span>
-                          <div class="progress" style="height: 8px;">
-                            <div class="progress-bar gradient-green-tea" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-       
-
-      @endsection
-
-  <!-- ////////////////////////////////////////////////////////////////////////////-->
-
- 
+@endsection

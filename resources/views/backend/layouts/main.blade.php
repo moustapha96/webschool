@@ -9,8 +9,17 @@
     @yield('styles')
 </head>
 
-<body data-col="2-columns" class=" 2-columns ">
+<body
+{{-- class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed" --}}
+    class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
+
+        @php isset($logo) ? $logo = $logo." | " . get_setting('logo') : $logo = get_setting('logo')  ; @endphp
+        <!-- Preloader -->
+        <div class="preloader flex-column justify-content-center align-items-center">
+            <img class="animation__shake" src="{{ asset($logo) }}" alt="AdminLTELogo"
+                height="60" width="60">
+        </div>
 
         <?php
         if (!isset($activeMain)) {
@@ -20,34 +29,23 @@
         $activeSubMain = '';
         }
         ?>
-
-
-        @include('backend.'. Auth::user()->role . '.includes.header')
-        @include('backend.'. Auth::user()->role . '.includes.nav')
-
-        <div class="main-panel">
-            <div class="main-content">
-                <div class="content-wrapper">
-                    <div class="container-fluid">
-                        @if (session()->has('messageSuccess'))
-                            <div class="alert alert-success">
-                                {{ session()->get('messageSuccess') }}
-                            </div>
-                        @endif
-                        @yield('main')
-                        @include('backend.'. Auth::user()->role . '.includes.footer')
-                    </div>
-                </div>
-            </div>
+        @include('backend.layouts.header')
+        @include('backend.layouts.menu')
+        {{-- @include('backend.layouts.menu') --}}
+        <div class="content">
+            @yield('main')
+            <!-- Control Sidebar -->
+            <aside class="control-sidebar control-sidebar-dark">
+                <!-- Control sidebar content goes here -->
+            </aside>
+            <!-- /.control-sidebar -->
+            @include('backend.layouts.footer')
+            {{-- @include('backend.'. Auth::user()->role . '.includes.footer') --}}
         </div>
 
 
-
-
-    @includeIf('backend.' . Auth::user()->role . '.includes.aside')
-
-    @includeIf('backend.layouts.scripts')
-    @yield('scripts')
+        @includeIf('backend.layouts.scripts')
+        @yield('scripts')
 
 
 </body>
