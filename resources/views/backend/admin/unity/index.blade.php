@@ -1,112 +1,60 @@
-@extends('backend.layouts.main')
+@extends('backend.layouts.template')
 
 
-@section('styles')
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('app-assets/vendors/css/tables/datatable/datatables.min.css') }}">
+@section('title')
+    <h1><i class="fa fa-suitcase"></i>Gestion des UE</h1>
+    <p class="mt-2">Liste des unités d'enseignements</p>
+
 @endsection
+@section('option')
+    <a class="btn btn-success float-right btn-sm" href="{{ route('admin.unity.create') }}" role="button">Ajouter un UE</a>
 
-
-@section('main')
-
-    <section id="configuration">
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-title-wrap bar-success">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h1><i class="fa fa-suitcase"></i>Gestion des UE</h1>
-                                    <p class="mt-2">Liste des unités d'enseignements</p>
-                                </div>
-                                <div class="col-md-6">
-
-                                    <a class="btn btn-success float-right btn-sm" href="{{ route('admin.unity.create') }}"
-                                        role="button">Ajouter un UE</a>
-                                    <a class="btn btn-info float-right btn-sm" href="{{ url()->previous() }}"><i
-                                            class="fa fa-reply"></i> Retour</a></li>
-
-                                </div>
-                            </div>
-
-                            <hr>
-                            <div class="col-md-12">
-                                <div class="row">
-
-                                    @if (Session::has('error'))
-                                        <div class="alert alert-danger">
-                                            {{ Session::get('error') }}
-                                        </div>
-                                    @endif
-                                    @if (Session::has('success'))
-                                        <div class="alert alert-success">
-                                            {{ Session::get('success') }}
-                                        </div>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body collapse show">
-                        <div class="card-block card-dashboard">
-                            <table class="table table-striped table-bordered zero-configuration">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Code</th>
-                                        <th scope="col">Nom UE</th>
-                                        <th scope="col">Crédit</th>
-                                        <th scope="col">Semestre</th>
-                                        <th scope="col">Nom Classe</th>
-                                        <th scope="col">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($unities as $unity)
-                                        <tr>
-                                            <td scope="col">{{ $unity->code }}</td>
-                                            <td scope="col">{{ $unity->name }}</td>
-                                            <td scope="col">{{ $unity->credit }}</td>
-                                            <td scope="col">{{ $unity->semester->code }}</td>
-                                            <td scope="col">{{ $unity->semester->classe->niveau->code . ' '.$unity->semester->classe->filiere->code }}</td>
-                                            <td scope="col">
-                                                <a class="btn btn-warning"
-                                                    href="{{ route('admin.unity.edit', $unity->id) }}"
-                                                    role="button">Modifier</a>
-                                                <a class="btn btn-danger"
-                                                    href="{{ route('admin.unity.destroy', $unity->id) }}"
-                                                    role="button">Supprimer</a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th scope="col">Code</th>
-                                        <th scope="col">Nom UE</th>
-                                        <th scope="col">Crédit</th>
-                                        <th scope="col">Semestre</th>
-                                        <th scope="col">Nom Classe</th>
-                                        <th scope="col">Action</th>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 @endsection
+@section('option-panel')
 
-@section('scripts')
-
-    <script src="{{ asset('app-assets/js/data-tables/datatable-basic.js') }}"></script>
-    <script src="{{ asset('app-assets/vendors/js/datatable/datatables.min.js') }}"></script>
-
-    <script>
-        $(.table).DataTable();
-
-    </script>
-
+@endsection
+@section('data')
+    <div class="card-block card-dashboard">
+        <table class="table table-striped table-bordered zero-configuration">
+            <thead>
+                <tr>
+                    <th scope="col">Code</th>
+                    <th scope="col">Nom UE</th>
+                    <th scope="col">Crédit</th>
+                    <th scope="col">Semestre</th>
+                    <th scope="col">Nom Classe</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($unities as $unity)
+                    <tr>
+                        <td scope="col">{{ $unity->code }}</td>
+                        <td scope="col">{{ $unity->name }}</td>
+                        <td scope="col">{{ $unity->credit }}</td>
+                        <td scope="col">{{ $unity->semester->code }}</td>
+                        <td scope="col">
+                            {{ $unity->semester->classe->niveau->code . ' ' . $unity->semester->classe->filiere->code }}
+                        </td>
+                        <td scope="col">
+                            <a class="btn btn-warning" href="{{ route('admin.unity.edit', $unity->id) }}"
+                                role="button">Modifier</a>
+                            <a class="btn btn-danger" href="{{ route('admin.unity.destroy', $unity->id) }}"
+                                role="button">Supprimer</a>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th scope="col">Code</th>
+                    <th scope="col">Nom UE</th>
+                    <th scope="col">Crédit</th>
+                    <th scope="col">Semestre</th>
+                    <th scope="col">Nom Classe</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
 @endsection

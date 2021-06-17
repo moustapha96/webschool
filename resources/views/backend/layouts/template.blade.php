@@ -24,8 +24,8 @@
                             <li class="breadcrumb-item">
                                 @yield('option')
 
-                                <a class="btn btn-outline-primary  float-right ml-1 btn-sm" href="{{ url()->previous() }}"><i
-                                        class="fa fa-reply"></i> Retour</a>
+                                <a class="btn btn-outline-primary  float-right ml-1 btn-sm"
+                                    href="{{ url()->previous() }}"><i class="fa fa-reply"></i> Retour</a>
                             </li>
 
                         </ol>
