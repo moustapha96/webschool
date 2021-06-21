@@ -6,7 +6,7 @@
 
 @endsection
 @section('option')
-    <a class="btn btn-outline-primary float-right" href="{{ route('admin.user.index') }}"><i class="fa fa-users"></i>
+    <a class="btn btn-outline-primary float-right btn-sm" href="{{ route('admin.user.index') }}"><i class="fa fa-users"></i>
         liste des utilisateurs</a>
 
 @endsection

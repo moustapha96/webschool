@@ -2,7 +2,7 @@
 
 
 @section('title')
-<h1 class="m-0">Gestion des classes</h1>
+<h3 class="m-0">Gestion des classes</h3>
 @endsection
 @section('option')
 <a data-toggle="collapse" class="btn btn-primary  float-right btn-sm"

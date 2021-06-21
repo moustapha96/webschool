@@ -2,7 +2,7 @@
 
 
 @section('title')
-<h1><i class="fa fa-book"></i> Bibliothèque</h1>
+<h3><i class="fa fa-book"></i> Bibliothèque</h3>
 <p>Livres >> {{ $book->name }}</p>
 
 @endsection
@@ -10,7 +10,7 @@
 
 @endsection
 @section('option-panel')
-   
+
 @endsection
 @section('data')
 <div class="card-block card-dashboard">

@@ -1,10 +1,9 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
+
+    @php isset($logo) ? $logo = $logo." | " . get_setting('logo') : $logo = get_setting('logo')  ; @endphp
+    @php isset($app_name) ? $app_name = $app_name." | " . get_setting('app_name') : $app_name = get_setting('app_name')  ; @endphp
     <a href="{{ route('home') }}" class="brand-link">
-        @php isset($logo) ? $logo = $logo." | " . get_setting('logo') : $logo = get_setting('logo')  ; @endphp
-        <img src="{{ asset($logo) }}" alt="{{ $logo }}" class="brand-image img-circle elevation-3"
-            style="opacity: .8">
-        @php isset($app_name) ? $app_name = $app_name." | " . get_setting('app_name') : $app_name = get_setting('app_name')  ; @endphp
+        <img src="{{ asset($logo) }}" alt="{{ $logo }}" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">{{ $app_name }}</span>
     </a>
 

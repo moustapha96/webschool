@@ -2,8 +2,8 @@
 
 
 @section('title')
-    <h1><i class="fa fa-users" aria-hidden="true"></i>Gestion des Contacts</h1>
-    <h4 class="mt-2">Liste des contacts</h4>
+    <h3><i class="fa fa-users" aria-hidden="true"></i>Gestion des Contacts</h3>
+    <h5 class="mt-2">Liste des contacts</h5>
 
 @endsection
 @section('option')

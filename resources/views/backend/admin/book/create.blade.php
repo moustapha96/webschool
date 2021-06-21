@@ -2,14 +2,14 @@
 
 
 @section('title')
-<h1 class="card-title">Nouveau Livre</h1>
+<h3 class="card-title">Nouveau Livre</h3>
 
 @endsection
 @section('option')
 
 @endsection
 @section('option-panel')
-   
+
 @endsection
 @section('data')
 <div class="card-block card-dashboard">

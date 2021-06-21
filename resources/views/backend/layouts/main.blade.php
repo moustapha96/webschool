@@ -13,9 +13,8 @@
     <div class="wrapper">
 
         @php isset($logo) ? $logo = $logo." | " . get_setting('logo') : $logo = get_setting('logo')  ; @endphp
-        <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="{{ asset($logo) }}" alt="AdminLTELogo" height="60" width="60">
+            <img class="animation__shake" src="{{ asset($logo) }}" alt="Appplication" height="100" width="100">
         </div>
 
         <?php

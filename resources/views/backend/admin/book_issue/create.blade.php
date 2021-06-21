@@ -2,7 +2,7 @@
 
 
 @section('title')
-<h1><i class="fa fa-suitcase"></i>Emprunter un livre </h1>
+<h3><i class="fa fa-suitcase"></i>Emprunter un livre </h3>
 <p>Ajout d'un nouveau emprunt</p>
 
 @endsection

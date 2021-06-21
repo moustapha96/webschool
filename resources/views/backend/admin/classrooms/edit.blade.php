@@ -2,7 +2,7 @@
 
 
 @section('title')
-<h4 class="card-title">Modifier une Salle de classe</h4>
+<h3 class="card-title">Modifier une Salle de classe</h3>
 
 @endsection
 @section('option')

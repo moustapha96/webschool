@@ -126,7 +126,7 @@
     </li>
     <li class="nav-item">
         <a href="" class="nav-link">
-            <i class="nav-icon fas fa-chart-pie"></i>
+            <i class="nav-icon fas fa-file"></i>
             <p>
                 Bibliothéque
                 <i class="right fas fa-angle-left"></i>
@@ -267,11 +267,6 @@
             </li>
         </ul>
     </li>
-
-
-
-
-
     <li class="nav-item">
         <a href="" class="nav-link">
             <i class="nav-icon far fa-envelope"></i>
@@ -328,21 +323,16 @@
 
         </ul>
     </li>
-
-
     <li class="nav-header">Settings</li>
-
     <li class="nav-item">
         <a href="{{ route('admin.historique.index') }}" class="nav-link">
             <i class="nav-icon fas fa-file"></i>
             <p>Historique</p>
         </a>
     </li>
-
-
     <li class="nav-item">
         <a href="{{ route('admin.settings.index') }}" class="nav-link">
-            <i class="nav-icon fas fa-setting"></i>
+            <i class="nav-icon fas fa-circle"></i>
             <p>
                 Paramètres
             </p>

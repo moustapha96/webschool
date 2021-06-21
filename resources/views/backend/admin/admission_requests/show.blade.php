@@ -14,7 +14,7 @@
 
 @endsection
 @section('option-panel')
-   
+
 @endsection
 @section('data')
 <div class="card-block card-dashboard">

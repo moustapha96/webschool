@@ -9,7 +9,7 @@
 @section('option')
 
     @if ($class_routines != null)
-        <a class="btn btn-outline-info float-right mr-2 "
+        <a class="btn btn-outline-info float-right mr-2  btn-sm "
             href="{{ route('admin.schedule.printScheduleClasse', $classe) }}" role="button"> <i class="fa fa-print"
                 aria-hidden="true"></i> Imprimer</a>
 

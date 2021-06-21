@@ -2,7 +2,7 @@
 
 
 @section('title')
-<h4 class="card-title">Gestion des filieres</h4>
+<h3 class="card-title">Gestion des filieres</h3>
 
 @endsection
 @section('option')

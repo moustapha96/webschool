@@ -2,13 +2,13 @@
 
 
 @section('title')
-    <h1 class="card-title">Gestion des livres</h1>
+    <h3 class="card-title">Gestion des livres</h3>
 
 @endsection
 @section('option')
-    <a href="{{ route('admin.book.create') }}" class="btn btn-info float-right " role="button"> <i class="fa fa-plus"
+    <a href="{{ route('admin.book.create') }}" class="btn btn-info float-right btn-sm" role="button"> <i class="fa fa-plus"
             aria-hidden="true"></i> Ajouter un livre</a>
-    <a href="{{ route('admin.categories') }}" class=" btn btn-info float-right " role="button"> <i class="fa fa-plus"
+    <a href="{{ route('admin.categories') }}" class=" btn btn-info float-right btn-sm" role="button"> <i class="fa fa-plus"
             aria-hidden="true"></i> categorie</a>
 
 @endsection

@@ -2,7 +2,7 @@
 
 
 @section('title')
-<h4 class="card-title">Gestion des Notes</h4>
+<h3 class="card-title">Gestion des Notes</h3>
 
 @endsection
 @section('option')

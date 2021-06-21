@@ -8,7 +8,7 @@
 
 @endsection
 @section('option')
-    <a class="btn btn-outline-info float-right mr-2 "
+    <a class="btn btn-outline-info float-right mr-2 btn-sm "
         href="{{ route('admin.schedule.printScheduleProfesseur', $teacher) }}" role="button"> <i class="fa fa-print"
             aria-hidden="true"></i> Imprimer</a>
 

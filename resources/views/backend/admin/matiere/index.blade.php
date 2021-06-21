@@ -2,7 +2,7 @@
 
 
 @section('title')
-    <h1><i class="fa fa-hourglass" aria-hidden="true"></i>Gestion des Matieres</h1>
+    <h3><i class="fa fa-hourglass" aria-hidden="true"></i>Gestion des Matieres</h3>
     <h4 class="mt-2">Enregistrement des matieres , unités et semestres </h4>
 
 @endsection

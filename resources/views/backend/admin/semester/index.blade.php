@@ -8,7 +8,7 @@
 @endsection
 @section('option')
 
-    <a class="btn btn-info float-right " href="{{ route('admin.semester.create') }}" role="button"> <i class="fa fa-plus"
+    <a class="btn btn-info float-right btn-sm " href="{{ route('admin.semester.create') }}" role="button"> <i class="fa fa-plus"
             aria-hidden="true"></i> Nouveau</a>
 
 @endsection

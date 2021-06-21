@@ -3,12 +3,12 @@
 
 
 @section('title')
-<h1><i class="fa fa-suitcase"></i> Gestion des utilisateurs</h1>
+<h3><i class="fa fa-suitcase"></i> Gestion des utilisateurs</h3>
 <p>Bibliothécaires >> {{ $librian->user->prenom . ' '. $librian->user->nom }}</p>
 
 @endsection
 @section('option')
-<a class="btn btn-outline-primary" href="{{ url()->previous() }}"><i class="fa fa-reply"></i> Retour</a>
+<a class="btn btn-outline-primary btn-sm" href="{{ url()->previous() }}"><i class="fa fa-reply"></i> Retour</a>
 
 @endsection
 @section('option-panel')

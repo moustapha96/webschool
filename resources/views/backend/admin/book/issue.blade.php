@@ -7,13 +7,13 @@
 
 @endsection
 @section('option')
-<a class="btn btn-outline-primary  float-right " data-toggle="modal"
+<a class="btn btn-outline-primary  float-right btn-sm" data-toggle="modal"
 data-target="#modalCategorie" role="button"><i class="fa fa-plus"
     aria-hidden="true"></i> ajouter un emprunt</a>
 
 @endsection
 @section('option-panel')
-   
+
 @endsection
 @section('data')
 <div class="card-block card-dashboard">

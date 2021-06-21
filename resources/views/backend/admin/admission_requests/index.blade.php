@@ -2,8 +2,8 @@
 
 
 @section('title')
-    <h1 class="card-title "><i class="fa fa-file-o" aria-hidden="true"></i>Liste des Demandes
-        Admissions </h1>
+    <h4 class="card-title "><i class="fa fa-file-o" aria-hidden="true"></i>Liste des Demandes
+        Admissions </h4>
 
 @endsection
 @section('option')

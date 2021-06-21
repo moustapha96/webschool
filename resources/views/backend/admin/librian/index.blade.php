@@ -2,10 +2,10 @@
 
 
 @section('title')
-    <h2>Liste des Bibliothécaires</h2>
+    <h3>Liste des Bibliothécaires</h3>
 @endsection
 @section('option')
-    <a class="btn btn-outline-success" href="{{ route('user.create') }}"><i class="fa fa-plus"></i> Ajouter un
+    <a class="btn btn-outline-success btn-sm" href="{{ route('user.create') }}"><i class="fa fa-plus"></i> Ajouter un
         utilisateur</a>
 @endsection
 @section('option-panel')

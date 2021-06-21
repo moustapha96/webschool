@@ -2,7 +2,7 @@
 
 
 @section('title')
-    <h1 class="card-title">Gestion des categories</h1>
+    <h3 class="card-title">Gestion des categories</h3>
 
 @endsection
 @section('option')
