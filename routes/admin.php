@@ -463,4 +463,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 	Route::get('/historique/{historique}','AdminController@historiqueUpdate')->name('admin.historique.update');
 
 
+	/*-----------------gestion des roles des professeurs ---------------*/
+	Route::get('/role/professeurs','TeachersController@roleIndex')->name('admin.teacher.role');
 });

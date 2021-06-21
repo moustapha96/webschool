@@ -2,12 +2,12 @@
 
 
 @section('title')
-    <h3><i class="fa fa-suitcase"></i>Gestion des Utilisateurs</h3>
+    <h3><i class="fa fa-suitcase"></i>Gestion des Rôles des professeurs</h3>
     <p class="mt-2">Liste des Professeurs</p>
 
 @endsection
 @section('option')
-<a class="btn btn-primary float-right btn-sm" href="{{ route('admin.teacher.role') }}" role="button"> <i class="fa fa-user" aria-hidden="true"></i> Gestion des rôles</a>
+
 @endsection
 @section('option-panel')
 
@@ -30,7 +30,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($teachers as $teacher)
+                {{-- @foreach ($teachers as $teacher)
                     <tr>
                         <td>{{ $teacher->matricule }}</td>
                         <td>{{ $teacher->user->prenom }}</td>
@@ -66,7 +66,7 @@
 
                         </td>
                     </tr>
-                @endforeach
+                @endforeach --}}
             </tbody>
             <tfoot>
                 <tr>
