@@ -6,6 +6,12 @@
 
 @endsection
 @section('option')
+ <a href="{{ route('admin.export.export_student_excel') }}" class="btn btn-primary btn-sm">
+    <i class="fa fa-print" aria-hidden="true"></i>excel
+</a>
+<a href="{{ route('admin.export.export_student_pdf') }}" class="btn btn-secondary btn-sm">
+    <i class="fa fa-print" aria-hidden="true"></i>pdf
+</a>
 
 @endsection
 @section('option-panel')

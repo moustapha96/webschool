@@ -7,7 +7,12 @@
 
 @endsection
 @section('option')
-
+<a href="{{ route('admin.export.export_classe_excel',$classe) }}" class="btn btn-outline-primary btn-sm">
+    <i class="fa fa-print" aria-hidden="true"></i> imprimer excel
+</a>
+<a href="{{ route('admin.export.export_classe_pdf',$classe) }}" class="btn btn-outline-primary btn-sm">
+    <i class="fa fa-print" aria-hidden="true"></i> imprimer pdf
+</a>
 @endsection
 @section('option-panel')
 
@@ -35,8 +40,12 @@
                         <td>{{ $student->user->dateNaissance }}</td>
                         <td>{{ $student->user->lieuNaissance }}</td>
                         <td>
-                            <a href="{{ route('admin.classes.show_student', $student) }}" class="btn btn-outline-primary">
-                                <i class="fa fa-eye" aria-hidden="true"></i> </a>
+                            <div class="btn-group" role="group" aria-label="Button group">
+
+                                <a href="{{ route('admin.classes.show_student', $student) }}"
+                                    class="btn btn-outline-primary">
+                                    <i class="fa fa-eye" aria-hidden="true"></i> </a>
+                            </div>
                         </td>
 
                     </tr>

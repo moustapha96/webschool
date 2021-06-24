@@ -2,7 +2,7 @@
 
 
     <li class="nav-item menu-open">
-        <a href="" class="nav-link active">
+        <a href="" class="nav-link ">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
                 Gestion des Cours

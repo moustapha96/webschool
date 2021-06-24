@@ -405,4 +405,10 @@ class StudentsController extends Controller
             'status' => ['required'],
         ]);
     }
+
+    /* liste des classe */
+    public function  StudentClasse()
+    {
+        
+    }
 }

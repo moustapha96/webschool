@@ -8,7 +8,7 @@
             </p>
         </a>
     </li>
-    <li class="nav-item menu-open">
+    <li class="nav-item ">
         <a href="" class="nav-link active">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
@@ -85,6 +85,7 @@
                     <p>Liste</p>
                 </a>
             </li>
+           
             <li class="nav-item">
                 <a href="{{ route('admin.admission_requests.index') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
@@ -330,6 +331,39 @@
             <p>Historique</p>
         </a>
     </li>
+    <li class="nav-item">
+        <a href="" class="nav-link">
+            <i class="nav-icon far fa-user"></i>
+            <p>
+                Autorisations
+                <i class="fas fa-angle-left right"></i>
+            </p>
+        </a>
+        <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="{{ route('admin.role.index') }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>rôles
+
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('admin.permission.index') }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>permission</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('admin.role.attribution') }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>attribution</p>
+                </a>
+            </li>
+
+        </ul>
+    </li>
+
     <li class="nav-item">
         <a href="{{ route('admin.settings.index') }}" class="nav-link">
             <i class="nav-icon fas fa-circle"></i>

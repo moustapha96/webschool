@@ -2,20 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\StudentExport;
 use App\Models\Accountant;
 use App\Models\Librian;
-use App\Models\Parents;
 use App\Models\Supervisor;
 use App\Models\User;
-use Illuminate\Auth\Access\Gate;
-use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 use App\Rules\MatchOldPassword;
-use Carbon\Carbon;
-use Illuminate\Support\Str;
 
 class UsersController extends Controller
 {
@@ -284,4 +280,7 @@ class UsersController extends Controller
 
         return redirect()->back();
     }
+
+
+   
 }

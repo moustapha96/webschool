@@ -248,9 +248,5 @@ class TeachersController extends Controller
     }
 
 
-    //liste des roles des professeurs
-    public function roleIndex(){
-
-        return view('backend.'.Auth()->user()->role.'.teachers.index_role');
-    }
+   
 }

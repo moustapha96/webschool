@@ -150,7 +150,7 @@
                                     @foreach ($classes as $classe)
                                         <option value="{{ $classe->id }}"
                                             {{ $classe->id == $student->class_id ? 'selected' : '' }}>
-                                            {{ $classe->nameClass }}</option>
+                                            {{ $classe->niveau->code.'-'.$classe->filiere->name }}</option>
                                     @endforeach
                                 </select>
                             </div>

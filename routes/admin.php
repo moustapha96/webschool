@@ -114,7 +114,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 	// creer une classe
 	Route::post('/classe/création', 'ClassesController@store')->name('admin.classe.store');
 
-    Route::post('classe/{classe}/update','ClassesController@update')->name('admin.classe.update');
+	Route::post('classe/{classe}/update', 'ClassesController@update')->name('admin.classe.update');
 	// supprimer une categorie
 	Route::get('catégories/{categorie}', 'BookController@delete_categorie')->name('admin.categorie.delete');
 
@@ -451,18 +451,67 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 
 	// gestion des comptes des étudiants
-	Route::get('/compte/étudiant','StudentsController@comptes')->name('admin.student.compte');
+	Route::get('/compte/étudiant', 'StudentsController@comptes')->name('admin.student.compte');
 
-	Route::post('/compte/action/{user}','StudentsController@updateCompte')->name('admin.student.updateCompte');
-
+	Route::post('/compte/action/{user}', 'StudentsController@updateCompte')->name('admin.student.updateCompte');
 
 	//----- gestion des historique
 
-	Route::get('/historique','AdminController@historique')->name('admin.historique.index');
+	Route::get('/historique', 'AdminController@historique')->name('admin.historique.index');
 
-	Route::get('/historique/{historique}','AdminController@historiqueUpdate')->name('admin.historique.update');
+	Route::get('/historique/{historique}', 'AdminController@historiqueUpdate')->name('admin.historique.update');
 
 
-	/*-----------------gestion des roles des professeurs ---------------*/
-	Route::get('/role/professeurs','TeachersController@roleIndex')->name('admin.teacher.role');
+
+
+
+	// gestion des roles et permissions 
+
+
+
+	Route::get('roles', 'RoleController@index')->name('admin.role.index');
+
+	Route::post('roles/ajout', 'RoleController@store')->name('admin.role.store');
+
+	Route::post('roles/{id}', 'RoleController@update')->name('admin.role.update');
+
+	Route::get('roles/détail/{id}', 'RoleController@show')->name('admin.role.show');
+
+	Route::get('roles/edit/{id}', 'RoleController@edit')->name('admin.role.edit');
+
+	Route::get('roles/destroy/{id}', 'RoleController@destroy')->name('admin.role.destroy');
+
+	//* attribution des roles  */
+	Route::get('role/attribution', 'RoleController@attributionIndex')->name('admin.role.attribution');
+
+	Route::post('role/attribution', 'RoleController@attributionStore')->name('admin.role.attribution.store');
+
+	Route::post('role/attribution/{id}', 'RoleController@attributionUpdate')->name('admin.role.attribution.update');
+	
+	Route::get('role/attribution/{id}', 'RoleController@attributionEdit')->name('admin.role.attribution.edit');
+
+	Route::get('role/destroy/{id}', 'RoleController@attributionDestroy')->name('admin.role.attribution.destroy');
+
+	/* permission */
+	
+	Route::get('permission', 'PermissionController@index')->name('admin.permission.index');
+
+	Route::post('permission/ajout', 'PermissionController@store')->name('admin.permission.store');
+
+	Route::post('permission/{id}', 'PermissionController@update')->name('admin.permission.update');
+
+	Route::get('permission/détail/{id}', 'PermissionController@show')->name('admin.permission.show');
+
+	Route::get('permission/edit/{id}', 'PermissionController@edit')->name('admin.permission.edit');
+
+	Route::get('permission/destriy/{id}', 'PermissionController@destroy')->name('admin.permission.destroy');
+
+
+
+
+	/* gestion des exportation des students */
+	Route::get('export étudiants/excel', 'ExportExcelController@export_student_exel')->name('admin.export.export_student_excel');
+	Route::get('export étudiants/pdf', 'ExportExcelController@export_student_pdf')->name('admin.export.export_student_pdf');
+	Route::get('export classe/excel/{classe}', 'ExportExcelController@export_classe_excel')->name('admin.export.export_classe_excel');
+	Route::get('export classe/pdf/{classe}', 'ExportExcelController@export_classe_pdf')->name('admin.export.export_classe_pdf');
 });

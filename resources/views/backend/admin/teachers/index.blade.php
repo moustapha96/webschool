@@ -7,7 +7,7 @@
 
 @endsection
 @section('option')
-<a class="btn btn-primary float-right btn-sm" href="{{ route('admin.teacher.role') }}" role="button"> <i class="fa fa-user" aria-hidden="true"></i> Gestion des rôles</a>
+
 @endsection
 @section('option-panel')
 

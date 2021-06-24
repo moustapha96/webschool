@@ -6,10 +6,8 @@
 
 @endsection
 @section('option')
-    <a href="{{ route('marks.index') }}" class="btn btn-info float-right btn-sm" role="button">Liste des notes</a>
-    <a href="{{ route('marks.create') }}" class="btn btn-info float-right btn-sm" role="button"> <i class="fa fa-reply"
-            aria-hidden="true"></i> Retour</a>
-
+    <a href="{{ route('marks.index') }}" class="btn btn-info float-right btn-sm" role="button"> <i class="fa fa-list-alt" aria-hidden="true"></i> Liste</a>
+    <a href="{{ route('marks.create') }}" class="btn btn-outline-dark float-right btn-sm" role="button"> <i class="fa fa-plus" aria-hidden="true"></i> Nouveau</a>
 @endsection
 @section('option-panel')
 
@@ -31,7 +29,7 @@
                     </select>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-success">matieres</button>
+                    <button type="submit" class="btn btn-outline-success"> <i class="fa fa-list-alt" aria-hidden="true"></i> matieres</button>
                 </div>
             </form>
         @endif
