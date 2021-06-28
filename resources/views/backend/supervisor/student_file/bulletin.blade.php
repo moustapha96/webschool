@@ -27,7 +27,7 @@
                                 class="text-uppercase">{{ $student_file->student->user->dateNaissance }} à
                                 {{ $student_file->student->user->lieuNaissance }}</strong> </div>
                         <div class="flex-lg-row ml"> <u>Classe </u>: <strong
-                                class="text-uppercase">{{ $student_file->bulletin->classe->nameClass }}</strong>
+                                class="text-uppercase">{{ $student_file->bulletin->classe->niveau->code.' '.$student_file->bulletin->classe->filiere->code }}</strong>
                         </div>
                     </div>
                     <div class="col-md-6"></div>

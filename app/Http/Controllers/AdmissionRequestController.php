@@ -59,7 +59,9 @@ class AdmissionRequestController extends Controller
         $user->prenom = $demande->prenom;
         $user->role = 'student';
         $user->tel =  $demande->tel;
+        $user->genre = $demande->genre;
         $user->adresse =  $demande->adresse;
+        $user->status = 1;
         $user->dateNaissance =  $demande->dateNaissance;
         $user->lieuNaissance =  $demande->lieuNaissance;
         $user->email = $demande->email;
@@ -73,7 +75,7 @@ class AdmissionRequestController extends Controller
         $demande->status = 1;
         $demande->save();
 
-        return redirect()->action('AdmissionRequestController@admission_request_liste')->with('success', "demande d'admission enregistrer avec succés");
+        return redirect()->back()->with('success', "demande d'admission enregistrer avec succés");
     }
 
     public function detailDossier($id)

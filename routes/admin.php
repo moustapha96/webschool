@@ -487,13 +487,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 	Route::post('role/attribution', 'RoleController@attributionStore')->name('admin.role.attribution.store');
 
 	Route::post('role/attribution/{id}', 'RoleController@attributionUpdate')->name('admin.role.attribution.update');
-	
+
 	Route::get('role/attribution/{id}', 'RoleController@attributionEdit')->name('admin.role.attribution.edit');
 
 	Route::get('role/destroy/{id}', 'RoleController@attributionDestroy')->name('admin.role.attribution.destroy');
 
 	/* permission */
-	
+
 	Route::get('permission', 'PermissionController@index')->name('admin.permission.index');
 
 	Route::post('permission/ajout', 'PermissionController@store')->name('admin.permission.store');
@@ -509,9 +509,30 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 
 
-	/* gestion des exportation des students */
+	/* gestion des exportation des etudiants */
 	Route::get('export étudiants/excel', 'ExportExcelController@export_student_exel')->name('admin.export.export_student_excel');
 	Route::get('export étudiants/pdf', 'ExportExcelController@export_student_pdf')->name('admin.export.export_student_pdf');
 	Route::get('export classe/excel/{classe}', 'ExportExcelController@export_classe_excel')->name('admin.export.export_classe_excel');
 	Route::get('export classe/pdf/{classe}', 'ExportExcelController@export_classe_pdf')->name('admin.export.export_classe_pdf');
+
+	/* gestion des importation des étudiant */
+	Route::get('import/étudiant', 'ExportExcelController@import_student_mark')->name('admin.import.student_mark.create');
+
+	Route::post('importation/notes', 'ExportExcelController@store_student_mark')
+		->name('admin.import.student_mark.store');
+
+	Route::get('import/étudiant/fiche', 'ExportExcelController@ficheMarkStudent')->name('admin.import.student_mark.fiche');
+
+
+
+
+	/* valider une demande_admission */
+	Route::get('demande_admission/validation/{id}', 'AdmissionRequestController@admission_request_valider')->name('admission_request.valider');
+
+
+	/* gestion des bulletins  */
+
+	 Route::get('notes/étudiant/{student}', 'MarkController@students_marks')->name('admin.mark.notes');
+ 
+	 Route::get('liste des étudiants/','MarkController@students_liste')->name('admin.mark.list_student');
 });

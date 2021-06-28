@@ -6,6 +6,7 @@ use App\Exports\StudentExport;
 use App\Models\Accountant;
 use App\Models\Librian;
 use App\Models\Supervisor;
+use App\Models\Teacher;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +18,7 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $users = User::where('flag',true)->latest()->get();
+        $users = User::where('flag', true)->latest()->get();
         $title = 'Liste des utilisateurs';
         $activeMain = 'users';
 
@@ -203,12 +204,17 @@ class UsersController extends Controller
             $compte->matricule = $matricule;
             $compte->user_id = $user->id;
             $user->librian()->save($compte);
+        } else if ($role == 'teacher') {
+            $caractere = 'T';
+            $matricule = $caractere . $id . $date;
+            $compte = new  Teacher();
+            $compte->matricule = $matricule;
+            $compte->user_id = $user->id;
+            $user->teacher()->save($compte);
         }
 
-
         //return back();
-        return redirect()->route('admin.users.show', [$user->id])->with('messageSuccess', $messageSuccess);
-
+        return redirect()->route('admin.user.index', [$user->id])->with('messageSuccess', $messageSuccess);
     }
 
     public function show($user_id)
@@ -232,9 +238,7 @@ class UsersController extends Controller
 
     public function update_user(Request $request, $id)
     {
-
         $user = User::findOrFail($id);
-
         request()->validate([
             'prenom' => ['required', 'string', 'max:255'],
             'nom' => ['required', 'string', 'max:255'],
@@ -245,8 +249,6 @@ class UsersController extends Controller
             'lieuNaissance' => ['required', 'string', 'min:3', 'max:100'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id],
         ]);
-
-
         $user->nom = $request->nom;
         $user->prenom = $request->prenom;
         $user->tel =   $request->tel;
@@ -259,10 +261,12 @@ class UsersController extends Controller
 
         if (strlen($request->password) >= 8) {
             $user->password = $request->password;
+        } else {
+            return redirect()->back()->with('errorr', 'le mot de passe est trop petit !');
         }
+
         $user->save();
         $messageSuccess = "Les modification ont été enregistrées avec succès !";
-
 
         //return view('backend.' . Auth::user()->role . '.users.show', compact('messageSuccess'));
         return redirect()->route('admin.users.show', [$user->id])->with('messageSuccess', $messageSuccess);
@@ -280,7 +284,4 @@ class UsersController extends Controller
 
         return redirect()->back();
     }
-
-
-   
 }

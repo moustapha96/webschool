@@ -3,7 +3,7 @@
 
 
 @section('title')
-<h3><i class="fa fa-book"></i> Bibliothèque</h3>
+<h1><i class="fa fa-book"></i> Bibliothèque</h1>
 <p>Livres >> {{ $book->name }}</p>
 
 @endsection
@@ -17,8 +17,6 @@
 <div class="card-block card-dashboard">
     <div class="form-row">
         <div class="form-group col-md-12">
-
-
 
             <section>
                 <h3>Livre </h3>

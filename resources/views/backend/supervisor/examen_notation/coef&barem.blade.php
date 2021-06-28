@@ -30,7 +30,7 @@
                                 <select id="classe" name="classe" class="form-control" required>
                                     <option value=""></option>
                                     @foreach ($classes as $item)
-                                        <option value="{{ $item->nameClass }}">{{ $item->nameClass }} </option>
+                                        <option value="{{ $item->id }}">{{ $item->niveau->code.' '.$item->filiere->name }} </option>
                                     @endforeach
                                 </select>
                                 @error('classe')
@@ -58,7 +58,7 @@
                         <div class="col-md-12">
                             <div class="tile">
                                 <div class="tile-body">
-                                    <h3> {{ $classe->nameClass }}</h3>
+                                    <h3> {{ $classe->niveau->code.' '.$classe->filiere->name }}</h3>
                                     <div class="pull-right">
                                         <a class="btn btn-success" href="{{ route('classe.pdf', $classe) }}">Export
                                             PDF</a>

@@ -42,9 +42,9 @@
                             {{ $subject->unitie->semester->classe->niveau->name }} </td>
                         <td scope="col">
                             <a class="btn btn-warning" href="{{ route('matiere.editM', $subject) }}"
-                                role="button">Modifier</a>
+                                role="button"><i class="fa fa-edit" aria-hidden="true"></i></a>
                             <a class="btn btn-danger" href="{{ route('matiere.destroyM', $subject) }}"
-                                role="button">Supprimer</a>
+                                role="button"><i class="fa fa-trash-o"></i> aria-hidden="true"></i></a>
                         </td>
                     </tr>
                 @endforeach

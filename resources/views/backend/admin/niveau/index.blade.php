@@ -88,7 +88,7 @@
                                 <a class="btn btn-primary" type="button" data-toggle="collapse"
                                     data-target="#contentId--{{ $niveau->id }}" aria-expanded="false"
                                     aria-controls="contentId--{{ $niveau->id }}">
-                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                    <i class="fa fa-edit" aria-hidden="true"></i>
                                 </a>
                             </div>
 

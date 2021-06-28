@@ -75,7 +75,6 @@
             <p>
                 Gestion des Etudiants
                 <i class="fas fa-angle-left right"></i>
-                <span class="badge badge-info right">6</span>
             </p>
         </a>
         <ul class="nav nav-treeview">
@@ -85,7 +84,7 @@
                     <p>Liste</p>
                 </a>
             </li>
-           
+
             <li class="nav-item">
                 <a href="{{ route('admin.admission_requests.index') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
@@ -143,13 +142,13 @@
             <li class="nav-item">
                 <a href="{{ route('books.index') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>L Dispo</p>
+                    <p>Livres</p>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="{{ route('admin.book_issu.index') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>L des emprunts</p>
+                    <p>Livres empruntés</p>
                 </a>
             </li>
 
@@ -316,7 +315,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{{ route('admin.mark.list_student') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>bulletins</p>
                 </a>

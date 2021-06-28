@@ -65,13 +65,7 @@ class MarkController extends Controller
         $students = Student::all();
         return view('backend.' . Auth::user()->role . '.marks.create', compact('students', 'student', 'matieres'));
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+   
     public function store(Request $request)
     {
         request()->validate([
@@ -121,24 +115,12 @@ class MarkController extends Controller
 
         return redirect()->action('MarkController@index')->with('success', 'note étudiant bien enregistrer');
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Mark  $mark
-     * @return \Illuminate\Http\Response
-     */
+   
     public function show(Mark $mark)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Mark  $mark
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Mark $mark)
     {
 
@@ -163,13 +145,6 @@ class MarkController extends Controller
         return view('backend.' . Auth::user()->role . '.marks.edit', compact('mark', 'matieres'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Mark  $mark
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Mark $mark)
     {
         request()->validate([
@@ -184,15 +159,33 @@ class MarkController extends Controller
         return redirect()->action('MarkController@index')->with('success', 'note étudiant modifiée avec succès');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Mark  $mark
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Mark $mark)
     {
         $mark->__delete();
         return redirect()->action('MarkController@index')->with('success', 'note étudiant supprimée');
+    }
+
+
+    public function students_liste()
+    {
+
+        $students = Student::where('flag',true)->get();
+
+        return view('backend.' . Auth::user()->role . '.marks.index_student', [
+            'students' => $students
+        ]);
+    }
+
+    public function students_marks(Student $student)
+    {
+
+        $student->bulletin();
+
+        $datas = json_decode($student->bulletin->data, true);
+
+        return view('backend.' . Auth::user()->role . '.marks.notes', [
+            'student' => $student,
+            'datas' => $datas,
+        ]);
     }
 }

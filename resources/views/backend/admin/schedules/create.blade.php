@@ -2,7 +2,8 @@
 
 
 @section('title')
-<h4 class="card-title">Emploi du temps </h4>
+<h1 class="card-title ">Emploi du temps </h1>
+<br>
 <p>nouveau emploi du temps </p>
 
 @endsection
@@ -54,7 +55,11 @@ role="button"> <i class="fa fa-list-alt" aria-hidden="true"></i> Liste</a>
                 <select id="classroom" name="classroom_id" class="form-control">
                     <option></option>
                     @foreach ($classrooms as $x)
-                        <option value="{{ $x->id }}">{{ $x->name }} -- {{ $x->description }}</option>
+                        <option value="{{ $x->id }}">{{ $x->name }} 
+                            @if ($x->description)
+                             -- {{ $x->description }}    
+                            @endif
+                            </option>
                     @endforeach
                 </select>
             </div>
@@ -119,7 +124,7 @@ role="button"> <i class="fa fa-list-alt" aria-hidden="true"></i> Liste</a>
         <div class="row">
             <div class="mx-auto align-content-center">
                 <button type="submit" class="pull-right btn btn-primary"><i
-                        class="fa fa-sign-in fa-lg fa-fw"></i>
+                        class="fa fa-save"></i>
                     {{ __('enregistrer') }}
                 </button>
             </div>

@@ -33,9 +33,10 @@
                         <td scope="col" style="width: 10%">{{ get_user_role($user->role) }}</td>
 
                         <td scope="col" style="text-align: center; width: 10%">
-                            <a class="btn btn-warning" href="{{ route('user.edit', $user->id) }}" role="button"> <i
-                                    class="fa fa-edit"></i></a>
-                            {{-- <a class="btn btn-info" href="{{route('user.show',$user->id) }}" role="button"> Voir</a> --}}
+                            <a class="btn btn-outline-warning" href="{{ route('user.edit', $user->id) }}" role="button">
+                                <i class="fa fa-edit"></i></a>
+                            {{-- <a class="btn btn-info" href="{{ route('user.show', $user->id) }}" role="button"> <i
+                                    class="fa fa-eye" aria-hidden="true"></i> </a> --}}
 
                         </td>
                     </tr>

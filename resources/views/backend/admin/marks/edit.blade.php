@@ -7,7 +7,7 @@
 @endsection
 @section('option')
 <a href="{{ route('marks.index') }}" class="btn btn-info float-right btn-sm"
-role="button">Liste des notes</a>
+role="button"> <i class="fa fa-list" aria-hidden="true"></i> </a>
 
 @endsection
 @section('option-panel')

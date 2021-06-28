@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Exports\ClasseExport;
+use App\Exports\MarkExport;
 use App\Exports\StudentExport;
+use App\Imports\MarkImport;
 use App\Models\Classe;
 use App\Models\Student;
 use Illuminate\Http\Request;
@@ -33,13 +35,13 @@ class ExportExcelController extends Controller
     }
     public function export_classe_excel(Classe $classe)
     {
-        $nom  = $classe->niveau->code.".-.".$classe->filiere->name;
-        return Excel::download(new ClasseExport($classe), $nom.'.xlsx');
+        $nom  = $classe->niveau->code . ".-." . $classe->filiere->name;
+        return Excel::download(new ClasseExport($classe), $nom . '.xlsx');
     }
     public function export_classe_pdf(Classe $classe)
     {
-        $nom  = $classe->niveau->code.".-.".$classe->filiere->name ;
-        return Excel::download(new ClasseExport($classe), $nom.'.pdf', \Maatwebsite\Excel\Excel::DOMPDF);
+        $nom  = $classe->niveau->code . ".-." . $classe->filiere->name;
+        return Excel::download(new ClasseExport($classe), $nom . '.pdf', \Maatwebsite\Excel\Excel::DOMPDF);
     }
 
     function excel()
@@ -65,5 +67,26 @@ class ExportExcelController extends Controller
                 $sheet->fromArray($customer_array, null, 'A1', false, false);
             });
         })->download('xlsx');
+    }
+    public function import_student_mark()
+    {
+        return view('backend.admin.marks.import');
+    }
+    public function store_student_mark(Request $request)
+    {
+
+        $request->validate([
+            'fiche' => 'required|file|max:2048|mimes:xls,xlsx',
+        ]);
+
+        Excel::import(new MarkImport, request()->file('fiche'));
+
+        return back()->with('success', 'Excel Imported...');
+    }
+
+
+    public function ficheMarkStudent()
+    {
+        return Excel::download(new MarkExport, "model_notes.xlsx");
     }
 }

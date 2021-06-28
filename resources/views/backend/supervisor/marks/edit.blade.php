@@ -5,8 +5,8 @@
     <h4 class="card-title">Modifier une Note</h4>
 @endsection
 @section('option')
-    <a href="{{ route('supervisor.marks.index') }}" class="btn btn-info float-right btn-sm" role="button">Liste des
-        notes</a>
+    <a href="{{ route('supervisor.marks.index') }}" class="btn btn-info float-right btn-sm" role="button">  
+       <i class="fa fa-list" aria-hidden="true"></i> notes</a>
 @endsection
 @section('option-panel')
 
@@ -57,7 +57,7 @@
                 @enderror
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-success">enregistrer</button>
+                <button type="submit" class="btn float-right btn-success"> <i class="fa fa-save" aria-hidden="true"></i> enregistrer</button>
             </div>
 
         </form>

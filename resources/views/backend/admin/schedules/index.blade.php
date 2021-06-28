@@ -2,8 +2,8 @@
 
 
 @section('title')
-    <h4 class="card-title">Emploi du temps</h4>
-    <p>la liste</p>
+    <h1 class="card-title">Emploi du temps</h1>
+    <br>  <p>la liste</p>
 
 @endsection
 @section('option')
@@ -23,7 +23,7 @@
                     <th scope="col">JOURS</th>
                     <th scope="col">MATIERE</th>
                     <th scope="col">PROFESSEUR</th>
-                    <th scope="col">SALLE</th>
+                   
                     <th scope="col">CLASSE</th>
                     <th scope="col">HORAIRE</th>
                     <th scope="col">ACTIONS</th>
@@ -36,16 +36,16 @@
                         <td scope="col">{{ $class_routine->subject->name }}</td>
                         <td scope="col">{{ $class_routine->teacher->user->prenom }}
                             {{ $class_routine->teacher->user->nom }} </td>
-                        <td scope="col">{{ $class_routine->classroom->description }} </td>
+                       
 
                         <td scope="col">{{ $class_routine->classe->niveau->name }}-
                             {{ $class_routine->classe->filiere->name }}</td>
                         <td scope="col">{{ $class_routine->start_time }} -- {{ $class_routine->end_time }} </td>
 
                         <td scope="col">
-                            <a class="btn btn-primary" href="{{ route('admin.schedule.edit', $class_routine) }}"
-                                role="button"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                            <a class="btn btn-danger" href="{{ route('admin.schedule.destroy', $class_routine) }}"
+                            <a class="btn btn-outline-primary" href="{{ route('admin.schedule.edit', $class_routine) }}"
+                                role="button"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                            <a class="btn btn-outline-danger" href="{{ route('admin.schedule.destroy', $class_routine) }}"
                                 role="button"><i class="fa fa-trash" aria-hidden="true"></i></a>
                         </td>
                     </tr>
@@ -57,7 +57,7 @@
                     <th scope="col">JOURS</th>
                     <th scope="col">MATIERE</th>
                     <th scope="col">PROFESSEUR</th>
-                    <th scope="col">SALLE</th>
+                   
                     <th scope="col">DEBUT COURS</th>
                     <th scope="col">FIN COURS</th>
                     <th scope="col">ACTIONS</th>

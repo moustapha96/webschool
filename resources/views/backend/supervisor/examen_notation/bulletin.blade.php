@@ -27,7 +27,7 @@
         </div>
         <div style="text-align: center">
           <p> @php isset($school_name) ? $school_name = $school_name." | " . get_setting('school_name') : $school_name = get_setting('school_name')  ; @endphp
-            {{ $school_name }}/<strong> {{ $student->classe->nameClass }} </strong> </p>
+            {{ $school_name }}/<strong> {{ $student->classe->niveau->name.' '.$student->classe->filiere->name }} </strong> </p>
           <h3> <u>RELEVE DE NOTES</u> </h3>
          
         </div>

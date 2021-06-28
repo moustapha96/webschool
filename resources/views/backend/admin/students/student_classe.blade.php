@@ -13,6 +13,7 @@
 <a href="{{ route('admin.export.export_classe_pdf',$classe) }}" class="btn btn-outline-primary btn-sm">
     <i class="fa fa-print" aria-hidden="true"></i> imprimer pdf
 </a>
+
 @endsection
 @section('option-panel')
 

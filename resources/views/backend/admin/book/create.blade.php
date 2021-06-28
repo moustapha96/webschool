@@ -2,7 +2,7 @@
 
 
 @section('title')
-<h3 class="card-title">Nouveau Livre</h3>
+<h1 class="card-title">Nouveau Livre</h1>
 
 @endsection
 @section('option')
@@ -88,7 +88,7 @@
             <div class="mx-auto">
 
                 <button type="submit" class="pull-right btn btn-primary"><i
-                        class="fa fa-sign-in fa-lg fa-fw"></i>
+                        class="fa fa-save"></i>
                     {{ __('enregistrer ') }}
                 </button>
             </div>

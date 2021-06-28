@@ -25,7 +25,7 @@
             <div class="form-group col-md-7">
               <select id="code" name="code" class="form-control">
                 @foreach($classes as $classe )
-                  <option value="{{ $classe->code }}"> {{ $classe->code }} - {{ $classe->nameClass}}</option>
+                  <option value="{{ $classe->id }}"> {{ $classe->niveau->code.' '. $classe->filiere->code }}</option>
                 @endforeach
               </select>
             </div>

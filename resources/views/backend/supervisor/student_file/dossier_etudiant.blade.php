@@ -31,7 +31,7 @@
                     <td>{{ $dossier->academic_year->session }}</td>
                     <td>{{ $dossier->student->user->prenom }}</td>
                     <td>{{ $dossier->student->user->nom }}</td>
-                    <td>{{ $dossier->bulletin->classe->nameClass }}</td>
+                    <td>{{ $dossier->bulletin->classe->niveau->code.' '.$dossier->bulletin->classe->filiere->code }}</td>
                     <td>
                         <a href="{{ route('supervisor.student.bulletin_etudiant', $dossier) }}"
                             class="btn btn-info">buelltin de notes</a>

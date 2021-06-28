@@ -2,12 +2,12 @@
 
 
 @section('title')
-    <h4 class="card-title">Modifier un profil utilisateur</h4>
+    <h1 class="card-title text-bold">Modifier un profil utilisateur</h1>
 
 @endsection
 @section('option')
-    <a href="{{ route('admin.user.index') }}" class="btn btn-info float-right btn-sm" role="button">Liste des
-        utilisateurs</a>
+    <a href="{{ route('admin.user.index') }}" class="btn btn-info float-right btn-sm" role="button">
+       <i class="fa fa-list" aria-hidden="true"></i> liste</a>
 
 @endsection
 @section('option-panel')
@@ -31,32 +31,23 @@
                     </label>
                     <input type="file" id="avatar" name="avatar" style="visibility: hidden;border-radius: 50% "
                         onchange="load_image(this, 'user_avatar');" accept=".jpg,.jpeg,.png">
-
-
                 </div>
                 <div class="col-md-4">
                 </div>
-
-
-
-
             </div>
-
-
             <hr>
             <p class="text-center">
                 <input type="submit" class="btn btn-info " value="{{ __('Mettre à jour photo profil') }}">
             </p>
         </form>
         <hr>
-
-        <form action="{{ route('admin.users.update', $user->id) }}" method="post">
+        <form action="{{ route('user.update', $user->id) }}" method="post">
             @csrf
             @method('POST')
 
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="prenom">{{ __('Prénoms') }}</label>
+                    <label for="prenom">{{ __('Prénom') }}</label>
                     <input type="text" name="prenom" class="form-control @error('prenom') is-invalid @enderror" id="prenom"
                         placeholder="Prénoms" value="{{ $user->prenom }}" required>
                     @error('prenom')
@@ -127,9 +118,6 @@
                 </div>
             </div>
 
-
-
-
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="email">{{ __('Adresse E-Mail') }}</label>
@@ -199,8 +187,8 @@
             <div class="form-row">
 
                 <div class="form-group col-12 m-*-auto">
-                    <button type="submit" class="pull-right btn btn-info">
-                        <i class="fa fa-sign-in fa-lg fa-fw"></i>
+                    <button type="submit" class="float-right  btn btn-info">
+                        <i class="fa fa-save"></i>
                         {{ __('Mettre à jour ') }}
                     </button>
                 </div>

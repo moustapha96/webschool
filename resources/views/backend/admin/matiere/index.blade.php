@@ -26,22 +26,28 @@
                 <tr>
                     <td>Semestres </td>
                     <td>
-                        <a class="btn btn-success" href="{{ route('semester.createS') }}" role="button">ajouter</a>
-                        <a class="btn btn-dark" href="{{ route('semester.indexS') }}" role="button">lister</a>
+                        <a class="btn btn-success" href="{{ route('semester.createS') }}" role="button">
+                            <i class="fa fa-plus" aria-hidden="true"></i></a>
+                        <a class="btn btn-dark" href="{{ route('semester.indexS') }}" role="button">
+                            <i class="fa fa-list" aria-hidden="true"></i> </a>
                     </td>
                 </tr>
                 <tr>
                     <td>Unités d'enseignement</td>
                     <td>
-                        <a class="btn btn-success" href="{{ route('unity.createU') }}" role="button">ajouter</a>
-                        <a class="btn btn-dark" href="{{ route('unity.indexU') }}" role="button">lister</a>
+                        <a class="btn btn-success" href="{{ route('unity.createU') }}" role="button">
+                           <i class="fa fa-plus" aria-hidden="true"></i> </a>
+                        <a class="btn btn-dark" href="{{ route('unity.indexU') }}" role="button">
+                        <i class="fa fa-list" aria-hidden="true"></i></a>
                     </td>
                 </tr>
                 <tr>
                     <td>Matières</td>
                     <td>
-                        <a class="btn btn-success" href="{{ route('matiere.createM') }}" role="button">ajouter</a>
-                        <a class="btn btn-dark" href="{{ route('matiere.listM') }}" role="button">lister</a>
+                        <a class="btn btn-success" href="{{ route('matiere.createM') }}" role="button">
+                        <i class="fa fa-plus" aria-hidden="true"></i></a>
+                        <a class="btn btn-dark" href="{{ route('matiere.listM') }}" role="button">
+                        <i class="fa fa-list" aria-hidden="true"></i></a>
                     </td>
                 </tr>
             </tbody>

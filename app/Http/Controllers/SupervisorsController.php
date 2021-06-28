@@ -17,6 +17,7 @@ use App\Models\niveau;
 use App\Models\Semester;
 use App\Models\Setting;
 use App\Models\Student;
+use App\Models\Student_attendance;
 use App\Models\Student_file;
 use App\Models\StudentRedouble;
 use App\Models\Subject;
@@ -148,7 +149,7 @@ class SupervisorsController extends Controller
             'classe' => ['required']
         ]);
 
-        $classe =  Classe::where('nameClass', $request->classe)->first();
+        $classe =  Classe::find($request->classe)->first();
 
         $classes = Classe::all();
         return view('backend.' . Auth::user()->role . '.examen_notation.coef&barem', [
@@ -273,7 +274,7 @@ class SupervisorsController extends Controller
             compact('classe', 'logo')
         );
 
-        return $pdf->download($classe->nameClass . '.pdf');
+        return $pdf->download($classe->niveau->code.'-'.$classe->filiere->code . '.pdf');
     }
 
 
@@ -615,7 +616,7 @@ class SupervisorsController extends Controller
     public function redoublants()
     {
 
-        $redoublants = StudentRedouble::where('flag',true)->get();
+        $redoublants = Student_attendance::where('flag',true)->get();
 
         return view('backend.' . Auth()->user()->role . '.students.redoublant', [
             'redoublants' => $redoublants

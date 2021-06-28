@@ -24,9 +24,11 @@
                 <label for="role">{{ __('Role de l\'utilisateur  ') }}</label>
                 <select id="role" name="role" class="form-control" required>
                     <option value="">Sélectionner un rôle</option>
+                    <option value="admin">Admin</option>
                     <option value="accountant">Comptable</option>
                     <option value="librian">Bibliothécaire</option>
                     <option value="supervisor">Responsable Pédagogique</option>
+                    <option value="teacher">Professeur</option>
                 </select>
                 @error('role')
                     <span class="invalid-feedback" role="alert">
@@ -169,7 +171,7 @@
                 <div class="col-md-12">
 
 
-                    <button type="submit" class="pull-right btn btn-info"><i class="fa fa-sign-in fa-lg fa-fw"></i>
+                    <button type="submit" class="float-right btn btn-info"><i class="fa fa-save"></i>
                         {{ __('Enregistrer') }}
                     </button>
                 </div>

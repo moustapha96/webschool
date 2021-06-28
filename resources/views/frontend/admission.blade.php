@@ -144,7 +144,7 @@
                                     <select id="class_id" name="class_id" class="form-control" required>
                                         <option></option>
                                         @foreach ($classes as $classe)
-                                            <option value="{{ $classe->id }}"> {{ $classe->nameClass }} </option>
+                                            <option value="{{ $classe->id }}"> {{ $classe->niveau->code .'-'.$classe->filiere->name }} </option>
                                         @endforeach
                                     </select>
                                     @error('genre')

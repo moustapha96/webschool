@@ -2,8 +2,8 @@
 
 
 @section('title')
-    <h4 class="card-title">Emploi du temps</h4>
-    <p>emploi du temps professeur : <strong>
+    <h1 class="card-title">Emploi du temps</h1>
+    <br> <p>emploi du temps professeur : <strong>
             {{ $teacher->user->prenom . ' ' . $teacher->user->nom }} </strong></p>
 
 @endsection
@@ -36,16 +36,16 @@
                         <td scope="col">{{ $class_routine->day }}</td>
                         <td scope="col">{{ $class_routine->subject->name }}</td>
                         <td scope="col">{{ $class_routine->classe->niveau->name }} -
-                            {{ $class_routine->classe->filiereu->name }} </td>
+                            {{ $class_routine->classe->filiere->name }} </td>
                         <td scope="col">{{ $class_routine->classroom->description }} </td>
                         <td scope="col">{{ $class_routine->start_time }}</td>
                         <td scope="col">{{ $class_routine->end_time }}</td>
 
                         <td scope="col">
                             <a class="btn btn-primary" href="{{ route('admin.schedule.edit', $class_routine) }}"
-                                role="button">Modifier</a>
+                                role="button"> <i class="fa fa-edit" aria-hidden="true"></i> </a>
                             <a class="btn btn-danger" href="{{ route('admin.schedule.destroy', $class_routine) }}"
-                                role="button">Supprimer</a>
+                                role="button"><i class="fa fa-trash" aria-hidden="true"></i> </a>
                         </td>
                     </tr>
                 @endforeach

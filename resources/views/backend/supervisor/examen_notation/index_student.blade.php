@@ -29,7 +29,7 @@
                         <td>{{ $student->user->prenom }}</td>
                         <td>{{ $student->user->nom }}</td>
                         <td>{{ $student->user->email }}</td>
-                        <td>{{ $student->classe->nameClass }}</td>
+                        <td>{{ $student->classe->niveau->code . ' ' . $student->classe->filiere->code }}</td>
                         <td style="text-align: center">
                             <a href="{{ route('supervisor.marks', $student) }}" class="btn btn-outline-info"
                                 data-content="Show" data-placement="top" data-trigger="hover" data-toggle="tooltip"

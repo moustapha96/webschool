@@ -2,7 +2,8 @@
 
 
 @section('title')
-    <h4 class="card-title">Emploi du temps</h4>
+    <h1 class="card-title">Emploi du temps</h1>
+   <br>
     <p>emploi du temps classe : <strong> {{ $classe->niveau->code . ' ' . $classe->filiere->code }} </strong></p>
 
 @endsection
@@ -46,9 +47,9 @@
 
                         <td scope="col">
                             <a class="btn btn-primary" href="{{ route('admin.schedule.edit', $class_routine) }}"
-                                role="button">Modifier</a>
+                                role="button"><i class="fa fa-edit" aria-hidden="true"></i>  </a>
                             <a class="btn btn-danger" href="{{ route('admin.schedule.destroy', $class_routine) }}"
-                                role="button">Supprimer</a>
+                                role="button"> <i class="fa fa-trash" aria-hidden="true"></i> </a>
                         </td>
                     </tr>
 

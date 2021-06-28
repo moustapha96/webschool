@@ -2,7 +2,7 @@
 
 
 @section('title')
-<h3><i class="fa fa-suitcase"></i>Emprunter un livre </h3>
+<h1><i class="fa fa-suitcase"></i>Emprunter un livre </h1>
 <p>modifier un nouveau emprunt</p>
 
 @endsection
@@ -84,7 +84,7 @@
             <div class="mx-auto">
 
                 <button type="submit" class="pull-right btn btn-primary"><i
-                        class="fa fa-sign-in fa-lg fa-fw"></i>
+                        class="fa fa-save"></i>
                     {{ __('enregistrer ') }}
                 </button>
             </div>

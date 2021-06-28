@@ -28,8 +28,8 @@
         </div>
         <div style="text-align: center">
           <p> @php isset($school_name) ? $school_name = $school_name." | " . get_setting('school_name') : $school_name = get_setting('school_name')  ; @endphp
-            {{ $school_name }}/<strong> {{ $classe->nameClass }} </strong> </p>
-          <h3> <u>EMPLOI DU TEMPS</u> </h3>
+            {{ $school_name }}/<strong> {{ $classe->niveau->name.' '.$classe->filiere->name }} </strong> </p>
+          <h3> <u>MAQUETTE</u> </h3>
          
         </div>
        

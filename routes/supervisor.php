@@ -399,4 +399,19 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/modification/{mark}/note', 'MarkController@edit')->name('supervisor.marks.edit');
     //supprimer une note
     Route::get('/supprimer/{mark}/note', 'MarkController@destroy')->name('supervisor.marks.destroy');
+
+
+    /* gestion des exportation des etudiants */
+    Route::get('export étudiants/excel', 'ExportExcelController@export_student_exel')->name('supervisor.export.export_student_excel');
+    Route::get('export étudiants/pdf', 'ExportExcelController@export_student_pdf')->name('supervisor.export.export_student_pdf');
+    Route::get('export classe/excel/{classe}', 'ExportExcelController@export_classe_excel')->name('supervisor.export.export_classe_excel');
+    Route::get('export classe/pdf/{classe}', 'ExportExcelController@export_classe_pdf')->name('supervisor.export.export_classe_pdf');
+
+    /* gestion des importation des étudiant */
+    Route::get('import/étudiant', 'ExportExcelController@import_student_mark')->name('supervisor.import.student_mark.create');
+
+    Route::post('importation/notes', 'ExportExcelController@store_student_mark')
+        ->name('supervisor.import.student_mark.store');
+
+    Route::get('import/étudiant/fiche', 'ExportExcelController@ficheMarkStudent')->name('supervisor.import.student_mark.fiche');
 });

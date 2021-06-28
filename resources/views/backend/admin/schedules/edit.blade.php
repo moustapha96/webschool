@@ -2,7 +2,8 @@
 
 
 @section('title')
-    <h4 class="card-title">Nouveau Livre</h4>
+    <h1 class="card-title">Gestion des Emploi du temps</h1>
+    <br>
     <p>modification</p>
 
 @endsection
@@ -89,25 +90,22 @@
                     @endif
                 </div>
 
-
                 <div class="form-group col-md-12">
                     <label for="start_hour">{{ __('Début cours') }}</label>
-                    <input type="time" name="start_time" class="form-control  @error('start_time') is-invalid @enderror"
-                        id="start_time" placeholder="début du cours de la salle" value="{{ $class_routine->start_time }}"
-                        required>
+                    <input type="datetime-local" name="start_time"
+                        class="form-control  @error('start_time') is-invalid @enderror" id="start_time"
+                        placeholder="début du cours de la salle" value="{{ $class_routine->start_time }}" required>
                     @error('start_time')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                 </div>
-
-
                 <div class="form-group col-md-12">
                     <label for="end_time">{{ __('Fin cours') }}</label>
-                    <input type="time" name="end_time" class="form-control  @error('end_hour') is-invalid @enderror"
-                        id="end_time" placeholder="début du cours de la salle" value="{{ $class_routine->end_time }}"
-                        required>
+                    <input type="datetime-local" name="end_time"
+                        class="form-control  @error('end_hour') is-invalid @enderror" id="end_time"
+                        placeholder="début du cours de la salle" value="{{ $class_routine->end_time }}" required>
                     @error('end_time')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -119,7 +117,7 @@
 
             <div class="row">
                 <div class=" mx-auto align-content-center">
-                    <button type="submit" class="pull-right btn btn-primary"><i class="fa fa-sign-in fa-lg fa-fw"></i>
+                    <button type="submit" class="pull-right btn btn-primary"><i class="fa fa-save "></i>
                         {{ __('enregistrer les modifications') }}
                     </button>
                 </div>

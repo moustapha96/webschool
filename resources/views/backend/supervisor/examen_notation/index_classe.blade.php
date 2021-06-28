@@ -25,7 +25,7 @@
                 @foreach ($classes as $classe)
                     <tr>
                         <td>{{ $classe->id }}</td>
-                        <td>{{ $classe->nameClass }}</td>
+                        <td>{{ $classe->niveau->code . ' ' .$classe->filiere->code }}</td>
                         <td style="text-align: center">
                             <a href="{{ route('classe.list_etudiant', $classe) }}" class="btn btn-dark"
                                 data-content="Show" data-placement="top" data-trigger="hover" data-toggle="tooltip"

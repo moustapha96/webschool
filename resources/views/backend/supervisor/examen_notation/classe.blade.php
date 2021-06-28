@@ -2,7 +2,8 @@
 
 
 @section('title')
-    <h1><i class="fa fa-users"></i>Classe : {{ $classe->nameClass }}</h1>
+    <h1><i class="fa fa-users"></i>Classe : {{ $classe->niveau->code . ' ' . $classe->filiere->name }}</h1>
+    <br>
     <p>Liste des étudiants </p>
 @endsection
 @section('option')
@@ -29,12 +30,12 @@
                         <td>{{ $student->user->prenom }}</td>
                         <td>{{ $student->user->nom }}</td>
                         <td>{{ $student->user->email }}</td>
-                        <td>{{ $student->classe->nameClass }}</td>
+                        <td>{{ $student->classe->niveau->code . ' ' . $student->classe->filiere->code }}</td>
                         <td style="text-align: center">
                             <a href="{{ route('supervisor.marks', $student) }}" class="btn btn-outline-info"
                                 data-content="Show" data-placement="top" data-trigger="hover" data-toggle="tooltip"
                                 data-placement="top" title="afficher nptes etudiants">
-                                voir notes
+                                <i class="fa fa-eye" aria-hidden="true"></i> notes
                             </a>
 
                         </td>

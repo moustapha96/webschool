@@ -7,7 +7,7 @@
 @section('option')
     <a data-toggle="collapse" class="btn btn-primary  float-right btn-sm" data-parent="#accordianId"
         href="#section1ContentId" aria-expanded="true" aria-controls="section1ContentId">
-        <i class="fa fa-plus" aria-hidden="true"></i> ajouter une classe
+      <i class="fa fa-plus" aria-hidden="true"></i>ajouter
     </a>
 @endsection
 @section('option-panel')
@@ -100,16 +100,16 @@
                         <td scope="col" style="width: 20%">
                             @if ($classe->semester->count() != 0)
                                 <a href="{{ route('admin.classe.semester', $classe) }}"
-                                    class="btn hover btn-outline-info ">liste</a>
+                                    class="btn hover btn-outline-info "> <i class="fa fa-list" aria-hidden="true"></i> </a>
                             @else
                                 Vide
                             @endif
                         </td>
                         <td scope="col" style="width: 10%" class="hover">
-                            <a class="btn btn-primary" type="button" data-toggle="collapse"
+                            <a class="btn " type="button" data-toggle="collapse"
                                 data-target="#contentId--{{ $classe->id }}" aria-expanded="false"
                                 aria-controls="contentId--{{ $classe->id }}">
-                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                <i class="fa fa-edit" aria-hidden="true"></i>
                             </a>
 
                         </td>

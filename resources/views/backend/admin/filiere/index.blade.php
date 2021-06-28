@@ -86,15 +86,16 @@ aria-controls="section1ContentId">
                         <div class="btn-group">
 
                             <a href="{{ route('admin.filiere.delete', $filiere) }}"
-                                class="btn btn-outline-danger " data-toggle="tooltip"
+                                class="btn btn-danger " data-toggle="tooltip"
                                 data-placement="bottom" title="delete">
-                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                
                             </a>
 
-                            <a class="btn btn-primary" type="button" data-toggle="collapse"
+                            <a class="btn " type="button" data-toggle="collapse"
                                 data-target="#contentId--{{ $filiere->id }}" aria-expanded="false"
                                 aria-controls="contentId--{{ $filiere->id }}">
-                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                <i class="fa fa-edit" aria-hidden="true"></i>
                             </a>
                         </div>
 
